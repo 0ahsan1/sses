@@ -30,9 +30,9 @@ export default function Header({ headerCls, headerTop }) {
                             <div className="col-xl-8 col-lg-9">
                                 <div className="header-top-left">
                                     <ul className="list-wrap">
-                                        <li>Welcome to Roofx Construction</li>
-                                        <li><i className="fas fa-phone-alt" /><Link href="tel:0123456789">+88 ( 5548 ) 6548</Link></li>
-                                        <li><i className="fas fa-envelope" /><Link href="mailto:infoyour@gmail.com">infoyour@gmail.com</Link></li>
+                                        <li>Welcome to Sustainable Solar Energy Solutions</li>
+                                        <li><i className="fas fa-phone-alt" /><Link href="tel:0123456789">(+92) 301-820-7730</Link></li>
+                                        <li><i className="fas fa-envelope" /><Link href="mailto:info@sses.pk">info@sses.pk</Link></li>
                                     </ul>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@ export default function Header({ headerCls, headerTop }) {
                                             <Link href="/"><img src="/assets/img/logo/logo.png" alt="Logo" /></Link>
                                         </div>
                                         <div className="logo d-none">
-                                            <Link href="/"><img src="/assets/img/logo/logo_02.png" alt="Logo" /></Link>
+                                            <Link href="/"><img height={100} width={150} src="/assets/img/logo/log-old.jpg" alt="Logo" /></Link>
                                         </div>
                                         <div className="navbar-wrap main-menu d-none d-lg-flex">
                                             <ul className="navigation">
@@ -115,7 +115,7 @@ export default function Header({ headerCls, headerTop }) {
                                         </div>
                                         <div className="header-action d-none d-md-block">
                                             <ul className="list-wrap">
-                                                <li className="header-btn"><Link href="/contact" className="btn">Get a Quoute</Link></li>
+                                                {/* <li className="header-btn"><Link href="/contact" className="btn">Get a Quoute</Link></li> */}
                                             </ul>
                                         </div>
                                     </nav>
@@ -125,7 +125,7 @@ export default function Header({ headerCls, headerTop }) {
                                     <nav className="menu-box">
                                         <div className="close-btn" onClick={handleToggled}><i className="fas fa-times" /></div>
                                         <div className="nav-logo">
-                                            <Link href="/"><img src="/assets/img/logo/logo_02.png" alt="Logo" /></Link>
+                                            <Link href="/"><img src="/assets/img/logo/logo.png" alt="Logo" /></Link>
                                         </div>
                                         <div className="menu-outer">
                                             <Sidebar />

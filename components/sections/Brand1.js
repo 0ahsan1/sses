@@ -58,37 +58,37 @@ export default function Brand1() {
                         <Slider {...settings} className="row brand-active">
                             <div className="col-12">
                                 <div className="brand-item">
-                                    <img src="/assets/img/brand/brand_img01.png" alt="" />
+                                    <img src="/assets/img/brand/partner-1.jpg" alt="" />
                                 </div>
                             </div>
                             <div className="col-12">
                                 <div className="brand-item">
-                                    <img src="/assets/img/brand/brand_img02.png" alt="" />
+                                    <img src="/assets/img/brand/partner-2.jpg" alt="" />
                                 </div>
                             </div>
                             <div className="col-12">
                                 <div className="brand-item">
-                                    <img src="/assets/img/brand/brand_img03.png" alt="" />
+                                    <img src="/assets/img/brand/partner-3.jpg" alt="" />
                                 </div>
                             </div>
                             <div className="col-12">
                                 <div className="brand-item">
-                                    <img src="/assets/img/brand/brand_img04.png" alt="" />
+                                    <img src="/assets/img/brand/partner-4.jpg" alt="" />
                                 </div>
                             </div>
                             <div className="col-12">
                                 <div className="brand-item">
-                                    <img src="/assets/img/brand/brand_img05.png" alt="" />
+                                    <img src="/assets/img/brand/partner-5.jpg" alt="" />
                                 </div>
                             </div>
                             <div className="col-12">
                                 <div className="brand-item">
-                                    <img src="/assets/img/brand/brand_img06.png" alt="" />
+                                    <img src="/assets/img/brand/partner-6.jpg" alt="" />
                                 </div>
                             </div>
                             <div className="col-12">
                                 <div className="brand-item">
-                                    <img src="/assets/img/brand/brand_img03.png" alt="" />
+                                    <img src="/assets/img/brand/partner-7.jpg" alt="" />
                                 </div>
                             </div>
                         </Slider>

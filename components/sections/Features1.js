@@ -11,7 +11,7 @@ export default function Features1() {
                                 <div className="features-item-inner">
                                     <div className="features-content">
                                         <h4 className="title">Quality Materials</h4>
-                                        <p>There are many variatons of passag of Lorem Ipsum available, but the a jority have suffered.</p>
+                                        <p>You can expect superior quality solar modules.</p>
                                         <Link href="/services-details" className="link-btn"><i className="fas fa-arrow-right" /> Read More</Link>
                                     </div>
                                     <div className="features-icon">
@@ -25,7 +25,7 @@ export default function Features1() {
                                 <div className="features-item-inner">
                                     <div className="features-content">
                                         <h4 className="title">Expert Engineer</h4>
-                                        <p>There are many variatons of passag of Lorem Ipsum available, but the a jority have suffered.</p>
+                                        <p>Dedicated team of certified installers performing calculations, analysis and designs for your ease.</p>
                                         <Link href="/services-details" className="link-btn"><i className="fas fa-arrow-right" /> Read More</Link>
                                     </div>
                                     <div className="features-icon">
@@ -39,7 +39,7 @@ export default function Features1() {
                                 <div className="features-item-inner">
                                     <div className="features-content">
                                         <h4 className="title">Quality Maintenance</h4>
-                                        <p>There are many variatons of passag of Lorem Ipsum available, but the a jority have suffered.</p>
+                                        <p>Moreover, an impeccable after-sale service is our selling proposition.</p>
                                         <Link href="/services-details" className="link-btn"><i className="fas fa-arrow-right" /> Read More</Link>
                                     </div>
                                     <div className="features-icon">

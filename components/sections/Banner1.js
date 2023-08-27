@@ -25,13 +25,14 @@ export default function Banner1() {
         <>
             <section className="banner-area">
                 <div className="banner-shape" data-background="/assets/img/banner/banner_shape.jpg" />
-                <div className="banner-bg" data-background="/assets/img/banner/banner_bg.jpg">
+                <div className="banner-bg" data-background="/assets/img/banner/img-three.jpg">
                     <div className="banner-content">
-                        <h2 className="title wow fadeInDown" data-wow-delay=".2s">Best Roofing Services and Consulting</h2>
-                        <p className="wow fadeInUp" data-wow-delay=".2s">There are many variations of passages of Lorem as Ipsumoff available, but the majority have suffered alt.</p>
+                        <h2 className="title wow fadeInDown" data-wow-delay=".2s">Best Solar Services and Consulting</h2>
+                        <p className="wow fadeInUp" data-wow-delay=".2s">We are an EPC (Engineering, Procurement and Construction) company that provides cost effective and
+environment friendly solar energy solutions.</p>
                         <Link href="/project" className="btn wow fadeInUp" data-wow-delay=".4s">Discover More</Link>
                     </div>
-                    <div className="banner-tooltip-wrap">
+                    {/* <div className="banner-tooltip-wrap">
                         <div className={isActive.key == 1 ? "tooltip-item top active" : "tooltip-item top"} onClick={() => handleToggle(1)}>
                             <div className="tooltip-btn pulse">
                                 <i className="fas fa-plus" />
@@ -59,7 +60,7 @@ export default function Banner1() {
                                 <p>Suffered alteration in some a goody form, by injected humor, or into the randomized word.</p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 {/* brand-area */}
                 <Brand1 />
