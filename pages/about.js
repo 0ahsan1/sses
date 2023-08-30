@@ -50,16 +50,15 @@ export default function About() {
                                 <div className="about-content">
                                     <div className="section-title mb-25">
                                         <span className="sub-title">About Our Company</span>
-                                        <h2 className="title">We’re Committed to Roofing Excellence</h2>
+                                        <h2 className="title">We’re Committed to Solar Excellence</h2>
                                     </div>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majori have suffered
-                                        alteration in some form, by injected humour, or randomised word which don't look even slightly
-                                        believable.</p>
+                                    <p>Sustainable Solar Energy Solutions (SSES) is a setup of young and dynamic engineers who are well equipped with both education and experience in the field of Renewable Energy. Sustainable Solar was established in 2017 with focus to provide feasible Solar Energy Solutions to public and private sectors of Pakistan. SSES is an EPC (Engineering, Procurement and Construction) 
+                                        company that provides cost effective and environment 
+                                        friendly solar energy solutions.</p>
                                     <div className="about-list">
                                         <ul className="list-wrap">
-                                            <li><i className="fas fa-check" />32k Partners have worked us.</li>
-                                            <li><i className="fas fa-check" />Professional and experienced human resources.</li>
-                                            <li><i className="fas fa-check" />Provide the best roof services</li>
+                                            <li><i className="fas fa-check" />With our head office located in Karachi, SSES now have 
+                                            expanded its setup with new branch offices opened at Quetta and Wadh Khuzdar.</li>
                                         </ul>
                                     </div>
                                     <Link href="/about" className="btn">Learn More</Link>
@@ -70,7 +69,7 @@ export default function About() {
                 </section>
                 {/* about-area-end */}
                 {/* work-area */}
-                <section className="work-area">
+                {/* <section className="work-area">
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-lg-8">
@@ -131,7 +130,7 @@ export default function About() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
                 {/* work-area-end */}
                 {/* history-area */}
                 <section className="history-area pt-120 pb-120">
@@ -156,14 +155,15 @@ export default function About() {
                             <div className="col-lg-6">
                                 <div className="history-content">
                                     <div className="section-title mb-20">
-                                        <span className="sub-title">Our Roofing History</span>
-                                        <h2 className="title">Roofing when an unknown printer took to make type book</h2>
+                                        <span className="sub-title">Our History</span>
+                                        {/* <h2 className="title">Roofing when an unknown printer took to make type book</h2> */}
                                     </div>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majori our as have suffered alteration in some form, by injected humour, or randomised word which don't look even slightly believable.</p>
+                                    <p>
+                                    Sustainable Solar Energy Solutions is a Renewable Energy Company which is owned by a group of Three Energy Engineers. This venture started back in year 2010 when these future entrepreneurs became the first “Energy Engineers” to be enrolled in Pakistan at bachelor’s level. After that pioneering effort they enhanced their knowledge and skills by completing their Master’s degree program in Renewable Energy and at the same time working in top solar companies in Pakistan. Then they decided to join hands and started their own firm in 2017 making SSES the first and only all engineer run firm with the expertise as well as the educational background purely in the Renewable Energy Sector..</p>
                                     <div className="history-list">
                                         <ul className="list-wrap">
                                             <li><i className="fas fa-check-circle" />Technology management</li>
-                                            <li><i className="fas fa-check-circle" />Roofing Solutions</li>
+                                            <li><i className="fas fa-check-circle" />Solar Solutions</li>
                                             <li><i className="fas fa-check-circle" />Modern Worker Working here</li>
                                             <li><i className="fas fa-check-circle" />Quick Response</li>
                                         </ul>
