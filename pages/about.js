@@ -1,6 +1,8 @@
 import VideoPopup from "@/components/elements/VideoPopup"
 import Layout from "@/components/layout/Layout"
+import Brand1 from "@/components/sections/Brand1"
 import Brand3 from "@/components/sections/Brand3"
+import Testimonial1 from "@/components/sections/Testimonial1"
 import Link from "next/link"
 import Slider from "react-slick"
 const settings = {
@@ -24,15 +26,14 @@ export default function About() {
                         <div className="row align-items-center">
                             <div className="col-xl-7 col-lg-6 order-0 order-lg-2">
                                 <div className="about-img-wrap">
-                                    <img src="/assets/img/images/about_img01.jpg" alt="" className="wow fadeInRight" data-wow-delay=".4s" />
-                                    <img src="/assets/img/images/about_img02.jpg" alt="" className="wow fadeInRight" data-wow-delay=".2s" />
-                                    <div className="about-experiences-wrap">
+                                <img src="/assets/img/icon/about-woman.png" alt="" className="wow fadeInRight" data-wow-delay=".4s" />
+                                <img src="/assets/img/icon/mission-img3.jpg" alt="" className="wow fadeInRight" data-wow-delay=".2s" /><div className="about-experiences-wrap">
                                         <div className="experiences-item">
                                             <div className="icon">
                                                 <img src="/assets/img/icon/about_icon01.svg" alt="" />
                                             </div>
                                             <div className="content">
-                                                <h6 className="title">We have more than 10 years of experiences</h6>
+                                                <h6 className="title">We have years of experiences</h6>
                                             </div>
                                         </div>
                                         <div className="experiences-item">
@@ -144,7 +145,7 @@ export default function About() {
                                         </li>
                                         <li>
                                             <img src="/assets/img/images/history_img02.jpg" alt="" />
-                                            <VideoPopup />
+                                            {/* <VideoPopup /> */}
                                         </li>
                                         <li>
                                             <img src="/assets/img/images/history_img03.jpg" alt="" />
@@ -178,216 +179,85 @@ export default function About() {
                 <div className="area-bg-five" data-background="/assets/img/bg/area_bg05.jpg">
                     {/* team-area */}
                     <section className="inner-team-area pb-90">
-                        <div className="container">
-                            <div className="row justify-content-center">
-                                <div className="col-lg-8">
-                                    <div className="section-title text-center mb-60">
-                                        <span className="sub-title">Professional Team</span>
-                                        <h2 className="title">Professional Team Member</h2>
-                                    </div>
-                                </div>
+                    <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-lg-8">
+                            <div className="section-title text-center mb-60 tg-heading-subheading animation-style3">
+                                <span className="sub-title tg-element-title">Professional Team</span>
+                                <h2 className="title tg-element-title">Professional Team Member</h2>
                             </div>
-                            <div className="row justify-content-center">
-                                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-10">
-                                    <div className="team-item">
-                                        <div className="team-thumb">
-                                            <Link href="/team-details"><img src="/assets/img/team/team_img01.jpg" alt="" /></Link>
-                                            <div className="team-social">
-                                                <ul className="list-wrap">
-                                                    <li><Link href="#"><i className="fab fa-facebook-f" /></Link></li>
-                                                    <li><Link href="#"><i className="fab fa-linkedin-in" /></Link></li>
-                                                    <li><Link href="#"><i className="fab fa-twitter" /></Link></li>
-                                                    <li><Link href="#"><i className="fab fa-instagram" /></Link></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div className="team-content">
-                                            <h2 className="title"><Link href="/team-details">Robert C. Simmons</Link></h2>
-                                            <span>Roof Engineer</span>
-                                        </div>
+                        </div>
+                    </div>
+                    <div className="row justify-content-center">
+                        <div className="col-xl-3 col-lg-4 col-md-6 col-sm-10">
+                            <div className="team-item">
+                                <div className="team-thumb">
+                                    <Link href="/team-details"><img src="/assets/img/team/team-member1.jpg" alt="" /></Link>
+                                    <div className="team-social">
+                                        <ul className="list-wrap">
+                                            <li><Link href="https://www.facebook.com/hassan.jafri.902/"><i className="fab fa-facebook-f" /></Link></li>
+                                            <li><Link href="https://www.linkedin.com/in/hassan-jafri-7a6b171ba/"><i className="fab fa-linkedin-in" /></Link></li>
+                                            <li><Link href="https://www.youtube.com/channel/UCuY7QJnQaI3u10HwatPCRDw"><i className="fab fa-youtube" /></Link></li>
+                                            {/* <li><Link href="#"><i className="fab fa-instagram" /></Link></li> */}
+                                        </ul>
                                     </div>
                                 </div>
-                                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-10">
-                                    <div className="team-item">
-                                        <div className="team-thumb">
-                                            <Link href="/team-details"><img src="/assets/img/team/team_img02.jpg" alt="" /></Link>
-                                            <div className="team-social">
-                                                <ul className="list-wrap">
-                                                    <li><Link href="#"><i className="fab fa-facebook-f" /></Link></li>
-                                                    <li><Link href="#"><i className="fab fa-linkedin-in" /></Link></li>
-                                                    <li><Link href="#"><i className="fab fa-twitter" /></Link></li>
-                                                    <li><Link href="#"><i className="fab fa-instagram" /></Link></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div className="team-content">
-                                            <h2 className="title"><Link href="/team-details">Christopher Jhon</Link></h2>
-                                            <span>Roof Engineer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-10">
-                                    <div className="team-item">
-                                        <div className="team-thumb">
-                                            <Link href="/team-details"><img src="/assets/img/team/team_img03.jpg" alt="" /></Link>
-                                            <div className="team-social">
-                                                <ul className="list-wrap">
-                                                    <li><Link href="#"><i className="fab fa-facebook-f" /></Link></li>
-                                                    <li><Link href="#"><i className="fab fa-linkedin-in" /></Link></li>
-                                                    <li><Link href="#"><i className="fab fa-twitter" /></Link></li>
-                                                    <li><Link href="#"><i className="fab fa-instagram" /></Link></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div className="team-content">
-                                            <h2 className="title"><Link href="/team-details">Karikoka Ahli</Link></h2>
-                                            <span>Roof Engineer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-10">
-                                    <div className="team-item">
-                                        <div className="team-thumb">
-                                            <Link href="/team-details"><img src="/assets/img/team/team_img04.jpg" alt="" /></Link>
-                                            <div className="team-social">
-                                                <ul className="list-wrap">
-                                                    <li><Link href="#"><i className="fab fa-facebook-f" /></Link></li>
-                                                    <li><Link href="#"><i className="fab fa-linkedin-in" /></Link></li>
-                                                    <li><Link href="#"><i className="fab fa-twitter" /></Link></li>
-                                                    <li><Link href="#"><i className="fab fa-instagram" /></Link></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div className="team-content">
-                                            <h2 className="title"><Link href="/team-details">Dickerson MH</Link></h2>
-                                            <span>Roof Engineer</span>
-                                        </div>
-                                    </div>
+                                <div className="team-content">
+                                    <h2 className="title"><Link href="/team-details">Hassan Jafri</Link></h2>
+                                    <span>CEO/ Managing Director</span>
                                 </div>
                             </div>
                         </div>
+                        <div className="col-xl-3 col-lg-4 col-md-6 col-sm-10">
+                            <div className="team-item">
+                                <div className="team-thumb">
+                                    <Link href="/team-details"><img src="/assets/img/team/team-member2.jpg" alt="" /></Link>
+                                    <div className="team-social">
+                                        <ul className="list-wrap">
+                                            <li><Link href="https://www.facebook.com/engr.mengal/"><i className="fab fa-facebook-f" /></Link></li>
+                                            <li><Link href="#"><i className="fab fa-linkedin-in" /></Link></li>
+                                            {/* <li><Link href="#"><i className="fab fa-twitter" /></Link></li> */}
+                                            <li><Link href="https://www.youtube.com/channel/UCuY7QJnQaI3u10HwatPCRDw/"><i className="fab fa-youtube" /></Link></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="team-content">
+                                    <h2 className="title"><Link href="/team-details">Abdul Hameed Mengal</Link></h2>
+                                    <span>CEO</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-xl-3 col-lg-4 col-md-6 col-sm-10">
+                            <div className="team-item">
+                                <div className="team-thumb">
+                                    <Link href="/team-details"><img src="/assets/img/team/team-member3.jpg" alt="" /></Link>
+                                    <div className="team-social">
+                                    <ul className="list-wrap">
+                                            <li><Link href="https://www.facebook.com/M.UsamaNasir/"><i className="fab fa-facebook-f" /></Link></li>
+                                            <li><Link href="https://www.linkedin.com/in/mohammad-usama-518555a6/"><i className="fab fa-linkedin-in" /></Link></li>
+                                            {/* <li><Link href="#"><i className="fab fa-twitter" /></Link></li> */}
+                                            <li><Link href="https://www.youtube.com/channel/UCuY7QJnQaI3u10HwatPCRDw/"><i className="fab fa-youtube" /></Link></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="team-content">
+                                    <h2 className="title"><Link href="/team-details">Muhammad Usama Nasir</Link></h2>
+                                    <span>Managing Director</span>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
                     </section>
                     {/* team-area-end */}
                     {/* testimonial-area */}
-                    <section className="inner-testimonial-area parallax pb-120 position-relative">
-                        <div className="container">
-                            <div className="row justify-content-center">
-                                <div className="col-xl-6">
-                                    <div className="section-title text-center mb-50">
-                                        <span className="sub-title">Our Testimonial</span>
-                                        <h2 className="title">What Our Client Feedback</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row justify-content-center">
-                                <div className="col-lg-10">
-                                    <div className="testimonial-inner">
-                                        <Slider {...settings} className="testimonial-active-two">
-                                            <div className="testimonial-item-two">
-                                                <div className="testimonial-avatar-two">
-                                                    <img src="/assets/img/images/h2_testi_avatar01.png" alt="" />
-                                                </div>
-                                                <div className="testimonial-content-two">
-                                                    <div className="content-top">
-                                                        <div className="icon">
-                                                            <i className="fas fa-quote-left" />
-                                                        </div>
-                                                        <div className="rating">
-                                                            <i className="fas fa-star" />
-                                                            <i className="fas fa-star" />
-                                                            <i className="fas fa-star" />
-                                                            <i className="fas fa-star" />
-                                                            <i className="fas fa-star" />
-                                                        </div>
-                                                    </div>
-                                                    <p>There are many varation of paissages of Lorem as the Ipum available but our majority have sufferied alterations in some form, by our by injected hsumour randomised worids which don't looks even slightly there as believable. If you going to use a passage of Lorem Ipsum.</p>
-                                                    <div className="content-bottom">
-                                                        <h4 className="title">Darrell Steward</h4>
-                                                        <span>Roofing Expert</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="testimonial-item-two">
-                                                <div className="testimonial-avatar-two">
-                                                    <img src="/assets/img/images/h2_testi_avatar02.png" alt="" />
-                                                </div>
-                                                <div className="testimonial-content-two">
-                                                    <div className="content-top">
-                                                        <div className="icon">
-                                                            <i className="fas fa-quote-left" />
-                                                        </div>
-                                                        <div className="rating">
-                                                            <i className="fas fa-star" />
-                                                            <i className="fas fa-star" />
-                                                            <i className="fas fa-star" />
-                                                            <i className="fas fa-star" />
-                                                            <i className="fas fa-star" />
-                                                        </div>
-                                                    </div>
-                                                    <p>Lorem Ipsum are many varation of paissages of Lorem as the Ipum available but our majority have sufferied alterations in some form, by our by injected hsumour randomised worids which don't looks even slightly there as believable. If you going to use a passage of Lorem Ipsum.</p>
-                                                    <div className="content-bottom">
-                                                        <h4 className="title">Robert C. Simmons</h4>
-                                                        <span>Roofing Expert</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="testimonial-item-two">
-                                                <div className="testimonial-avatar-two">
-                                                    <img src="/assets/img/images/h2_testi_avatar03.png" alt="" />
-                                                </div>
-                                                <div className="testimonial-content-two">
-                                                    <div className="content-top">
-                                                        <div className="icon">
-                                                            <i className="fas fa-quote-left" />
-                                                        </div>
-                                                        <div className="rating">
-                                                            <i className="fas fa-star" />
-                                                            <i className="fas fa-star" />
-                                                            <i className="fas fa-star" />
-                                                            <i className="fas fa-star" />
-                                                            <i className="fas fa-star" />
-                                                        </div>
-                                                    </div>
-                                                    <p>Lorem Ipsum are many varation of paissages of Lorem as the Ipum available but our majority have sufferied alterations in some form, by our by injected hsumour randomised worids which don't looks even slightly there as believable. If you going to use a passage of Lorem Ipsum.</p>
-                                                    <div className="content-bottom">
-                                                        <h4 className="title">Karikoka Ahli</h4>
-                                                        <span>Executive Manager</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Slider>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="testimonial-avatar-wrap">
-                                <ul className="list-wrap">
-                                    <li>
-                                        <img src="/assets/img/images/h4_testi_avatar01.png" className="layer" data-depth="0.1" alt="" />
-                                    </li>
-                                    <li>
-                                        <img src="/assets/img/images/h4_testi_avatar02.png" className="layer" data-depth="0.2" alt="" />
-                                    </li>
-                                    <li>
-                                        <img src="/assets/img/images/h4_testi_avatar03.png" className="layer" data-depth="0.05" alt="" />
-                                    </li>
-                                    <li>
-                                        <img src="/assets/img/images/h4_testi_avatar03.png" className="layer" data-depth="0.2" alt="" />
-                                    </li>
-                                    <li>
-                                        <img src="/assets/img/images/h4_testi_avatar02.png" className="layer" data-depth="0.05" alt="" />
-                                    </li>
-                                    <li>
-                                        <img src="/assets/img/images/h4_testi_avatar01.png" className="layer" data-depth="0.1" alt="" />
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
+                    <Testimonial1 />
                     {/* testimonial-area-end */}
                 </div>
                 {/* area-bg-end */}
                 {/* brand-area */}
-                <Brand3 />
+                <Brand1 />
 
 
             </Layout>

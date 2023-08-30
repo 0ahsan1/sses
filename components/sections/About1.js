@@ -16,7 +16,7 @@ export default function About1() {
                                             <img src="/assets/img/icon/about_icon01.svg" alt="" />
                                         </div>
                                         <div className="content">
-                                            <h6 className="title">We have more than 10 years of experiences</h6>
+                                            <h6 className="title">We have years of experiences</h6>
                                         </div>
                                     </div>
                                     <div className="experiences-item">
