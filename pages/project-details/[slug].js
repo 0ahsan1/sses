@@ -2,6 +2,8 @@ import Layout from "@/components/layout/Layout"
 import Brand3 from "@/components/sections/Brand3"
 export default function ProjectDetails() {
 
+    
+
     return (
         <>
             <Layout breadcrumbTitle="Project Details">

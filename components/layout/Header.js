@@ -80,21 +80,9 @@ export default function Header({ headerCls, headerTop }) {
                                         </div>
                                         <div className="navbar-wrap main-menu d-none d-lg-flex">
                                             <ul className="navigation">
-                                                <li className="active menu-item-has-children"><Link href="/#">Home</Link>
-                                                    <ul className="sub-menu">
-                                                        <li><Link href="/">Home One</Link></li>
-                                                        <li><Link href="/index-2">Home Two</Link></li>
-                                                        <li><Link href="/index-3">Home Three</Link></li>
-                                                        <li><Link href="/index-4">Home Four</Link></li>
-                                                    </ul>
-                                                </li>
+                                            <li><Link href="/#">Home</Link></li>
                                                 <li><Link href="/about">About us</Link></li>
-                                                <li className="menu-item-has-children"><Link href="/#">Services</Link>
-                                                    <ul className="sub-menu">
-                                                        <li><Link href="/services">Services Page</Link></li>
-                                                        <li><Link href="/services-details">Services Details</Link></li>
-                                                    </ul>
-                                                </li>
+                                                <li><Link href="/services">Services</Link></li>
                                                 <li className="menu-item-has-children"><Link href="/#">Pages</Link>
                                                     <ul className="sub-menu">
                                                         <li><Link href="/project">Project Page</Link></li>

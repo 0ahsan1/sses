@@ -30,11 +30,11 @@ export default function Footer1() {
                                         <h2 className="fw-title">Our Services</h2>
                                         <div className="footer-link">
                                             <ul className="list-wrap">
-                                                <li><Link href="/project"><i className="fas fa-angle-double-right" />SOLAR WATER PUMPING SYSTEM</Link></li>
-                                                <li><Link href="/project"><i className="fas fa-angle-double-right" />ON-GRID SOLAR SYSTEM</Link></li>
-                                                <li><Link href="/project"><i className="fas fa-angle-double-right" />OFF-GRID SOLAR SYSTEM</Link></li>
-                                                <li><Link href="/project"><i className="fas fa-angle-double-right" />HYBRID SOLAR PV SYSTEM</Link></li>
-                                                <li><Link href="/project"><i className="fas fa-angle-double-right" />SOLAR WATER HEATER SYSTEM</Link></li>
+                                                <li><Link href="/services-details/solar-water-pumping-system"><i className="fas fa-angle-double-right" />SOLAR WATER PUMPING SYSTEM</Link></li>
+                                                <li><Link href="/services-details/On-Grid-Solar-PV-System"><i className="fas fa-angle-double-right" />ON-GRID SOLAR SYSTEM</Link></li>
+                                                <li><Link href="/services-details/Off-Grid-Solar-PV-System"><i className="fas fa-angle-double-right" />OFF-GRID SOLAR SYSTEM</Link></li>
+                                                <li><Link href="/services-details/Hybrid-Solar-PV-System"><i className="fas fa-angle-double-right" />HYBRID SOLAR PV SYSTEM</Link></li>
+                                                <li><Link href="/services-details/Solar-Water-Heater-System"><i className="fas fa-angle-double-right" />SOLAR WATER HEATER SYSTEM</Link></li>
                                             </ul>
                                         </div>
                                     </div>
