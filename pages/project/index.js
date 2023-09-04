@@ -21,12 +21,12 @@ export default function Project() {
                              <div key={index} className="col-lg-4 col-md-6 col-sm-10">
                                 <div className="project-item-two">
                                     <div className="project-thumb-two">
-                                        <Link href={d.link}><img src={d.img} alt="" /></Link>
+                                        <Link href={'/project-details/'+d.link}><img src={d.img} alt="" /></Link>
                                     </div>
                                     <div className="project-content-two">
                                         <span>{d.type}</span>
                                         <h2 className="title"><Link href="/project-details">{d.name}</Link></h2>
-                                        <Link href={d.link} className="link-btn"><i className="fas fa-arrow-right" /></Link>
+                                        <Link href={'/project-details/'+d.link} className="link-btn"><i className="fas fa-arrow-right" /></Link>
                                     </div>
                                 </div>
                             </div>
