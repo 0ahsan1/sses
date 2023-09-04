@@ -83,7 +83,8 @@ export default function Header({ headerCls, headerTop }) {
                                                 <li><Link href="/#">Home</Link></li>
                                                 <li><Link href="/about">About us</Link></li>
                                                 <li><Link href="/services">Services</Link></li>
-                                                <li className="menu-item-has-children"><Link href="/#">Pages</Link>
+                                                <li><Link href="/project">Projects</Link></li>
+                                                {/* <li className="menu-item-has-children"><Link href="/#">Pages</Link>
                                                     <ul className="sub-menu">
                                                         <li><Link href="/project">Project Page</Link></li>
                                                         <li><Link href="/project-details">Project Details</Link></li>
@@ -97,7 +98,7 @@ export default function Header({ headerCls, headerTop }) {
                                                         <li><Link href="/blog">Our Blog</Link></li>
                                                         <li><Link href="/blog-details">Blog Details</Link></li>
                                                     </ul>
-                                                </li>
+                                                </li> */}
                                                 <li><Link href="/faq">FAQ</Link></li>
                                                 <li><Link href="/contact">Contact</Link></li>
                                             </ul>
