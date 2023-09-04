@@ -80,7 +80,7 @@ export default function Header({ headerCls, headerTop }) {
                                         </div>
                                         <div className="navbar-wrap main-menu d-none d-lg-flex">
                                             <ul className="navigation">
-                                            <li><Link href="/#">Home</Link></li>
+                                                <li><Link href="/#">Home</Link></li>
                                                 <li><Link href="/about">About us</Link></li>
                                                 <li><Link href="/services">Services</Link></li>
                                                 <li className="menu-item-has-children"><Link href="/#">Pages</Link>
@@ -98,6 +98,7 @@ export default function Header({ headerCls, headerTop }) {
                                                         <li><Link href="/blog-details">Blog Details</Link></li>
                                                     </ul>
                                                 </li>
+                                                <li><Link href="/faq">FAQ</Link></li>
                                                 <li><Link href="/contact">Contact</Link></li>
                                             </ul>
                                         </div>

@@ -1,4 +1,4 @@
-export const Projec1 = () => {
+export const Project1 = () => {
     return <>
         <div className="col-lg-8">
             <div className="project-details-wrap">

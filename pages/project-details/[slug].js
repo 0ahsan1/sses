@@ -7,6 +7,7 @@ export default function ProjectDetails() {
     let comp =<></>
     const {slug} = router.query
     comp = projects.find(s=>s.link===slug).content
+    console.log('comp',comp)
 
     return (
         <>
