@@ -1,8 +1,18 @@
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import nodemailer from "nodemailer";
+import { useState } from "react";
 
 export default function Contact() {
+
+     const [name,setName] = useState('')
+     const [email,setEmail] = useState('')
+     const [phone,setPhone] = useState('')
+     const [subject,setSubject] = useState('')
+     const [message,setMessage] = useState('')
+
+
+
 function submitEmail(params) {
     
 }
@@ -20,30 +30,25 @@ function submitEmail(params) {
                                         <div className="row">
                                             <div className="col-md-6">
                                                 <div className="form-grp">
-                                                    <input id="firstName" type="text" placeholder="First Name*" />
+                                                    <input id="firstName" value={name} onChange={(e)=>setName(e.target.value)} type="text" placeholder="First Name*" />
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
                                                 <div className="form-grp">
-                                                    <input id="lastName" type="text" placeholder="Last Name*" />
+                                                    <input id="email" value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Email Address*" />
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
                                                 <div className="form-grp">
-                                                    <input id="email" type="email" placeholder="Email Address*" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-grp">
-                                                    <input id="phone" type="text" placeholder="Phone Number*" />
+                                                    <input id="phone" value={phone} onChange={(e)=>setPhone(e.target.value)} type="text" placeholder="Phone Number*" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="form-grp">
-                                            <input id="subject" type="text" placeholder="Subject" />
+                                            <input id="subject" value={subject} onChange={(e)=>setSubject(e.target.value)} type="text" placeholder="Subject" />
                                         </div>
                                         <div className="form-grp">
-                                            <textarea id="message" placeholder="Your Message here" />
+                                            <textarea id="message" value={message} onChange={(e)=>setMessage(e.target.value)} placeholder="Your Message here" />
                                         </div>
                                         <button onClick={submitEmail()} className="btn" type="submit">Send Message</button>
                                     </form>
