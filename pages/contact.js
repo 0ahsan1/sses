@@ -2,20 +2,41 @@ import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import nodemailer from "nodemailer";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Contact() {
 
-     const [name,setName] = useState('')
-     const [email,setEmail] = useState('')
-     const [phone,setPhone] = useState('')
-     const [subject,setSubject] = useState('')
-     const [message,setMessage] = useState('')
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [subject, setSubject] = useState('')
+    const [message, setMessage] = useState('')
 
+    // toast.success('🦄 Wow so easy!', {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //     });
+    //     toast.error('🦄 Wow so easy!', {
+    //         position: "top-right",
+    //         autoClose: 5000,
+    //         hideProgressBar: false,
+    //         closeOnClick: true,
+    //         pauseOnHover: true,
+    //         draggable: true,
+    //         progress: undefined,
+    //         theme: "light",
+    //         });
 
+    function submitEmail(params) {
 
-function submitEmail(params) {
-    
-}
+    }
     return (
         <>
             <Layout breadcrumbTitle="Contact Us">
@@ -30,27 +51,41 @@ function submitEmail(params) {
                                         <div className="row">
                                             <div className="col-md-6">
                                                 <div className="form-grp">
-                                                    <input id="firstName" value={name} onChange={(e)=>setName(e.target.value)} type="text" placeholder="First Name*" />
+                                                    <input id="firstName" value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="First Name*" />
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
                                                 <div className="form-grp">
-                                                    <input id="email" value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Email Address*" />
+                                                    <input id="email" value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email Address*" />
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
                                                 <div className="form-grp">
-                                                    <input id="phone" value={phone} onChange={(e)=>setPhone(e.target.value)} type="text" placeholder="Phone Number*" />
+                                                    <input id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} type="text" placeholder="Phone Number*" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="form-grp">
-                                            <input id="subject" value={subject} onChange={(e)=>setSubject(e.target.value)} type="text" placeholder="Subject" />
+                                            <input id="subject" value={subject} onChange={(e) => setSubject(e.target.value)} type="text" placeholder="Subject" />
                                         </div>
                                         <div className="form-grp">
-                                            <textarea id="message" value={message} onChange={(e)=>setMessage(e.target.value)} placeholder="Your Message here" />
+                                            <textarea id="message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Your Message here" />
                                         </div>
                                         <button onClick={submitEmail()} className="btn" type="submit">Send Message</button>
+                                        <ToastContainer
+                                            position="top-right"
+                                            autoClose={5000}
+                                            hideProgressBar={false}
+                                            newestOnTop={false}
+                                            closeOnClick
+                                            rtl={false}
+                                            pauseOnFocusLoss
+                                            draggable
+                                            pauseOnHover
+                                            theme="light"
+                                        />
+                                        {/* Same as */}
+                                        <ToastContainer />
                                     </form>
                                 </div>
                             </div>
@@ -108,16 +143,16 @@ function submitEmail(params) {
     )
 }
 export const sendEmail = async (data) => {
-    let resp ='';
+    let resp = '';
     const { email, name, phone, subject, message } = data;
     const transporter = nodemailer.createTransport({
-      host: "mail.sses.pk",
-      port: 587,
-      secure: false,
-      auth: {
-        user: 'info@sses.pk',
-        pass: 'sses_0321',
-      },
+        host: "mail.sses.pk",
+        port: 587,
+        secure: false,
+        auth: {
+            user: 'info@sses.pk',
+            pass: 'sses_0321',
+        },
     });
     const html = `
   <!DOCTYPE html>
@@ -174,18 +209,18 @@ export const sendEmail = async (data) => {
   `;
     const mailData = {
         from: 'info@sses.pk',
-      to: 'info.sustainablesolar@gmail.com',
-      subject: 'Message Received (Contact Page)',
-      html: html,
+        to: 'info.sustainablesolar@gmail.com',
+        subject: 'Message Received (Contact Page)',
+        html: html,
     };
     transporter.sendMail(mailData, function (error, info) {
 
-      if (error) {
-        resp = 'Sorry there was an error sending your message. Please try again later'
-        console.error(error);
-      } else {
-        resp = 'Message Sent! Thank you for contacting us.'
-      }
+        if (error) {
+            resp = 'Sorry there was an error sending your message. Please try again later'
+            console.error(error);
+        } else {
+            resp = 'Message Sent! Thank you for contacting us.'
+        }
     });
     return resp
-  };
+};
