@@ -13,29 +13,34 @@ export default function Contact() {
     const [subject, setSubject] = useState('')
     const [message, setMessage] = useState('')
 
-    // toast.success('🦄 Wow so easy!', {
-    //     position: "top-right",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "light",
-    //     });
-    //     toast.error('🦄 Wow so easy!', {
-    //         position: "top-right",
-    //         autoClose: 5000,
-    //         hideProgressBar: false,
-    //         closeOnClick: true,
-    //         pauseOnHover: true,
-    //         draggable: true,
-    //         progress: undefined,
-    //         theme: "light",
-    //         });
-
-    function submitEmail(params) {
-
+    function submitEmail() {
+        let payload = {
+            email, phone, message, subject, name
+        }
+        let res = sendEmail(payload)
+        if (res.isSuccess) {
+            toast.success(res.resp, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else {
+            toast.error(res.resp, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
     }
     return (
         <>
@@ -144,6 +149,7 @@ export default function Contact() {
 }
 export const sendEmail = async (data) => {
     let resp = '';
+    let isSuccess = false;
     const { email, name, phone, subject, message } = data;
     const transporter = nodemailer.createTransport({
         host: "mail.sses.pk",
@@ -216,11 +222,14 @@ export const sendEmail = async (data) => {
     transporter.sendMail(mailData, function (error, info) {
 
         if (error) {
+            isSuccess = false
             resp = 'Sorry there was an error sending your message. Please try again later'
             console.error(error);
         } else {
+            isSuccess = true
+
             resp = 'Message Sent! Thank you for contacting us.'
         }
     });
-    return resp
+    return { resp, isSuccess }
 };
