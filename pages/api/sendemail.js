@@ -1,5 +1,12 @@
+import nodemailer from "nodemailer";
+
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    res.status(405).send({ message: "Only POST requests allowed" });
+    return;
+  }
     try {
+      console.log('email payload',req.body)
         sendEmail(req.body);
         res.status(200).send({ message: "Success" });
     } catch (error) {
@@ -14,10 +21,14 @@ export const sendEmail = async (data) => {
         host: "mail.sses.pk",
         port: 587,
         secure: false,
+        
         auth: {
             user: 'info@sses.pk',
             pass: 'sses_0321',
         },
+        tls: { 
+          rejectUnauthorized: false 
+      }
     });
     const html = `
   <!DOCTYPE html>
@@ -73,7 +84,7 @@ export const sendEmail = async (data) => {
   </html>
   `;
     const mailData = {
-        from: 'info@sses.pk',
+        from: email,
         to: 'info.sustainablesolar@gmail.com',
         subject: 'Message Received (Contact Page)',
         html: html,
@@ -82,7 +93,10 @@ export const sendEmail = async (data) => {
 
         if (error) {
             console.error(error);
+          console.info('email error',error)
+
         } else {
+          console.info('email info',info)
         }
     });
 };

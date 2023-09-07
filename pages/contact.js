@@ -1,6 +1,6 @@
 import Layout from "@/components/layout/Layout"
+import axios from "axios";
 import Link from "next/link"
-import nodemailer from "nodemailer";
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,8 +17,10 @@ export default function Contact() {
         let payload = {
             email, phone, message, subject, name
         }
-        let res = sendEmail(payload)
-        if (res.isSuccess) {
+        console.log('email payload', payload,email)
+        try {
+            let res = axios.post('/api/sendemail', { ...payload })
+            console.log('email res', res)
             toast.success(res.resp, {
                 position: "top-right",
                 autoClose: 5000,
@@ -29,8 +31,9 @@ export default function Contact() {
                 progress: undefined,
                 theme: "light",
             });
-        } else {
-            toast.error(res.resp, {
+        } catch (error) {
+            console.log('email error', error)
+            toast.success(res.resp, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -54,20 +57,15 @@ export default function Contact() {
                                     <p>Send us a message and we' ll respond as soon as possible</p>
                                     <form action="#" className="contact-form">
                                         <div className="row">
-                                            <div className="col-md-6">
-                                                <div className="form-grp">
-                                                    <input id="firstName" value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="First Name*" />
-                                                </div>
+                                            <div className="form-grp">
+                                                <input id="firstName" value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="First Name*" />
                                             </div>
-                                            <div className="col-md-6">
-                                                <div className="form-grp">
-                                                    <input id="email" value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email Address*" />
-                                                </div>
+                                            <div className="form-grp">
+                                                <input id="email" value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email Address*" />
+
                                             </div>
-                                            <div className="col-md-6">
-                                                <div className="form-grp">
-                                                    <input id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} type="text" placeholder="Phone Number*" />
-                                                </div>
+                                            <div className="form-grp">
+                                                <input id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} type="text" placeholder="Phone Number*" />
                                             </div>
                                         </div>
                                         <div className="form-grp">
@@ -76,7 +74,7 @@ export default function Contact() {
                                         <div className="form-grp">
                                             <textarea id="message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Your Message here" />
                                         </div>
-                                        <button onClick={submitEmail()} className="btn" type="submit">Send Message</button>
+                                        <button onClick={() => submitEmail()} className="btn" type="submit">Send Message</button>
                                         <ToastContainer
                                             position="top-right"
                                             autoClose={5000}
