@@ -19,7 +19,7 @@ export default function Project() {
                         <div className="row justify-content-center">
                         {data.map((d,index)=>(
                              <div key={index} className="col-lg-4 col-md-6 col-sm-10">
-                                <div className="project-item-two">
+                                <div className="project-item-two text-center">
                                     <div className="project-thumb-two">
                                         <Link href={'/project-details/'+d.link}><img src={d.img} alt="" /></Link>
                                     </div>
@@ -28,6 +28,7 @@ export default function Project() {
                                         <h2 className="title"><Link href="/project-details">{d.name}</Link></h2>
                                         <Link href={'/project-details/'+d.link} className="link-btn"><i className="fas fa-arrow-right" /></Link>
                                     </div>
+                                    <h5 className="mt-3">{d.name}</h5>
                                 </div>
                             </div>
                         ))}
