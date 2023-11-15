@@ -14,46 +14,52 @@ import Newsletter1 from "@/components/sections/Newsletter1";
 import { strapiApiPath } from "@/constants/ApiPath";
 import { getFilteredStrapiContent } from "@/services/ApiService";
 
-export default function Home({ data }) {
-    console.log('data: ', data);
+export default function Home({ data, layout }) {
+  const objKey = "main";
+  //   console.log("data: ", data);
+  //   console.log("layout: ", layout);
 
-    return (
-        <>
-            <Layout headerCls="transparent-header">
-                <Banner1 />
-                <Features1 />
-                <About1 />
-                <Services1 />
-                <Project1 />
-                <Team1 />
-                {/* <Counter1 /> */}
-                <Testimonial1 />
-                {/* <Blog1 /> */}
-                {/* <Newsletter1 /> */}
-            </Layout>
-        </>
-    );
+  return (
+    <>
+      <Layout headerCls="transparent-header" data={layout} objKey={objKey}>
+        <Banner1 data={data?.banner} objKey={objKey} />
+        <Features1 data={layout} objKey={objKey} />
+        <About1 data={layout} objKey={objKey} />
+        <Services1 data={layout} objKey={objKey} />
+        <Project1 data={layout} objKey={objKey} />
+        <Team1 data={layout} objKey={objKey} />
+        {/* <Counter1 /> */}
+        <Testimonial1 data={layout} objKey={objKey} />
+        {/* <Blog1 /> */}
+        {/* <Newsletter1 /> */}
+      </Layout>
+    </>
+  );
 }
 
 export async function getStaticProps() {
-    try {
-        let data = await getFilteredStrapiContent(strapiApiPath.HOME);
-        // const layout = await getFilteredStrapiContent(
-        //     strapiApiPath.BUSINESS.LAYOUT
-        // );
-
-        return {
-            props: {
-                // layout: layout ?? {},
-                data: data ?? {},
-            },
-            revalidate: 20,
-        };
-    } catch (error) {
-        return {
-            props: {
-                error: JSON.parse(JSON.stringify(error)),
-            },
-        };
+  try {
+    const data = await getFilteredStrapiContent(strapiApiPath.HOME);
+    const layout = await getFilteredStrapiContent(strapiApiPath.LAYOUT);
+    const profile = await getFilteredStrapiContent(
+      strapiApiPath.COMPANY_PROFILE
+    );
+    if (layout) {
+      layout["profile"] = profile;
     }
+
+    return {
+      props: {
+        layout: layout ?? {},
+        data: data ?? {},
+      },
+      revalidate: 20,
+    };
+  } catch (error) {
+    return {
+      props: {
+        error: JSON.parse(JSON.stringify(error)),
+      },
+    };
+  }
 }

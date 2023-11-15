@@ -1,25 +1,27 @@
-import Link from "next/link"
-import { useState } from "react"
-import Brand1 from "./Brand1"
+import Link from "next/link";
+import { useState } from "react";
+import Brand1 from "./Brand1";
+import { banners } from "./items";
 
-export default function Banner1() {
+export default function Banner1({ data, objKey }) {
+    const banner = data ?? banners[objKey];
     const [isActive, setIsActive] = useState({
         status: false,
         key: "",
-    })
+    });
 
     const handleToggle = (key) => {
         if (isActive.key === key) {
             setIsActive({
                 status: false,
-            })
+            });
         } else {
             setIsActive({
                 status: true,
                 key,
-            })
+            });
         }
-    }
+    };
 
     return (
         <>
@@ -29,7 +31,7 @@ export default function Banner1() {
                     <div className="banner-content">
                         <h2 className="title wow fadeInDown" data-wow-delay=".2s">Best Solar Services and Consulting</h2>
                         <p className="wow fadeInUp" data-wow-delay=".2s">We are an EPC (Engineering, Procurement and Construction) company that provides cost effective and
-environment friendly solar energy solutions.</p>
+                            environment friendly solar energy solutions.</p>
                         <Link href="/project" className="btn wow fadeInUp" data-wow-delay=".4s">Discover More</Link>
                     </div>
                     {/* <div className="banner-tooltip-wrap">
@@ -68,5 +70,5 @@ environment friendly solar energy solutions.</p>
             </section>
 
         </>
-    )
+    );
 }
