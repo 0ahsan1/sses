@@ -2,39 +2,55 @@ import Link from "next/link";
 import { useState } from "react";
 import Brand1 from "./Brand1";
 import { banners } from "./items";
+import { setBackgroundImageUrl } from "@/helpers/util";
 
 export default function Banner1({ data, objKey }) {
-    const banner = data ?? banners[objKey];
-    const [isActive, setIsActive] = useState({
+  const banner = data ?? banners[objKey];
+  const [isActive, setIsActive] = useState({
+    status: false,
+    key: "",
+  });
+
+  const handleToggle = (key) => {
+    if (isActive.key === key) {
+      setIsActive({
         status: false,
-        key: "",
-    });
+      });
+    } else {
+      setIsActive({
+        status: true,
+        key,
+      });
+    }
+  };
 
-    const handleToggle = (key) => {
-        if (isActive.key === key) {
-            setIsActive({
-                status: false,
-            });
-        } else {
-            setIsActive({
-                status: true,
-                key,
-            });
-        }
-    };
-
-    return (
-        <>
-            <section className="banner-area">
-                <div className="banner-shape" data-background="/assets/img/banner/banner_shape.jpg" />
-                <div className="banner-bg" data-background="/assets/img/banner/img-three.jpg">
-                    <div className="banner-content">
-                        <h2 className="title wow fadeInDown" data-wow-delay=".2s">Best Solar Services and Consulting</h2>
-                        <p className="wow fadeInUp" data-wow-delay=".2s">We are an EPC (Engineering, Procurement and Construction) company that provides cost effective and
-                            environment friendly solar energy solutions.</p>
-                        <Link href="/project" className="btn wow fadeInUp" data-wow-delay=".4s">Discover More</Link>
-                    </div>
-                    {/* <div className="banner-tooltip-wrap">
+  return (
+    <>
+      <section className="banner-area">
+        <div
+          className="banner-shape"
+          data-background="/assets/img/banner/banner_shape.jpg"
+        />
+        <div
+          className="banner-bg"
+          style={setBackgroundImageUrl(banner?.background_image)}
+        >
+          <div className="banner-content">
+            <h2 className="title wow fadeInDown" data-wow-delay=".2s">
+              {banner?.title}
+            </h2>
+            <p className="wow fadeInUp" data-wow-delay=".2s">
+              {banner?.content}
+            </p>
+            <Link
+              href="/project"
+              className="btn wow fadeInUp"
+              data-wow-delay=".4s"
+            >
+              Discover More
+            </Link>
+          </div>
+          {/* <div className="banner-tooltip-wrap">
                         <div className={isActive.key == 1 ? "tooltip-item top active" : "tooltip-item top"} onClick={() => handleToggle(1)}>
                             <div className="tooltip-btn pulse">
                                 <i className="fas fa-plus" />
@@ -63,12 +79,11 @@ export default function Banner1({ data, objKey }) {
                             </div>
                         </div>
                     </div> */}
-                </div>
-                {/* brand-area */}
-                <Brand1 />
-                {/* brand-area-end */}
-            </section>
-
-        </>
-    );
+        </div>
+        {/* brand-area */}
+        <Brand1 />
+        {/* brand-area-end */}
+      </section>
+    </>
+  );
 }

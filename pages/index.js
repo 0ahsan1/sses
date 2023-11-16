@@ -16,14 +16,14 @@ import { getFilteredStrapiContent } from "@/services/ApiService";
 
 export default function Home({ data, layout }) {
   const objKey = "main";
-  //   console.log("data: ", data);
+  console.log("data: ", data);
   //   console.log("layout: ", layout);
 
   return (
     <>
       <Layout headerCls="transparent-header" data={layout} objKey={objKey}>
         <Banner1 data={data?.banner} objKey={objKey} />
-        <Features1 data={layout} objKey={objKey} />
+        <Features1 data={data?.boards} objKey={"main-board-1"} />
         <About1 data={layout} objKey={objKey} />
         <Services1 data={layout} objKey={objKey} />
         <Project1 data={layout} objKey={objKey} />
@@ -39,19 +39,45 @@ export default function Home({ data, layout }) {
 
 export async function getStaticProps() {
   try {
-    const data = await getFilteredStrapiContent(strapiApiPath.HOME);
+    let data = {};
     const layout = await getFilteredStrapiContent(strapiApiPath.LAYOUT);
     const profile = await getFilteredStrapiContent(
       strapiApiPath.COMPANY_PROFILE
     );
-    if (layout) {
+    const banners = await getFilteredStrapiContent(strapiApiPath.BANNERS, [
+      {
+        slug: "main",
+      },
+    ]);
+    const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS);
+    const aboutSection = await getFilteredStrapiContent(
+      strapiApiPath.ABOUT_SECTION
+    );
+    const sliderImages = await getFilteredStrapiContent(
+      strapiApiPath.SLIDER_IMAGES
+    );
+    const team = await getFilteredStrapiContent(strapiApiPath.TEAM);
+    const testimonials = await getFilteredStrapiContent(
+      strapiApiPath.TESTIMONIALS
+    );
+
+    if (layout && profile) {
       layout["profile"] = profile;
     }
+
+    if (banners && banners.length) {
+      data["banner"] = banners[0];
+    }
+    data["boards"] = boards;
+    data["aboutSection"] = aboutSection;
+    data["sliderImages"] = sliderImages;
+    data["team"] = team;
+    data["testimonials"] = testimonials;
 
     return {
       props: {
         layout: layout ?? {},
-        data: data ?? {},
+        data: data,
       },
       revalidate: 20,
     };

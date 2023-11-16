@@ -29,27 +29,36 @@ export async function getFilteredStrapiContent(
   let url = `${strapiBasePath}${path}`,
     response = null;
 
+  // if (path === "/home") {
+  //   // url += `populate=['board.board_items']`;
+  //   url += `?populate=*`;
+  // }
+
+  console.log("path", path);
+  console.log("url", url);
+
   filters.forEach((filter) => {
     const keys = Object.keys(filter);
-    const nestedKey = keys.find((key) => key.includes("."));
-    let nestedProperties = "";
-    if (nestedKey) {
-      nestedProperties = nestedKey.split(".");
-    }
+    url += `?[${keys[0]}]=${filter[keys[0]]}`;
+    // const nestedKey = keys.find((key) => key.includes("."));
+    // let nestedProperties = "";
+    // if (nestedKey) {
+    //   nestedProperties = nestedKey.split(".");
+    // }
 
-    if (keys[0] === "$or" || keys[0] === "$and") {
-      url += `&filters[${keys[0]}][${filter[keys[0]]}][${keys[1]}][${
-        filter[keys[2]]
-      }]=${filter[keys[1]]}`;
-    } else {
-      if (nestedProperties && nestedProperties.length) {
-        url += `&filters${nestedProperties
-          .map((prop) => `[${prop}]`)
-          .join("")}[${filter[keys[1]]}]=${filter[keys[0]]}`;
-      } else {
-        url += `&filters[${keys[0]}][${filter[keys[1]]}]=${filter[keys[0]]}`;
-      }
-    }
+    // if (keys[0] === "$or" || keys[0] === "$and") {
+    //   url += `&filters[${keys[0]}][${filter[keys[0]]}][${keys[1]}][${
+    //     filter[keys[2]]
+    //   }]=${filter[keys[1]]}`;
+    // } else {
+    //   if (nestedProperties && nestedProperties.length) {
+    //     url += `&filters${nestedProperties
+    //       .map((prop) => `[${prop}]`)
+    //       .join("")}[${filter[keys[1]]}]=${filter[keys[0]]}`;
+    //   } else {
+    //     url += `&filters[${keys[0]}][${filter[keys[1]]}]=${filter[keys[0]]}`;
+    //   }
+    // }
   });
 
   if (pagination) {
