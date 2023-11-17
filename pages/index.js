@@ -24,12 +24,12 @@ export default function Home({ data, layout }) {
       <Layout headerCls="transparent-header" data={layout} objKey={objKey}>
         <Banner1 data={data?.banner} objKey={objKey} />
         <Features1 data={data?.boards} objKey={"main-board-1"} />
-        <About1 data={layout} objKey={objKey} />
-        <Services1 data={layout} objKey={objKey} />
-        <Project1 data={layout} objKey={objKey} />
-        <Team1 data={layout} objKey={objKey} />
+        <About1 data={data?.aboutSection} objKey={objKey} />
+        <Services1 data={data?.services} objKey={objKey} />
+        <Project1 data={data?.projects} objKey={objKey} />
+        <Team1 data={data?.team} objKey={objKey} />
         {/* <Counter1 /> */}
-        <Testimonial1 data={layout} objKey={objKey} />
+        <Testimonial1 data={data?.testimonials} objKey={objKey} />
         {/* <Blog1 /> */}
         {/* <Newsletter1 /> */}
       </Layout>
