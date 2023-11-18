@@ -3,6 +3,7 @@ import Layout from "@/components/layout/Layout";
 import Brand1 from "@/components/sections/Brand1";
 import Brand3 from "@/components/sections/Brand3";
 import Testimonial1 from "@/components/sections/Testimonial1";
+import { aboutSection } from "@/components/sections/items";
 import { strapiApiPath } from "@/constants/ApiPath";
 import { strapiImageLoader } from "@/helpers/util";
 import { getFilteredStrapiContent } from "@/services/ApiService";
@@ -21,7 +22,7 @@ const settings = {
 
 export default function About({ data, layout }) {
   const objKey = "about";
-  const aboutSection = data?.aboutSection;
+  const aboutSection = data?.aboutSection ?? aboutSection;
 
   return (
     <>
@@ -32,16 +33,7 @@ export default function About({ data, layout }) {
               <div className="col-xl-7 col-lg-6 order-0 order-lg-2">
                 <div className="about-img-wrap">
                   <Image
-                    src={aboutSection?.board_items[1]?.background_image?.url}
-                    alt=""
-                    className="wow fadeInRight"
-                    data-wow-delay=".4s"
-                    width={213}
-                    height={386}
-                    loader={strapiImageLoader}
-                  />
-                  <Image
-                    src={aboutSection?.board_items[0]?.background_image?.url}
+                    src={aboutSection?.items[0]?.background_image?.url}
                     alt=""
                     className="wow fadeInRight"
                     data-wow-delay=".2s"
@@ -49,33 +41,26 @@ export default function About({ data, layout }) {
                     height={543}
                     loader={strapiImageLoader}
                   />
-                  {/* <img
-                    src="/assets/img/icon/about-woman.png"
+                  <Image
+                    src={aboutSection?.items[1]?.background_image?.url}
                     alt=""
                     className="wow fadeInRight"
                     data-wow-delay=".4s"
+                    width={213}
+                    height={386}
+                    loader={strapiImageLoader}
                   />
-                  <img
-                    src="/assets/img/icon/mission-img3.jpg"
-                    alt=""
-                    className="wow fadeInRight"
-                    data-wow-delay=".2s"
-                  /> */}
                   <div className="about-experiences-wrap">
-                    {aboutSection?.board_items.map((item) => {
+                    {aboutSection?.items.map((item) => {
                       return (
                         <div className="experiences-item">
                           <div className="icon">
                             <Image
                               src={item?.media?.url}
-                              width={63}
-                              height={63}
+                              width={28}
+                              height={32}
                               loader={strapiImageLoader}
                             />
-                            {/* <img
-                              src="/assets/img/icon/about_icon01.svg"
-                              alt=""
-                            /> */}
                           </div>
                           <div className="content">
                             <h6 className="title">{item.title}</h6>
@@ -111,81 +96,6 @@ export default function About({ data, layout }) {
             </div>
           </div>
         </section>
-        {/* <section className="about-area inner-about-area pt-120 pb-120">
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-xl-7 col-lg-6 order-0 order-lg-2">
-                <div className="about-img-wrap">
-                  <img
-                    src="/assets/img/icon/about-woman.png"
-                    alt=""
-                    className="wow fadeInRight"
-                    data-wow-delay=".4s"
-                  />
-                  <img
-                    src="/assets/img/icon/mission-img3.jpg"
-                    alt=""
-                    className="wow fadeInRight"
-                    data-wow-delay=".2s"
-                  />
-                  <div className="about-experiences-wrap">
-                    <div className="experiences-item">
-                      <div className="icon">
-                        <img src="/assets/img/icon/about_icon01.svg" alt="" />
-                      </div>
-                      <div className="content">
-                        <h6 className="title">We have years of experiences</h6>
-                      </div>
-                    </div>
-                    <div className="experiences-item">
-                      <div className="icon">
-                        <img src="/assets/img/icon/about_icon02.svg" alt="" />
-                      </div>
-                      <div className="content">
-                        <h6 className="title">
-                          We use professional and experienced person
-                        </h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xl-5 col-lg-6">
-                <div className="about-content">
-                  <div className="section-title mb-25">
-                    <span className="sub-title">About Our Company</span>
-                    <h2 className="title">
-                      We’re Committed to Solar Excellence
-                    </h2>
-                  </div>
-                  <p>
-                    Sustainable Solar Energy Solutions (SSES) is a setup of
-                    young and dynamic engineers who are well equipped with both
-                    education and experience in the field of Renewable Energy.
-                    Sustainable Solar was established in 2017 with focus to
-                    provide feasible Solar Energy Solutions to public and
-                    private sectors of Pakistan. SSES is an EPC (Engineering,
-                    Procurement and Construction) company that provides cost
-                    effective and environment friendly solar energy solutions.
-                  </p>
-                  <div className="about-list">
-                    <ul className="list-wrap">
-                      <li>
-                        <i className="fas fa-check" />
-                        With our head office located in Karachi, SSES now have
-                        expanded its setup with new branch offices opened at
-                        Quetta and Wadh Khuzdar.
-                      </li>
-                    </ul>
-                  </div>
-                  <Link href="/about" className="btn">
-                    Learn More
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
         {/* about-area-end */}
         {/* work-area */}
         {/* <section className="work-area">

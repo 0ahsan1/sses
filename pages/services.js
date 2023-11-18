@@ -3,8 +3,10 @@ import Link from "next/link";
 import { useState } from "react";
 import Counter2 from "@/components/sections/Counter2";
 import Services1 from "@/components/sections/Services1";
+import { strapiApiPath } from "@/constants/ApiPath";
+import { getFilteredStrapiContent } from "@/services/ApiService";
 
-export default function Service() {
+export default function Service({ data, layout }) {
   const [isActive, setIsActive] = useState({
     status: false,
     key: "",
@@ -24,8 +26,8 @@ export default function Service() {
   };
   return (
     <>
-      <Layout breadcrumbTitle="Services">
-        <Services1 />
+      <Layout breadcrumbTitle="Services" data={layout} objKey="main">
+        <Services1 data={data?.boards} objKey="services" />
       </Layout>
     </>
   );
@@ -43,30 +45,17 @@ export async function getStaticProps() {
         slug: "main",
       },
     ]);
-    const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS);
-    const aboutSection = await getFilteredStrapiContent(
-      strapiApiPath.ABOUT_SECTION
-    );
-    const sliderImages = await getFilteredStrapiContent(
-      strapiApiPath.SLIDER_IMAGES
-    );
-    const team = await getFilteredStrapiContent(strapiApiPath.TEAM);
-    const testimonials = await getFilteredStrapiContent(
-      strapiApiPath.TESTIMONIALS
-    );
-
+    const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS, [
+      {
+        slug: "services",
+      },
+    ]);
     if (layout && profile) {
       layout["profile"] = profile;
     }
 
-    if (banners && banners.length) {
-      data["banner"] = banners[0];
-    }
+    data["banners"] = banners;
     data["boards"] = boards;
-    data["aboutSection"] = aboutSection;
-    data["sliderImages"] = sliderImages;
-    data["team"] = team;
-    data["testimonials"] = testimonials;
 
     return {
       props: {

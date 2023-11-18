@@ -89,6 +89,9 @@ export async function getFilteredStrapiContent(
     //     };
     // }
     let mappedResponse = response.data;
+    if (mappedResponse && mappedResponse.length) {
+      mappedResponse = mappedResponse.sort((a, b) => a - b);
+    }
     return JSON.parse(JSON.stringify(mappedResponse));
   } catch (error) {
     console.log("axios err: ", error);

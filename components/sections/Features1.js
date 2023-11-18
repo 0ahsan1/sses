@@ -5,14 +5,14 @@ import { strapiImageLoader } from "@/helpers/util";
 
 export default function Features1({ data, objKey }) {
   data = data ?? boards;
-  let board = data.find((d) => d.slug === objKey);
+  const board = data.find((d) => d.slug === objKey);
 
   return (
     <>
       <section className="features-area pt-120 pb-90">
         <div className="container">
           <div className="row justify-content-center">
-            {board?.board_items.map((item, index) => {
+            {board?.items.map((item, index) => {
               return (
                 <div className="col-lg-4 col-md-6">
                   <div
