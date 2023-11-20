@@ -16,13 +16,15 @@ import { getFilteredStrapiContent } from "@/services/ApiService";
 
 export default function Home({ data, layout }) {
   const objKey = "main";
-  console.log("data: ", data);
-  //   console.log("layout: ", layout);
 
   return (
     <>
       <Layout headerCls="transparent-header" data={layout} objKey={objKey}>
-        <Banner1 data={data?.banner} objKey={objKey} />
+        <Banner1
+          data={data?.banners}
+          sliderImages={data?.sliderImages}
+          objKey={objKey}
+        />
         <Features1 data={data?.boards} objKey={"main-board-1"} />
         <About1 data={data?.aboutSection} objKey={objKey} />
         <Services1 data={data?.boards} objKey={"services"} />
@@ -64,10 +66,7 @@ export async function getStaticProps() {
     if (layout && profile) {
       layout["profile"] = profile;
     }
-
-    if (banners && banners.length) {
-      data["banner"] = banners[0];
-    }
+    data["banners"] = banners;
     data["boards"] = boards;
     data["aboutSection"] = aboutSection;
     data["sliderImages"] = sliderImages;

@@ -1,11 +1,11 @@
-export const banners = {
-  main: {
+export const banners = [
+  {
     id: 1,
     title: "Best Solar Services and Consulting",
     content:
       "We are an EPC (Engineering, Procurement and Construction) company that provides cost effective and environment friendly solar energy solutions.",
     button: 1,
-    slug: null,
+    slug: "main",
     published_at: "2023-11-14T02:13:09.641Z",
     created_at: "2023-11-14T02:13:04.076Z",
     updated_at: "2023-11-14T02:16:57.432Z",
@@ -28,7 +28,9 @@ export const banners = {
       updated_at: "2023-11-12T17:19:13.888Z",
     },
   },
-};
+];
+
+export const brands = [];
 
 export const boards = [
   {
