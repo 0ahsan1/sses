@@ -1,6 +1,13 @@
 import Layout from "@/components/layout/Layout";
+import { faqPageContent } from "@/components/sections/items";
+import { strapiApiPath } from "@/constants/ApiPath";
+import { setBackgroundImageUrl, strapiImageLoader } from "@/helpers/util";
+import { getFilteredStrapiContent } from "@/services/ApiService";
+import Image from "next/image";
 import { useState } from "react";
-export default function Faq1() {
+export default function Faq1({ data, layout }) {
+  data = data ?? faqPageContent;
+
   const [isActive, setIsActive] = useState({
     status: false,
     key: 1,
@@ -20,24 +27,43 @@ export default function Faq1() {
   };
   return (
     <>
-      <Layout breadcrumbTitle="FAQ">
+      <Layout breadcrumbTitle="FAQ" data={layout}>
         <section
           className="faq-area faq-bg"
-          data-background="/assets/img/bg/faq_bg.jpg"
+          style={setBackgroundImageUrl(data?.background_image?.url)}
+          // data-background="/assets/img/bg/faq_bg.jpg"
         >
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-10">
                 <div className="section-title text-center mb-60">
-                  <span className="sub-title">Our Faqs</span>
-                  <h2 className="title">Have Any Questions Answer?</h2>
+                  <span className="sub-title">{data?.subtitle}</span>
+                  <h2 className="title">{data?.title}</h2>
                 </div>
               </div>
             </div>
             <div className="row justify-content-center">
               <div className="col-xl-6 col-lg-10 order-0 order-xl-2">
                 <div className="faq-img-wrap">
-                  <img
+                  <Image
+                    src={data?.media_1?.url}
+                    alt=""
+                    width={332}
+                    height={628}
+                    className="wow fadeInRight"
+                    data-wow-delay=".4s"
+                    loader={strapiImageLoader}
+                  />
+                  <Image
+                    src={data?.media_2?.url}
+                    alt=""
+                    width={332}
+                    height={628}
+                    className="wow fadeInRight"
+                    data-wow-delay=".2s"
+                    loader={strapiImageLoader}
+                  />
+                  {/* <img
                     src="/assets/img/images/faq_img01.jpg"
                     alt=""
                     className="wow fadeInRight"
@@ -48,7 +74,7 @@ export default function Faq1() {
                     alt=""
                     className="wow fadeInRight"
                     data-wow-delay=".2s"
-                  />
+                  /> */}
                   <div
                     className="overlay-text wow fadeInUp"
                     data-wow-delay=".6s"
@@ -59,6 +85,39 @@ export default function Faq1() {
               </div>
               <div className="col-xl-6">
                 <div className="faq-wrap">
+                  <div className="accordion">
+                    {data?.items.map((item, index) => {
+                      return (
+                        <div className="accordion-item">
+                          <h2
+                            className="accordion-header"
+                            onClick={() => handleToggle(index + 1)}
+                          >
+                            <button
+                              className={
+                                isActive.key == index + 1
+                                  ? "accordion-button"
+                                  : "accordion-button collapsed "
+                              }
+                            >
+                              {item?.title}
+                            </button>
+                          </h2>
+                          <div
+                            className={
+                              isActive.key == index + 1
+                                ? "accordion-collapse collapse show"
+                                : "accordion-collapse collapse"
+                            }
+                          >
+                            <div className="accordion-body">
+                              <p>{item?.content}</p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                   <div className="accordion">
                     <div className="accordion-item">
                       <h2
@@ -637,35 +696,11 @@ export async function getStaticProps() {
     const profile = await getFilteredStrapiContent(
       strapiApiPath.COMPANY_PROFILE
     );
-    const banners = await getFilteredStrapiContent(strapiApiPath.BANNERS, [
-      {
-        slug: "main",
-      },
-    ]);
-    const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS);
-    const aboutSection = await getFilteredStrapiContent(
-      strapiApiPath.ABOUT_SECTION
-    );
-    const sliderImages = await getFilteredStrapiContent(
-      strapiApiPath.SLIDER_IMAGES
-    );
-    const team = await getFilteredStrapiContent(strapiApiPath.TEAM);
-    const testimonials = await getFilteredStrapiContent(
-      strapiApiPath.TESTIMONIALS
-    );
+    data = await getFilteredStrapiContent(strapiApiPath.FAQ_PAGE);
 
     if (layout && profile) {
       layout["profile"] = profile;
     }
-
-    if (banners && banners.length) {
-      data["banner"] = banners[0];
-    }
-    data["boards"] = boards;
-    data["aboutSection"] = aboutSection;
-    data["sliderImages"] = sliderImages;
-    data["team"] = team;
-    data["testimonials"] = testimonials;
 
     return {
       props: {

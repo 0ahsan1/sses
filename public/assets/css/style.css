@@ -5724,3 +5724,7 @@ label {
 .product-area .blog-right-menu a {
     width: 100%;
 }
+
+.collapse {
+	visibility: visible !important;
+}

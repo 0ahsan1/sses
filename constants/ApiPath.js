@@ -2,6 +2,7 @@ export const strapiApiPath = {
   ABOUT: "/about",
   LAYOUT: "/layout",
   COMPANY_PROFILE: "/company-profile",
+  FAQ_PAGE: "/faq-page",
   BOARDS: "/boards",
   PROJECTS: "/projects",
   BOARD_ITEMS: "/list-items",
