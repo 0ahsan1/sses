@@ -86,7 +86,7 @@ export default function Footer1({ data }) {
                     <h2 className="fw-title">Our Solutions</h2>
                     <div className="footer-link">
                       <ul className="list-wrap">
-                        {data?.projects.map((project, index) => {
+                        {/* {data?.projects.map((project, index) => {
                           return (
                             <li key={index}>
                               <Link href={project.link}>
@@ -95,8 +95,8 @@ export default function Footer1({ data }) {
                               </Link>
                             </li>
                           );
-                        })}
-                        {/* <li>
+                        })} */}
+                        <li>
                           <Link href="/contact">
                             <i className="fas fa-angle-double-right" />
                             All Projects
@@ -125,7 +125,7 @@ export default function Footer1({ data }) {
                             <i className="fas fa-angle-double-right" />
                             KDA Scheme, Karachi
                           </Link>
-                        </li> */}
+                        </li>
                       </ul>
                     </div>
                   </div>
