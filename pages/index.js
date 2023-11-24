@@ -28,7 +28,7 @@ export default function Home({ data, layout }) {
         <Features1 data={data?.boards} objKey={"main-board-1"} />
         <About1 data={data?.aboutSection} objKey={objKey} />
         <Services1 data={data?.boards} objKey={"services"} />
-        <Project1 data={data?.projects} objKey={objKey} />
+        <Project1 data={data?.boards} objKey={"main-board-3"} />
         <Team1 data={data?.team} objKey={objKey} />
         {/* <Counter1 /> */}
         <Testimonial1 data={data?.testimonials} objKey={objKey} />
