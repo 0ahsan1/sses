@@ -6,7 +6,6 @@ import { strapiImageLoader } from "@/helpers/util";
 export default function Team1({ data, objKey }) {
   data = data ?? boards;
   const board = data.find((d) => d.slug === objKey);
-  console.log("board: ", board);
 
   return (
     <>
