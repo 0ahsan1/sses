@@ -1,14 +1,16 @@
-import { strapiImageLoader } from "@/helpers/util";
+import { setBackgroundImageUrl, strapiImageLoader } from "@/helpers/util";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer1({ data }) {
+  console.log("data", data);
+
   return (
     <>
       <footer>
         <div
           className="footer-area footer-bg"
-          data-background="/assets/img/bg/footer_bg.jpg"
+          style={setBackgroundImageUrl(data?.footer_bg_image?.url)}
         >
           <div className="footer-top">
             <div className="container">
@@ -34,7 +36,7 @@ export default function Footer1({ data }) {
                 </div>
                 <div className="col-xl-3 col-lg-4 col-md-5 col-sm-6">
                   <div className="footer-widget">
-                    <h2 className="fw-title">Our Services</h2>
+                    <h2 className="fw-title">{data?.services_title}</h2>
                     <div className="footer-link">
                       <ul className="list-wrap">
                         {data?.services.map((service, index) => {
@@ -83,10 +85,10 @@ export default function Footer1({ data }) {
                 </div>
                 <div className="col-xl-2 col-lg-4 col-md-6 col-sm-6">
                   <div className="footer-widget">
-                    <h2 className="fw-title">Our Solutions</h2>
+                    <h2 className="fw-title">{data?.solutions_title}</h2>
                     <div className="footer-link">
                       <ul className="list-wrap">
-                        {/* {data?.projects.map((project, index) => {
+                        {data?.solutions.map((project, index) => {
                           return (
                             <li key={index}>
                               <Link href={project.link}>
@@ -95,8 +97,8 @@ export default function Footer1({ data }) {
                               </Link>
                             </li>
                           );
-                        })} */}
-                        <li>
+                        })}
+                        {/* <li>
                           <Link href="/contact">
                             <i className="fas fa-angle-double-right" />
                             All Projects
@@ -125,7 +127,7 @@ export default function Footer1({ data }) {
                             <i className="fas fa-angle-double-right" />
                             KDA Scheme, Karachi
                           </Link>
-                        </li>
+                        </li> */}
                       </ul>
                     </div>
                   </div>

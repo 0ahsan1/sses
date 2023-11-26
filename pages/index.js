@@ -53,7 +53,7 @@ export async function getStaticProps() {
     ]);
     const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS);
     const aboutSection = await getFilteredStrapiContent(
-      strapiApiPath.ABOUT_SECTION
+      strapiApiPath.ABOUT_SECTION_HOME
     );
     const sliderImages = await getFilteredStrapiContent(
       strapiApiPath.SLIDER_IMAGES

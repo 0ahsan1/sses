@@ -22,43 +22,14 @@ export async function getFilteredStrapiContent(
   filters = [],
   pagination = null,
   sort = [],
-  populateOpt = "deep",
   getDraftEntries = false
 ) {
-  // let url = `${strapiBasePath}${path}?populate=${populateOpt}`,
   let url = `${strapiBasePath}${path}`,
     response = null;
-
-  // if (path === "/home") {
-  //   // url += `populate=['board.board_items']`;
-  //   url += `?populate=*`;
-  // }
-
-  console.log("path", path);
-  console.log("url", url);
 
   filters.forEach((filter) => {
     const keys = Object.keys(filter);
     url += `?[${keys[0]}]=${filter[keys[0]]}`;
-    // const nestedKey = keys.find((key) => key.includes("."));
-    // let nestedProperties = "";
-    // if (nestedKey) {
-    //   nestedProperties = nestedKey.split(".");
-    // }
-
-    // if (keys[0] === "$or" || keys[0] === "$and") {
-    //   url += `&filters[${keys[0]}][${filter[keys[0]]}][${keys[1]}][${
-    //     filter[keys[2]]
-    //   }]=${filter[keys[1]]}`;
-    // } else {
-    //   if (nestedProperties && nestedProperties.length) {
-    //     url += `&filters${nestedProperties
-    //       .map((prop) => `[${prop}]`)
-    //       .join("")}[${filter[keys[1]]}]=${filter[keys[0]]}`;
-    //   } else {
-    //     url += `&filters[${keys[0]}][${filter[keys[1]]}]=${filter[keys[0]]}`;
-    //   }
-    // }
   });
 
   if (pagination) {
@@ -78,16 +49,6 @@ export async function getFilteredStrapiContent(
 
   try {
     response = await axios(url, strapiConfig);
-    // const paginationMeta = response.data.meta;
-    // let mapppedData = normalizeData(response.data.data);
-    // mapppedData = contentUpdater(mapppedData);
-    // let mappedResponse = mapppedData;
-    // if (path === "/blogs") {
-    //     mappedResponse = {
-    //         data: mapppedData,
-    //         pagination: paginationMeta.pagination,
-    //     };
-    // }
     let mappedResponse = response.data;
     if (mappedResponse && mappedResponse.length) {
       mappedResponse = mappedResponse.sort((a, b) => a - b);

@@ -207,11 +207,7 @@ export async function getStaticProps() {
         slug: "main",
       },
     ]);
-    const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS, [
-      {
-        slug: "project",
-      },
-    ]);
+    data["board"] = await getFilteredStrapiContent(strapiApiPath.PROJECT_PAGE);
 
     if (layout && profile) {
       layout["profile"] = profile;
@@ -219,9 +215,6 @@ export async function getStaticProps() {
 
     if (banners && banners.length) {
       data["banner"] = banners[0];
-    }
-    if (boards && boards.length) {
-      data["board"] = boards[0];
     }
 
     return {

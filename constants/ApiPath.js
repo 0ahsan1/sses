@@ -8,7 +8,10 @@ export const strapiApiPath = {
   BOARD_ITEMS: "/list-items",
   BANNERS: "/banners",
   ABOUT_SECTION: "/about-section",
+  ABOUT_SECTION_HOME: "/about-section-home",
+  ABOUT_HISTORY_SECTION: "/history-section",
   SLIDER_IMAGES: "/slider-images",
   TEAM: "/teams",
   TESTIMONIALS: "/testimonials",
+  PROJECT_PAGE: "/project-page",
 };

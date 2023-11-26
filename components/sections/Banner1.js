@@ -45,11 +45,11 @@ export default function Banner1({ data, sliderImages, objKey }) {
               {banner?.content}
             </p>
             <Link
-              href="/project"
+              href={banner?.button_link}
               className="btn wow fadeInUp"
               data-wow-delay=".4s"
             >
-              Discover More
+              {banner?.button_title}
             </Link>
           </div>
           {/* <div className="banner-tooltip-wrap">

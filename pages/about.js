@@ -2,6 +2,7 @@ import VideoPopup from "@/components/elements/VideoPopup";
 import Layout from "@/components/layout/Layout";
 import Brand1 from "@/components/sections/Brand1";
 import Brand3 from "@/components/sections/Brand3";
+import Team1 from "@/components/sections/Team1";
 import Testimonial1 from "@/components/sections/Testimonial1";
 import { aboutSection } from "@/components/sections/items";
 import { strapiApiPath } from "@/constants/ApiPath";
@@ -21,6 +22,7 @@ const settings = {
 };
 
 export default function About({ data, layout }) {
+  console.log("About data: ", data);
   const objKey = "about";
   const aboutSection = data?.aboutSection ?? aboutSection;
 
@@ -80,16 +82,24 @@ export default function About({ data, layout }) {
                   <p>{aboutSection.content}</p>
                   <div className="about-list">
                     <ul className="list-wrap">
-                      <li>
+                      {aboutSection?.list_content.split("\n").map((item) => {
+                        return (
+                          <li>
+                            <i className="fas fa-check" />
+                            {item}
+                          </li>
+                        );
+                      })}
+                      {/* <li>
                         <i className="fas fa-check" />
                         With our head office located in Karachi, SSES now have
                         expanded its setup with new branch offices opened at
                         Quetta and Wadh Khuzdar.
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
-                  <Link href={aboutSection?.button?.link} className="btn">
-                    {aboutSection?.button?.title}
+                  <Link href={aboutSection?.button_link} className="btn">
+                    {aboutSection?.button_title}
                   </Link>
                 </div>
               </div>
@@ -169,14 +179,32 @@ export default function About({ data, layout }) {
                 <div className="history-img-wrap">
                   <ul className="list-wrap">
                     <li>
-                      <img src="/assets/img/images/history_img01.jpg" alt="" />
+                      <Image
+                        src={data?.aboutHistorySection?.images[0]?.url}
+                        width={401}
+                        height={440}
+                        loader={strapiImageLoader}
+                      />
+                      {/* <img src="/assets/img/images/history_img01.jpg" alt="" /> */}
                     </li>
                     <li>
-                      <img src="/assets/img/images/history_img02.jpg" alt="" />
+                      <Image
+                        src={data?.aboutHistorySection?.images[1]?.url}
+                        width={217}
+                        height={218}
+                        loader={strapiImageLoader}
+                      />
+                      {/* <img src="/assets/img/images/history_img02.jpg" alt="" /> */}
                       {/* <VideoPopup /> */}
                     </li>
                     <li>
-                      <img src="/assets/img/images/history_img03.jpg" alt="" />
+                      <Image
+                        src={data?.aboutHistorySection?.images[2]?.url}
+                        width={342}
+                        height={250}
+                        loader={strapiImageLoader}
+                      />
+                      {/* <img src="/assets/img/images/history_img03.jpg" alt="" /> */}
                     </li>
                   </ul>
                 </div>
@@ -184,42 +212,24 @@ export default function About({ data, layout }) {
               <div className="col-lg-6">
                 <div className="history-content">
                   <div className="section-title mb-20">
-                    <span className="sub-title">Our History</span>
+                    <span className="sub-title">
+                      {data?.aboutHistorySection?.title}
+                    </span>
                     {/* <h2 className="title">Roofing when an unknown printer took to make type book</h2> */}
                   </div>
-                  <p>
-                    Sustainable Solar Energy Solutions is a Renewable Energy
-                    Company which is owned by a group of Three Energy Engineers.
-                    This venture started back in year 2010 when these future
-                    entrepreneurs became the first “Energy Engineers” to be
-                    enrolled in Pakistan at bachelor’s level. After that
-                    pioneering effort they enhanced their knowledge and skills
-                    by completing their Master’s degree program in Renewable
-                    Energy and at the same time working in top solar companies
-                    in Pakistan. Then they decided to join hands and started
-                    their own firm in 2017 making SSES the first and only all
-                    engineer run firm with the expertise as well as the
-                    educational background purely in the Renewable Energy
-                    Sector..
-                  </p>
+                  <p>{data?.aboutHistorySection?.content}</p>
                   <div className="history-list">
                     <ul className="list-wrap">
-                      <li>
-                        <i className="fas fa-check-circle" />
-                        Technology management
-                      </li>
-                      <li>
-                        <i className="fas fa-check-circle" />
-                        Solar Solutions
-                      </li>
-                      <li>
-                        <i className="fas fa-check-circle" />
-                        Modern Worker Working here
-                      </li>
-                      <li>
-                        <i className="fas fa-check-circle" />
-                        Quick Response
-                      </li>
+                      {data?.aboutHistorySection?.list_content
+                        .split("\n")
+                        .map((item) => {
+                          return (
+                            <li>
+                              <i className="fas fa-check-circle" />
+                              {item}
+                            </li>
+                          );
+                        })}
                     </ul>
                   </div>
                 </div>
@@ -234,137 +244,15 @@ export default function About({ data, layout }) {
           data-background="/assets/img/bg/area_bg05.jpg"
         >
           {/* team-area */}
-          <section className="inner-team-area pb-90">
-            <div className="container">
-              <div className="row justify-content-center">
-                <div className="col-lg-8">
-                  <div className="section-title text-center mb-60 tg-heading-subheading animation-style3">
-                    <span className="sub-title tg-element-title">
-                      Professional Team
-                    </span>
-                    <h2 className="title tg-element-title">
-                      Professional Team Member
-                    </h2>
-                  </div>
-                </div>
-              </div>
-              <div className="row justify-content-center">
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-10">
-                  <div className="team-item">
-                    <div className="team-thumb">
-                      <Link href="/team-details">
-                        <img src="/assets/img/team/team-member1.jpg" alt="" />
-                      </Link>
-                      <div className="team-social">
-                        <ul className="list-wrap">
-                          <li>
-                            <Link href="https://www.facebook.com/hassan.jafri.902/">
-                              <i className="fab fa-facebook-f" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://www.linkedin.com/in/hassan-jafri-7a6b171ba/">
-                              <i className="fab fa-linkedin-in" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://www.youtube.com/channel/UCuY7QJnQaI3u10HwatPCRDw">
-                              <i className="fab fa-youtube" />
-                            </Link>
-                          </li>
-                          {/* <li><Link href="#"><i className="fab fa-instagram" /></Link></li> */}
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="team-content">
-                      <h2 className="title">
-                        <Link href="/team-details">Hassan Jafri</Link>
-                      </h2>
-                      <span>CEO/ Managing Director</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-10">
-                  <div className="team-item">
-                    <div className="team-thumb">
-                      <Link href="/team-details">
-                        <img src="/assets/img/team/team-member2.jpg" alt="" />
-                      </Link>
-                      <div className="team-social">
-                        <ul className="list-wrap">
-                          <li>
-                            <Link href="https://www.facebook.com/engr.mengal/">
-                              <i className="fab fa-facebook-f" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#">
-                              <i className="fab fa-linkedin-in" />
-                            </Link>
-                          </li>
-                          {/* <li><Link href="#"><i className="fab fa-twitter" /></Link></li> */}
-                          <li>
-                            <Link href="https://www.youtube.com/channel/UCuY7QJnQaI3u10HwatPCRDw/">
-                              <i className="fab fa-youtube" />
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="team-content">
-                      <h2 className="title">
-                        <Link href="/team-details">Abdul Hameed Mengal</Link>
-                      </h2>
-                      <span>CEO</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-10">
-                  <div className="team-item">
-                    <div className="team-thumb">
-                      <Link href="/team-details">
-                        <img src="/assets/img/team/team-member3.jpg" alt="" />
-                      </Link>
-                      <div className="team-social">
-                        <ul className="list-wrap">
-                          <li>
-                            <Link href="https://www.facebook.com/M.UsamaNasir/">
-                              <i className="fab fa-facebook-f" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://www.linkedin.com/in/mohammad-usama-518555a6/">
-                              <i className="fab fa-linkedin-in" />
-                            </Link>
-                          </li>
-                          {/* <li><Link href="#"><i className="fab fa-twitter" /></Link></li> */}
-                          <li>
-                            <Link href="https://www.youtube.com/channel/UCuY7QJnQaI3u10HwatPCRDw/">
-                              <i className="fab fa-youtube" />
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="team-content">
-                      <h2 className="title">
-                        <Link href="/team-details">Muhammad Usama Nasir</Link>
-                      </h2>
-                      <span>Managing Director</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <Team1 data={data?.boards} objKey={"team"} />
           {/* team-area-end */}
           {/* testimonial-area */}
-          <Testimonial1 />
+          <Testimonial1 data={data?.boards} objKey={"testimonials"} />
           {/* testimonial-area-end */}
         </div>
         {/* area-bg-end */}
         {/* brand-area */}
-        <Brand1 />
+        <Brand1 sliderImages={data?.sliderImages} />
       </Layout>
     </>
   );
@@ -386,6 +274,9 @@ export async function getStaticProps() {
     const aboutSection = await getFilteredStrapiContent(
       strapiApiPath.ABOUT_SECTION
     );
+    const aboutHistorySection = await getFilteredStrapiContent(
+      strapiApiPath.ABOUT_HISTORY_SECTION
+    );
     const sliderImages = await getFilteredStrapiContent(
       strapiApiPath.SLIDER_IMAGES
     );
@@ -401,8 +292,10 @@ export async function getStaticProps() {
     if (banners && banners.length) {
       data["banner"] = banners[0];
     }
-    data["boards"] = boards;
+
     data["aboutSection"] = aboutSection;
+    data["aboutHistorySection"] = aboutHistorySection;
+    data["boards"] = boards;
     data["sliderImages"] = sliderImages;
     data["team"] = team;
     data["testimonials"] = testimonials;
