@@ -22,7 +22,6 @@ const settings = {
 };
 
 export default function About({ data, layout }) {
-  console.log("About data: ", data);
   const objKey = "about";
   const aboutSection = data?.aboutSection ?? aboutSection;
 
