@@ -27,20 +27,26 @@ export async function getFilteredStrapiContent(
   let url = `${strapiBasePath}${path}`,
     response = null;
 
-  filters.forEach((filter) => {
+  filters.forEach((filter, index) => {
     const keys = Object.keys(filter);
-    url += `?[${keys[0]}]=${filter[keys[0]]}`;
+    url += `${!url.includes("?") && index === 0 ? "?" : "&"}[${keys[0]}]=${
+      filter[keys[0]]
+    }`;
   });
 
   if (pagination) {
     const keys = Object.keys(pagination);
-    keys.forEach((key) => {
-      url += `&pagination[${key}]=${pagination[key]}`;
+    keys.forEach((key, index) => {
+      url += `${!url.includes("?") && index === 0 ? "?" : "&"}_${key}=${
+        pagination[key]
+      }`;
     });
   }
 
   sort.forEach((s, index) => {
-    url += `&sort[${index}]=${s.field}:${s.order ?? "desc"}`;
+    url += `${!url.includes("?") && index === 0 ? "?" : "&"}sort[${index}]=${
+      s.field
+    }:${s.order ?? "desc"}`;
   });
 
   if (getDraftEntries) {

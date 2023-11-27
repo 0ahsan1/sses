@@ -161,7 +161,7 @@ export default function Project({ data, layout }) {
                 <div key={index} className="col-lg-4 col-md-6 col-sm-10">
                   <div className="project-item-two text-center">
                     <div className="project-thumb-two">
-                      <Link href={"/project-details/" + d.link}>
+                      <Link href={"/project-details/" + d.slug}>
                         <Image
                           src={d?.media?.url}
                           width={482}

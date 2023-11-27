@@ -5,6 +5,8 @@ import { projects } from "../project";
 import { getFilteredStrapiContent } from "@/services/ApiService";
 import { strapiApiPath } from "@/constants/ApiPath";
 import { Project1 } from "@/components/content/projects";
+import Image from "next/image";
+import { dateFormatter, strapiImageLoader } from "@/helpers/util";
 
 export default function ProjectDetails({ data }) {
   const router = useRouter();
@@ -18,13 +20,55 @@ export default function ProjectDetails({ data }) {
           <section className="project-details-area pt-120">
             <div className="container">
               <div className="row">
-                <Project1 data={project} />
+                <div className="col-lg-8">
+                  <div className="project-details-wrap">
+                    <div className="project-details-thumb">
+                      <Image
+                        src={project?.media?.url}
+                        alt=""
+                        width={956}
+                        height={390}
+                        loader={strapiImageLoader}
+                      />
+                    </div>
+                    <div className="project-details-content">
+                      <h2 className="title">{project?.about_project_text}</h2>
+                      <p className="info-one">{project?.content}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4">
+                  <aside className="project-sidebar">
+                    <div className="project-widget">
+                      <h4 className="widget-title">
+                        {project?.project_details_text}
+                      </h4>
+                      <div className="project-info-list">
+                        <ul className="list-wrap">
+                          <li>
+                            <span>Date :</span>{" "}
+                            {dateFormatter(new Date(project?.date), "LL")}
+                          </li>
+                          <li>
+                            <span>Clients :</span> {project?.clients}
+                          </li>
+                          <li>
+                            <span>Category:</span> {project?.category}
+                          </li>
+                          <li>
+                            <span>Location :</span> {project?.location}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </aside>
+                </div>
               </div>
             </div>
           </section>
           {/* project-details-area-end */}
           {/* brand-area */}
-          <Brand3 />
+          <Brand3 data={data?.sliderImages} />
         </div>
       </Layout>
     </>
@@ -32,7 +76,6 @@ export default function ProjectDetails({ data }) {
 }
 
 export async function getStaticProps(context) {
-  console.log("context: ", context);
   const slug = context.params.slug;
   try {
     let data = {};
@@ -50,32 +93,21 @@ export async function getStaticProps(context) {
         slug,
       },
     ]);
-    const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS);
-    const aboutSection = await getFilteredStrapiContent(
-      strapiApiPath.ABOUT_SECTION
-    );
     const sliderImages = await getFilteredStrapiContent(
-      strapiApiPath.SLIDER_IMAGES
-    );
-    const team = await getFilteredStrapiContent(strapiApiPath.TEAM);
-    const testimonials = await getFilteredStrapiContent(
-      strapiApiPath.TESTIMONIALS
+      strapiApiPath.SLIDER_IMAGES,
+      [
+        {
+          slug: "projects",
+        },
+      ]
     );
 
     if (layout && profile) {
       layout["profile"] = profile;
     }
-
-    if (banners && banners.length) {
-      data["banner"] = banners[0];
-    }
     data["layout"] = layout;
-    data["boards"] = boards;
     data["projects"] = projects;
-    data["aboutSection"] = aboutSection;
     data["sliderImages"] = sliderImages;
-    data["team"] = team;
-    data["testimonials"] = testimonials;
 
     return {
       props: {
@@ -93,7 +125,22 @@ export async function getStaticProps(context) {
 }
 
 export const getStaticPaths = async () => {
-  let paths = [{ params: { slug: "5-k-w-kangoori-shah-noorani" } }];
+  const projects = await getFilteredStrapiContent(strapiApiPath.PROJECTS, [], {
+    limit: 10,
+  });
+  // let paths = [];
+  let paths = [
+    {
+      params: {
+        slug: "",
+      },
+    },
+  ];
+  for (let i = 0; i < projects.length; i++) {
+    paths.push({
+      params: { slug: `${projects[i].slug}` },
+    });
+  }
   return {
     paths: paths,
     fallback: false,

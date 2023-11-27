@@ -1,5 +1,4 @@
-export const Project1 = ({ data }) => {
-  console.log("project: ", data);
+export const Project1 = () => {
   return (
     <>
       <div className="col-lg-8">
