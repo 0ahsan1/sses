@@ -1,10 +1,12 @@
 export const strapiApiPath = {
   ABOUT: "/about",
   LAYOUT: "/layout",
+  SERVICE_LAYOUT: "/service-layout",
   COMPANY_PROFILE: "/company-profile",
   FAQ_PAGE: "/faq-page",
   BOARDS: "/boards",
   PROJECTS: "/projects",
+  SERVICES: "/services",
   BOARD_ITEMS: "/list-items",
   BANNERS: "/banners",
   ABOUT_SECTION: "/about-section",
@@ -14,4 +16,5 @@ export const strapiApiPath = {
   TEAM: "/teams",
   TESTIMONIALS: "/testimonials",
   PROJECT_PAGE: "/project-page",
+  SERVICE_PAGE: "/service-page",
 };

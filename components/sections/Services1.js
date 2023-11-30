@@ -7,8 +7,7 @@ import { strapiImageLoader } from "@/helpers/util";
 import { strapiBasePath } from "@/services/ApiService";
 
 export default function Services1({ data, objKey }) {
-  data = data ?? boards;
-  const board = data.find((d) => d.slug === objKey);
+  const board = data;
   const [isActive, setIsActive] = useState({
     status: false,
     key: "",
@@ -41,7 +40,7 @@ export default function Services1({ data, objKey }) {
             </div>
           </div>
           <div className="row justify-content-center">
-            {board.items.map((item) => {
+            {board.services.map((item) => {
               return (
                 <div className="col-lg-4 col-md-6 col-sm-10">
                   <div
@@ -58,7 +57,7 @@ export default function Services1({ data, objKey }) {
                       }}
                     >
                       <Image
-                        src={item?.media?.url}
+                        src={item?.icon_image?.url}
                         width={39}
                         height={39}
                         loader={strapiImageLoader}
@@ -71,7 +70,9 @@ export default function Services1({ data, objKey }) {
                           display: `${isActive.key == 1 ? "none" : "block"}`,
                         }}
                       >
-                        <Link href={item?.link}>{item?.title}</Link>
+                        <Link href={`${item?.button_link}/${item?.slug}`}>
+                          {item?.title}
+                        </Link>
                       </h2>
                       {/* <h2 className="number">01</h2> */}
                     </div>
@@ -82,11 +83,16 @@ export default function Services1({ data, objKey }) {
                       }}
                     >
                       <h2 className="title">
-                        <Link href={item?.link}>{item?.title}</Link>
+                        <Link href={`${item?.button_link}/${item?.slug}`}>
+                          {item?.title}
+                        </Link>
                       </h2>
-                      <p>{item?.content}</p>
-                      <Link href={item?.link} className="read-more">
-                        Read More <i className="fas fa-arrow-right" />
+                      <p>{item?.excerpt}</p>
+                      <Link
+                        href={`${item?.button_link}/${item?.slug}`}
+                        className="read-more"
+                      >
+                        {item?.button_text} <i className="fas fa-arrow-right" />
                       </Link>
                     </div>
                   </div>

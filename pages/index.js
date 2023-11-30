@@ -27,7 +27,7 @@ export default function Home({ data, layout }) {
         />
         <Features1 data={data?.boards} objKey={"main-board-1"} />
         <About1 data={data?.aboutSection} objKey={objKey} />
-        <Services1 data={data?.boards} objKey={"services"} />
+        <Services1 data={data?.servicePage} objKey={"services"} />
         <Project1 data={data?.boards} objKey={"main-board-3"} />
         <Team1 data={data?.boards} objKey={"team"} />
         {/* <Counter1 /> */}
@@ -63,11 +63,16 @@ export async function getStaticProps() {
       strapiApiPath.TESTIMONIALS
     );
 
+    const servicePage = await getFilteredStrapiContent(
+      strapiApiPath.SERVICE_PAGE
+    );
+
     if (layout && profile) {
       layout["profile"] = profile;
     }
     data["banners"] = banners;
     data["boards"] = boards;
+    data["servicePage"] = servicePage;
     data["aboutSection"] = aboutSection;
     data["sliderImages"] = sliderImages;
     data["team"] = team;

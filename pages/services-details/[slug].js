@@ -10,6 +10,10 @@ import {
   Service4,
   Service5,
 } from "@/components/content/services";
+import { getFilteredStrapiContent } from "@/services/ApiService";
+import { strapiApiPath } from "@/constants/ApiPath";
+import Image from "next/image";
+import { strapiImageLoader } from "@/helpers/util";
 
 const services = [
   {
@@ -43,24 +47,43 @@ const services = [
     content: <Service5 />,
   },
 ];
-export default function ServiceDetails() {
-  const router = useRouter();
-  let comp = <></>;
-  const { slug } = router.query;
-  comp = services.find((s) => s.slug === slug).content;
+export default function ServiceDetails({ data, layout }) {
+  const pageData = data?.pageData;
+  const service = data?.service;
 
   return (
     <>
-      <Layout breadcrumbTitle="Service Details">
+      <Layout breadcrumbTitle="Service Details" data={layout}>
         <div>
           <section className="services-details-area pt-120">
             <div className="container">
               <div className="row justify-content-center">
-                <div className="col-xl-8">{comp}</div>
+                <div className="col-xl-8">
+                  <div className="services-details-wrap">
+                    <div className="services-details-thumb">
+                      <Image
+                        src={service?.media?.url}
+                        alt=""
+                        width={956}
+                        height={390}
+                        loader={strapiImageLoader}
+                      />
+                    </div>
+                    <h2 className="title">{service?.title}</h2>
+                    <div
+                      className="services-details-content"
+                      dangerouslySetInnerHTML={{
+                        __html: service?.content,
+                      }}
+                    ></div>
+                  </div>
+                </div>
                 <div className="col-xl-4 col-lg-6">
                   <aside className="services-sidebar">
                     <div className="services-widget">
-                      <h4 className="widget-title">Our All Service</h4>
+                      <h4 className="widget-title">
+                        {pageData?.all_services_text}
+                      </h4>
                       <div className="our-services-list">
                         <ul className="list-wrap">
                           <li>
@@ -100,7 +123,7 @@ export default function ServiceDetails() {
                       className="services-widget widget-bg"
                       data-background="/assets/img/services/sw_bg.jpg"
                     >
-                      <h4 className="widget-title">Get a free quote</h4>
+                      <h4 className="widget-title">{pageData?.qoute_text}</h4>
                       <form action="#" className="sidebar-form">
                         <div className="form-grp">
                           <input
@@ -134,7 +157,7 @@ export default function ServiceDetails() {
                           <textarea id="message" placeholder="Your Message" />
                         </div>
                         <button type="submit" className="btn btn-two">
-                          Contact Us
+                          {pageData?.button_text}
                         </button>
                       </form>
                     </div>
@@ -144,63 +167,81 @@ export default function ServiceDetails() {
             </div>
           </section>
           {/* services-details-area-end */}
-          {/* brand-area */}
-          {/* <Brand3 /> */}
         </div>
       </Layout>
     </>
   );
 }
 
-// export async function getStaticProps() {
-//   try {
-//     let data = {};
-//     const layout = await getFilteredStrapiContent(strapiApiPath.LAYOUT);
-//     const profile = await getFilteredStrapiContent(
-//       strapiApiPath.COMPANY_PROFILE
-//     );
-//     const banners = await getFilteredStrapiContent(strapiApiPath.BANNERS, [
-//       {
-//         slug: "main",
-//       },
-//     ]);
-//     const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS);
-//     const aboutSection = await getFilteredStrapiContent(
-//       strapiApiPath.ABOUT_SECTION
-//     );
-//     const sliderImages = await getFilteredStrapiContent(
-//       strapiApiPath.SLIDER_IMAGES
-//     );
-//     const team = await getFilteredStrapiContent(strapiApiPath.TEAM);
-//     const testimonials = await getFilteredStrapiContent(
-//       strapiApiPath.TESTIMONIALS
-//     );
+export async function getStaticProps(context) {
+  const slug = context.params.slug;
+  try {
+    let data = {};
+    const layout = await getFilteredStrapiContent(strapiApiPath.LAYOUT);
+    const profile = await getFilteredStrapiContent(
+      strapiApiPath.COMPANY_PROFILE
+    );
+    const banners = await getFilteredStrapiContent(strapiApiPath.BANNERS, [
+      {
+        slug: "main",
+      },
+    ]);
 
-//     if (layout && profile) {
-//       layout["profile"] = profile;
-//     }
+    const pageData =
+      (await getFilteredStrapiContent(strapiApiPath.SERVICE_LAYOUT)) ?? {};
+    const services = await getFilteredStrapiContent(strapiApiPath.SERVICES, [
+      {
+        slug: slug,
+      },
+    ]);
 
-//     if (banners && banners.length) {
-//       data["banner"] = banners[0];
-//     }
-//     data["boards"] = boards;
-//     data["aboutSection"] = aboutSection;
-//     data["sliderImages"] = sliderImages;
-//     data["team"] = team;
-//     data["testimonials"] = testimonials;
+    if (layout && profile) {
+      layout["profile"] = profile;
+    }
 
-//     return {
-//       props: {
-//         layout: layout ?? {},
-//         data: data,
-//       },
-//       revalidate: 20,
-//     };
-//   } catch (error) {
-//     return {
-//       props: {
-//         error: JSON.parse(JSON.stringify(error)),
-//       },
-//     };
-//   }
-// }
+    if (banners && banners.length) {
+      data["banner"] = banners[0];
+    }
+
+    if (services && services.length) {
+      data["service"] = services[0];
+    }
+    data["pageData"] = pageData;
+
+    return {
+      props: {
+        layout: layout ?? {},
+        data: data,
+      },
+      revalidate: 20,
+    };
+  } catch (error) {
+    return {
+      props: {
+        error: JSON.parse(JSON.stringify(error)),
+      },
+    };
+  }
+}
+
+export const getStaticPaths = async () => {
+  const services = await getFilteredStrapiContent(strapiApiPath.SERVICES, [], {
+    limit: 10,
+  });
+  let paths = [
+    {
+      params: {
+        slug: "",
+      },
+    },
+  ];
+  for (let i = 0; i < services.length; i++) {
+    paths.push({
+      params: { slug: `${services[i].slug}` },
+    });
+  }
+  return {
+    paths: paths,
+    fallback: false,
+  };
+};
