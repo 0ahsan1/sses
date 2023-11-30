@@ -86,7 +86,7 @@ export default function Project1({ data, objKey }) {
                             display: `${isActive.key == 1 ? "block" : "none"}`,
                           }}
                         >
-                          {item?.content}
+                          {item?.excerpt}
                         </p>
                       </div>
                       <div className="project-link">

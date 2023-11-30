@@ -140,8 +140,8 @@ export const projects = [
 ];
 
 export default function Project({ data, layout }) {
-  const board = data?.board;
-  board["projects"] = board?.projects ?? projects;
+  const pageData = data?.pageData;
+  pageData["projects"] = data?.projects ?? projects;
 
   return (
     <>
@@ -151,39 +151,41 @@ export default function Project({ data, layout }) {
             <div className="row justify-content-center">
               <div className="col-lg-8">
                 <div className="section-title text-center mb-60">
-                  <span className="sub-title">{board?.subtitle}</span>
-                  <h2 className="title">{board?.title}</h2>
+                  <span className="sub-title">{pageData?.subtitle}</span>
+                  <h2 className="title">{pageData?.title}</h2>
                 </div>
               </div>
             </div>
             <div className="row justify-content-center">
-              {board?.projects.map((d, index) => (
+              {pageData?.projects.map((item, index) => (
                 <div key={index} className="col-lg-4 col-md-6 col-sm-10">
                   <div className="project-item-two text-center">
                     <div className="project-thumb-two">
-                      <Link href={"/project-details/" + d.slug}>
+                      <Link href={"/project-details/" + item?.slug}>
                         <Image
-                          src={d?.media?.url}
+                          src={item?.background_image?.url}
                           width={482}
                           height={482}
                           loader={strapiImageLoader}
                         />
-                        {/* <img src={d.media.url} alt="" /> */}
+                        {/* <img src={item.media.url} alt="" /> */}
                       </Link>
                     </div>
                     <div className="project-content-two">
-                      <span>{d.type}</span>
+                      <span>{item?.type}</span>
                       <h2 className="title">
-                        <Link href="/project-details">{d.title}</Link>
+                        <Link href={"/project-details/" + item?.slug}>
+                          {item?.project_identifier}
+                        </Link>
                       </h2>
                       <Link
-                        href={"/project-details/" + d.link}
+                        href={"/project-details/" + item?.slug}
                         className="link-btn"
                       >
                         <i className="fas fa-arrow-right" />
                       </Link>
                     </div>
-                    <h5 className="mt-3">{d.title}</h5>
+                    <h5 className="mt-3">{item?.project_identifier}</h5>
                   </div>
                 </div>
               ))}
@@ -207,7 +209,10 @@ export async function getStaticProps() {
         slug: "main",
       },
     ]);
-    data["board"] = await getFilteredStrapiContent(strapiApiPath.PROJECT_PAGE);
+    data["pageData"] = await getFilteredStrapiContent(
+      strapiApiPath.PROJECT_PAGE
+    );
+    data["projects"] = await getFilteredStrapiContent(strapiApiPath.PROJECTS);
 
     if (layout && profile) {
       layout["profile"] = profile;

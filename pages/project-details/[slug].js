@@ -128,7 +128,6 @@ export const getStaticPaths = async () => {
   const projects = await getFilteredStrapiContent(strapiApiPath.PROJECTS, [], {
     limit: 10,
   });
-  // let paths = [];
   let paths = [
     {
       params: {
