@@ -1,55 +1,17 @@
-// import { Service1 } from "@/components/content/services";
 import Layout from "@/components/layout/Layout";
-import Brand3 from "@/components/sections/Brand3";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import {
-  Service1,
-  Service2,
-  Service3,
-  Service4,
-  Service5,
-} from "@/components/content/services";
 import { getFilteredStrapiContent } from "@/services/ApiService";
 import { strapiApiPath } from "@/constants/ApiPath";
 import Image from "next/image";
 import { strapiImageLoader } from "@/helpers/util";
+import { services } from "@/components/sections/items";
+import { useRouter } from "next/router";
 
-const services = [
-  {
-    slug: "solar-water-pumping-system",
-    title: "Solar Water Pumping System",
-    img: ``,
-    content: <Service1 />,
-  },
-  {
-    slug: "On-Grid-Solar-PV-System",
-    title: "ON-GRID SOLAR SYSTEM",
-    img: ``,
-    content: <Service2 />,
-  },
-  {
-    slug: "Off-Grid-Solar-PV-System",
-    title: "OFF-GRID SOLAR SYSTEM",
-    img: ``,
-    content: <Service3 />,
-  },
-  {
-    slug: "Hybrid-Solar-PV-System",
-    title: "Hybrid Solar PV System",
-    img: ``,
-    content: <Service4 />,
-  },
-  {
-    slug: "Solar-Water-Heater-System",
-    title: "Metal Engineering",
-    img: ``,
-    content: <Service5 />,
-  },
-];
 export default function ServiceDetails({ data, layout }) {
+  const router = useRouter();
   const pageData = data?.pageData;
-  const service = data?.service;
+  data["services"] = data?.services ?? services;
+  const service = data.services.find((d) => d.slug === router?.query?.slug);
 
   return (
     <>
@@ -86,7 +48,20 @@ export default function ServiceDetails({ data, layout }) {
                       </h4>
                       <div className="our-services-list">
                         <ul className="list-wrap">
-                          <li>
+                          {data.services.map((item) => {
+                            return (
+                              <li>
+                                <Link
+                                  href={`${item?.button_link}/${item?.slug}`}
+                                  shallow={true}
+                                >
+                                  {item?.service_identifier}
+                                  <i className="fas fa-arrow-right" />
+                                </Link>
+                              </li>
+                            );
+                          })}
+                          {/* <li>
                             <Link href="/services-details/solar-water-pumping-system">
                               Solar Water Pumping System
                               <i className="fas fa-arrow-right" />
@@ -115,7 +90,7 @@ export default function ServiceDetails({ data, layout }) {
                               Metal Engineering
                               <i className="fas fa-arrow-right" />
                             </Link>
-                          </li>
+                          </li> */}
                         </ul>
                       </div>
                     </div>
@@ -123,41 +98,29 @@ export default function ServiceDetails({ data, layout }) {
                       className="services-widget widget-bg"
                       data-background="/assets/img/services/sw_bg.jpg"
                     >
-                      <h4 className="widget-title">{pageData?.qoute_text}</h4>
+                      <h4 className="widget-title">{data?.form?.title}</h4>
                       <form action="#" className="sidebar-form">
-                        <div className="form-grp">
-                          <input
-                            id="name"
-                            type="text"
-                            placeholder="Your Name"
-                          />
-                        </div>
-                        <div className="form-grp">
-                          <input
-                            id="email"
-                            type="text"
-                            placeholder="Your Email Address"
-                          />
-                        </div>
-                        <div className="form-grp">
-                          <input
-                            id="phone"
-                            type="text"
-                            placeholder="Your Phone"
-                          />
-                        </div>
-                        <div className="form-grp">
-                          <input
-                            id="subject"
-                            type="text"
-                            placeholder="Enter Subject"
-                          />
-                        </div>
-                        <div className="form-grp">
-                          <textarea id="message" placeholder="Your Message" />
-                        </div>
+                        {data?.form?.input_fields &&
+                          data?.form?.input_fields.map((item, index) => {
+                            return item?.type !== "textarea" ? (
+                              <div key={index} className="form-grp">
+                                <input
+                                  id={item?.id}
+                                  type={item?.type}
+                                  placeholder={item?.placeholder}
+                                />
+                              </div>
+                            ) : (
+                              <div key={index} className="form-grp">
+                                <textarea
+                                  id={item?.id}
+                                  placeholder={item?.placeholder}
+                                />
+                              </div>
+                            );
+                          })}
                         <button type="submit" className="btn btn-two">
-                          {pageData?.button_text}
+                          {data?.form.button_text}
                         </button>
                       </form>
                     </div>
@@ -176,7 +139,9 @@ export default function ServiceDetails({ data, layout }) {
 export async function getStaticProps(context) {
   const slug = context.params.slug;
   try {
-    let data = {};
+    let data = {
+      slug,
+    };
     const layout = await getFilteredStrapiContent(strapiApiPath.LAYOUT);
     const profile = await getFilteredStrapiContent(
       strapiApiPath.COMPANY_PROFILE
@@ -189,11 +154,8 @@ export async function getStaticProps(context) {
 
     const pageData =
       (await getFilteredStrapiContent(strapiApiPath.SERVICE_LAYOUT)) ?? {};
-    const services = await getFilteredStrapiContent(strapiApiPath.SERVICES, [
-      {
-        slug: slug,
-      },
-    ]);
+    const services = await getFilteredStrapiContent(strapiApiPath.SERVICES);
+    const form = await getFilteredStrapiContent(strapiApiPath.QUOTATION_FORM);
 
     if (layout && profile) {
       layout["profile"] = profile;
@@ -203,10 +165,9 @@ export async function getStaticProps(context) {
       data["banner"] = banners[0];
     }
 
-    if (services && services.length) {
-      data["service"] = services[0];
-    }
     data["pageData"] = pageData;
+    data["services"] = services;
+    data["form"] = form;
 
     return {
       props: {

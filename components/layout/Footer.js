@@ -40,7 +40,9 @@ export default function Footer1({ data }) {
                         {data?.services.map((service, index) => {
                           return (
                             <li key={index}>
-                              <Link href={service.link}>
+                              <Link
+                                href={`${service?.button_link}/${service?.slug}`}
+                              >
                                 <i className="fas fa-angle-double-right" />
                                 {service.title}
                               </Link>

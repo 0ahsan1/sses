@@ -17,4 +17,6 @@ export const strapiApiPath = {
   TESTIMONIALS: "/testimonials",
   PROJECT_PAGE: "/project-page",
   SERVICE_PAGE: "/service-page",
+  QUOTATION_FORM: "/quotation-form",
+  CONTACT_FORM: "/contact-form",
 };
