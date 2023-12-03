@@ -1,25 +1,48 @@
 import Layout from "@/components/layout/Layout";
+import { strapiApiPath } from "@/constants/ApiPath";
+import {
+  fomatEditorContent,
+  setBackgroundImageUrl,
+  sortData,
+} from "@/helpers/util";
+import { getFilteredStrapiContent } from "@/services/ApiService";
 import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Contact() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
+export default function Contact({ data, layout }) {
+  const pageData = data?.pageData;
+  const form = data?.form;
+  const companyProfile = layout?.profile;
+
+  if (form && form.input_fields) {
+    form.input_fields = sortData(form.input_fields);
+  }
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [phone, setPhone] = useState("");
+  // const [subject, setSubject] = useState("");
+  // const [message, setMessage] = useState("");
+
+  const [inputFields, setInputFields] = useState(["", "", "", "", ""]);
+
+  const handleFormChange = (index, value) => {
+    let data = [...inputFields];
+    data[index] = value;
+    setInputFields(data);
+  };
 
   function submitEmail() {
-    let payload = {
-      email,
-      phone,
-      message,
-      subject,
-      name,
-    };
+    const payloadFields = ["name", "email", "phone", "subject", "message"];
+    let payload = {};
+    payloadFields.forEach((key, index) => {
+      payload[key] = inputFields[index];
+    });
+    if (!payload.name || !payload.email || !payload.phone) {
+      return;
+    }
     console.log("email payload", payload, email);
     try {
       let res = axios.post("/api/sendemail", { ...payload });
@@ -50,22 +73,53 @@ export default function Contact() {
   }
   return (
     <>
-      <Layout breadcrumbTitle="Contact Us">
+      <Layout breadcrumbTitle="Contact Us" data={layout}>
         <section className="contact-area pt-120 pb-120">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-xl-6 col-lg-10">
                 <div
                   className="contact-form-wrap"
-                  data-background="/assets/img/images/contact_form_bg.jpg"
+                  style={setBackgroundImageUrl(form?.background_image?.url)}
                 >
-                  <h2 className="title">Contact With Us</h2>
-                  <p>
-                    Send us a message and we' ll respond as soon as possible
-                  </p>
+                  <h2 className="title">{form?.title}</h2>
+                  <p>{form?.subtitle}</p>
                   <form action="#" className="contact-form">
                     <div className="row">
-                      <div className="form-grp">
+                      {form.input_fields &&
+                        form?.input_fields.map((item, index) => {
+                          return (
+                            <div className="form-grp">
+                              {item?.type !== "textarea" ? (
+                                <input
+                                  id={index}
+                                  value={inputFields[index]}
+                                  onChange={(e) =>
+                                    handleFormChange(index, e.target.value)
+                                  }
+                                  type={item?.type}
+                                  placeholder={`${item?.placeholder}${
+                                    item?.required ? "*" : ""
+                                  }`}
+                                  required={item?.required}
+                                />
+                              ) : (
+                                <textarea
+                                  id={index}
+                                  value={inputFields[index]}
+                                  onChange={(e) =>
+                                    handleFormChange(index, e.target.value)
+                                  }
+                                  placeholder={`${item?.placeholder}${
+                                    item?.required ? "*" : ""
+                                  }`}
+                                  required={item?.required}
+                                />
+                              )}
+                            </div>
+                          );
+                        })}
+                      {/* <div className="form-grp">
                         <input
                           id="firstName"
                           value={name}
@@ -91,9 +145,9 @@ export default function Contact() {
                           type="text"
                           placeholder="Phone Number*"
                         />
-                      </div>
+                      </div> */}
                     </div>
-                    <div className="form-grp">
+                    {/* <div className="form-grp">
                       <input
                         id="subject"
                         value={subject}
@@ -109,13 +163,13 @@ export default function Contact() {
                         onChange={(e) => setMessage(e.target.value)}
                         placeholder="Your Message here"
                       />
-                    </div>
+                    </div> */}
                     <button
                       onClick={() => submitEmail()}
                       className="btn"
                       type="submit"
                     >
-                      Send Message
+                      {form?.button_text}
                     </button>
                     <ToastContainer
                       position="top-right"
@@ -136,10 +190,8 @@ export default function Contact() {
               </div>
               <div className="col-xl-6 col-lg-10">
                 <div className="contact-info-wrap">
-                  <h2 className="title">Need Any Help?</h2>
-                  <p>
-                    Call us or message and we' ll respond as soon as possible
-                  </p>
+                  <h2 className="title">{pageData?.help_title}</h2>
+                  <p>{pageData?.help_subtitle}</p>
                   <ul className="list-wrap">
                     <li>
                       <div className="contact-info-item">
@@ -147,11 +199,11 @@ export default function Contact() {
                           <i className="fas fa-phone-alt" />
                         </div>
                         <div className="content">
-                          <Link href="tel:0123456789">
-                            +(323) 9847 3847 383
+                          <Link href={`tel:${companyProfile?.secondary_phone}`}>
+                            {companyProfile?.secondary_phone}
                           </Link>
-                          <Link href="tel:0123456789">
-                            +(434) 5466 5467 443
+                          <Link href={`tel:${companyProfile?.other_phone}`}>
+                            {companyProfile?.other_phone}
                           </Link>
                         </div>
                       </div>
@@ -162,11 +214,11 @@ export default function Contact() {
                           <i className="fas fa-envelope" />
                         </div>
                         <div className="content">
-                          <Link href="mailto:infoyour@gmail.com">
-                            infoyour@gmail.com
+                          <Link href={companyProfile?.email}>
+                            {companyProfile?.email}
                           </Link>
-                          <Link href="mailto:infoyour@gmail.com">
-                            domaininfo@gmail.com
+                          <Link href={companyProfile?.secondary_email}>
+                            {companyProfile?.secondary_email}
                           </Link>
                         </div>
                       </div>
@@ -177,9 +229,13 @@ export default function Contact() {
                           <i className="fas fa-map-marker-alt" />
                         </div>
                         <div className="content">
-                          <p>
-                            4517 Washington Ave. 32 <br /> Manchester, Road USA
-                          </p>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: fomatEditorContent(
+                                companyProfile?.secondary_address
+                              ),
+                            }}
+                          ></p>
                         </div>
                       </div>
                     </li>
@@ -219,16 +275,8 @@ export async function getStaticProps() {
       },
     ]);
     const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS);
-    const aboutSection = await getFilteredStrapiContent(
-      strapiApiPath.ABOUT_SECTION
-    );
-    const sliderImages = await getFilteredStrapiContent(
-      strapiApiPath.SLIDER_IMAGES
-    );
-    const team = await getFilteredStrapiContent(strapiApiPath.TEAM);
-    const testimonials = await getFilteredStrapiContent(
-      strapiApiPath.TESTIMONIALS
-    );
+    const pageData = await getFilteredStrapiContent(strapiApiPath.CONTACT_US);
+    const form = await getFilteredStrapiContent(strapiApiPath.CONTACT_FORM);
 
     if (layout && profile) {
       layout["profile"] = profile;
@@ -238,10 +286,8 @@ export async function getStaticProps() {
       data["banner"] = banners[0];
     }
     data["boards"] = boards;
-    data["aboutSection"] = aboutSection;
-    data["sliderImages"] = sliderImages;
-    data["team"] = team;
-    data["testimonials"] = testimonials;
+    data["pageData"] = pageData;
+    data["form"] = form;
 
     return {
       props: {

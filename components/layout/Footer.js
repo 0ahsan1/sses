@@ -1,4 +1,8 @@
-import { setBackgroundImageUrl, strapiImageLoader } from "@/helpers/util";
+import {
+  setBackgroundImageUrl,
+  sortData,
+  strapiImageLoader,
+} from "@/helpers/util";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -88,7 +92,7 @@ export default function Footer1({ data }) {
                     <h2 className="fw-title">{data?.solutions_title}</h2>
                     <div className="footer-link">
                       <ul className="list-wrap">
-                        {data?.solutions.map((project, index) => {
+                        {sortData(data?.solutions).map((project, index) => {
                           return (
                             <li key={index}>
                               <Link href={project.link}>

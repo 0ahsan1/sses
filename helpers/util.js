@@ -310,18 +310,28 @@ export const editorToCssFormatter = (obj, styleKey = "style") => {
 };
 
 /**
- * Deeply sort an array
- * @param {*} data
+ * Sort an array
+ * @param {Array} data
+ * @param {string} keyToSort (optional)
+ * @param {string} order (optional)
  * @returns a sorted array
  */
-export const deeplySortData = (data, order = "asc") => {
+export const sortData = (data = [], keyToSort = "id", order = "asc") => {
   if (data && data.length) {
-    data = data.sort((a, b) => (order === "asc" ? a - b : b - a));
-    data.forEach((d) => {
-      if (Array.isArray(d) && d.length) {
-        d = deeplySortData(d);
-      }
-    });
+    data =
+      order === "asc"
+        ? data.sort((a, b) => a[keyToSort] - b[keyToSort])
+        : data.sort((a, b) => b[keyToSort] - a[keyToSort]);
   }
   return data;
+};
+
+/**
+ * Format editor content
+ * @param {*} content
+ * @returns formatted editor content
+ */
+export const fomatEditorContent = (content = "") => {
+  content = content.replace(`\n`, `<br />`);
+  return content;
 };

@@ -1,4 +1,4 @@
-import { deeplySortData } from "@/helpers/util";
+import { sortData } from "@/helpers/util";
 import axios from "axios";
 
 export const strapiBasePath = process.env.NEXT_PUBLIC_STRAPI_API_URL;
@@ -58,13 +58,7 @@ export async function getFilteredStrapiContent(
     response = await axios(url, strapiConfig);
     let mappedResponse = response.data;
     if (mappedResponse && mappedResponse.length) {
-      mappedResponse = deeplySortData(mappedResponse);
-    } else {
-      [mappedResponse].forEach((d) => {
-        if (Array.isArray(d) && d.length) {
-          d = deeplySortData(d);
-        }
-      });
+      mappedResponse = sortData(mappedResponse);
     }
     return JSON.parse(JSON.stringify(mappedResponse));
   } catch (error) {

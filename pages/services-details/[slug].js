@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getFilteredStrapiContent } from "@/services/ApiService";
 import { strapiApiPath } from "@/constants/ApiPath";
 import Image from "next/image";
-import { strapiImageLoader } from "@/helpers/util";
+import { setBackgroundImageUrl, strapiImageLoader } from "@/helpers/util";
 import { services } from "@/components/sections/items";
 import { useRouter } from "next/router";
 
@@ -96,7 +96,9 @@ export default function ServiceDetails({ data, layout }) {
                     </div>
                     <div
                       className="services-widget widget-bg"
-                      data-background="/assets/img/services/sw_bg.jpg"
+                      style={setBackgroundImageUrl(
+                        data?.form?.background_image?.url
+                      )}
                     >
                       <h4 className="widget-title">{data?.form?.title}</h4>
                       <form action="#" className="sidebar-form">

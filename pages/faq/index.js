@@ -119,7 +119,7 @@ export default function Faq1({ data, layout }) {
                     })}
                   </div>
                   <div className="accordion">
-                    <div className="accordion-item">
+                    {/* <div className="accordion-item">
                       <h2
                         className="accordion-header"
                         onClick={() => handleToggle(1)}
@@ -186,7 +186,7 @@ export default function Faq1({ data, layout }) {
                           </p>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                     {/* <div className="accordion-item">
                                         <h2 className="accordion-header" onClick={() => handleToggle(3)}>
                                             <button className={isActive.key == 3 ? "accordion-button" : "accordion-button collapsed "}>
@@ -231,7 +231,7 @@ export default function Faq1({ data, layout }) {
                                                                             </div>
                                         </div>
                                     </div> */}
-                    <div className="accordion-item">
+                    {/* <div className="accordion-item">
                       <h2
                         className="accordion-header"
                         onClick={() => handleToggle(5)}
@@ -677,7 +677,7 @@ export default function Faq1({ data, layout }) {
                           </p>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
