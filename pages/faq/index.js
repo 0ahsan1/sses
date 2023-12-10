@@ -692,14 +692,23 @@ export default function Faq1({ data, layout }) {
 export async function getStaticProps() {
   try {
     let data = {};
-    const layout = await getFilteredStrapiContent(strapiApiPath.LAYOUT);
+    const layout = (await getFilteredStrapiContent(strapiApiPath.LAYOUT)) ?? {};
+    const banners = await getFilteredStrapiContent(strapiApiPath.BANNERS, [
+      {
+        slug: "faq",
+      },
+    ]);
     const profile = await getFilteredStrapiContent(
       strapiApiPath.COMPANY_PROFILE
     );
     data = await getFilteredStrapiContent(strapiApiPath.FAQ_PAGE);
 
-    if (layout && profile) {
+    if (profile) {
       layout["profile"] = profile;
+    }
+
+    if (banners && banners.length) {
+      layout["banner"] = banners[0];
     }
 
     return {

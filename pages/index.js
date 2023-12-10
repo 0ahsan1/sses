@@ -21,7 +21,7 @@ export default function Home({ data, layout }) {
     <>
       <Layout headerCls="transparent-header" data={layout} objKey={objKey}>
         <Banner1
-          data={data?.banners}
+          data={data?.banner}
           sliderImages={data?.sliderImages}
           objKey={objKey}
         />
@@ -70,7 +70,9 @@ export async function getStaticProps() {
     if (layout && profile) {
       layout["profile"] = profile;
     }
-    data["banners"] = banners;
+    if (banners && banners.length) {
+      data["banner"] = banners[0];
+    }
     data["boards"] = boards;
     data["servicePage"] = servicePage;
     data["aboutSection"] = aboutSection;

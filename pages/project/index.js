@@ -145,7 +145,7 @@ export default function Project({ data, layout }) {
 
   return (
     <>
-      <Layout breadcrumbTitle="Projects" data={layout}>
+      <Layout data={layout} objKey={"projects"}>
         <section className="inner-project-area pt-115 pb-90">
           <div className="container">
             <div className="row justify-content-center">
@@ -200,13 +200,13 @@ export default function Project({ data, layout }) {
 export async function getStaticProps() {
   try {
     let data = {};
-    const layout = await getFilteredStrapiContent(strapiApiPath.LAYOUT);
+    const layout = (await getFilteredStrapiContent(strapiApiPath.LAYOUT)) ?? {};
     const profile = await getFilteredStrapiContent(
       strapiApiPath.COMPANY_PROFILE
     );
     const banners = await getFilteredStrapiContent(strapiApiPath.BANNERS, [
       {
-        slug: "main",
+        slug: "projects",
       },
     ]);
     data["pageData"] = await getFilteredStrapiContent(
@@ -214,12 +214,12 @@ export async function getStaticProps() {
     );
     data["projects"] = await getFilteredStrapiContent(strapiApiPath.PROJECTS);
 
-    if (layout && profile) {
+    if (profile) {
       layout["profile"] = profile;
     }
 
     if (banners && banners.length) {
-      data["banner"] = banners[0];
+      layout["banner"] = banners[0];
     }
 
     return {

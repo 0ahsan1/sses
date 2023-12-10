@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import Brand1 from "./Brand1";
-import { banners, brands } from "./items";
+import { brands } from "./items";
 import { setBackgroundImageUrl } from "@/helpers/util";
+import { banners } from "../layout/items";
 
 export default function Banner1({ data, sliderImages, objKey }) {
-  data = data ?? banners;
   sliderImages = sliderImages ?? brands;
-  const banner = data.find((d) => d.slug === objKey);
+  const banner = data ?? banners.find((d) => d.slug === objKey);
   const [isActive, setIsActive] = useState({
     status: false,
     key: "",
@@ -31,7 +31,8 @@ export default function Banner1({ data, sliderImages, objKey }) {
       <section className="banner-area">
         <div
           className="banner-shape"
-          data-background="/assets/img/banner/banner_shape.jpg"
+          style={setBackgroundImageUrl(banner?.background_image_2)}
+          // data-background="/assets/img/banner/banner_shape.jpg"
         />
         <div
           className="banner-bg"

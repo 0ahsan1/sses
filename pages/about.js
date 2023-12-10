@@ -260,13 +260,13 @@ export default function About({ data, layout }) {
 export async function getStaticProps() {
   try {
     let data = {};
-    const layout = await getFilteredStrapiContent(strapiApiPath.LAYOUT);
+    const layout = (await getFilteredStrapiContent(strapiApiPath.LAYOUT)) ?? {};
     const profile = await getFilteredStrapiContent(
       strapiApiPath.COMPANY_PROFILE
     );
     const banners = await getFilteredStrapiContent(strapiApiPath.BANNERS, [
       {
-        slug: "main",
+        slug: "about",
       },
     ]);
     const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS);
@@ -284,12 +284,12 @@ export async function getStaticProps() {
       strapiApiPath.TESTIMONIALS
     );
 
-    if (layout && profile) {
+    if (profile) {
       layout["profile"] = profile;
     }
 
     if (banners && banners.length) {
-      data["banner"] = banners[0];
+      layout["banner"] = banners[0];
     }
 
     data["aboutSection"] = aboutSection;

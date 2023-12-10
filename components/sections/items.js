@@ -1,35 +1,3 @@
-export const banners = [
-  {
-    id: 1,
-    title: "Best Solar Services and Consulting",
-    content:
-      "We are an EPC (Engineering, Procurement and Construction) company that provides cost effective and environment friendly solar energy solutions.",
-    button: 1,
-    slug: "main",
-    published_at: "2023-11-14T02:13:09.641Z",
-    created_at: "2023-11-14T02:13:04.076Z",
-    updated_at: "2023-11-14T02:16:57.432Z",
-    background_image: {
-      id: 12,
-      name: "img-three.jpg",
-      alternativeText: "",
-      caption: "",
-      width: 1400,
-      height: 788,
-      hash: "img_three_b078a70059",
-      ext: ".jpg",
-      mime: "image/jpeg",
-      size: 301.39,
-      url: "/assets/img/banner/img-three.jpg",
-      previewUrl: null,
-      provider: "local",
-      provider_metadata: null,
-      created_at: "2023-11-12T17:19:13.851Z",
-      updated_at: "2023-11-12T17:19:13.888Z",
-    },
-  },
-];
-
 export const brands = [];
 
 export const boards = [

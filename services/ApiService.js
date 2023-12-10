@@ -12,7 +12,7 @@ export const strapiConfig = {
 /**
  * Get Filtered Strapi Content
  * @param {*} path API url
- * @param {*} filters An array of filters e.g: [{slug: 'xyz', type: '$eq'}, {date: '2023-02-28', type: '&gt'}]
+ * @param {*} filters An array of filters e.g: [{slug: 'xyz'}, {date: '2023-02-28'}]
  * @param {*} pagination An object of pagination options e.g: { page: 1, pageSize: 5 }
  * @param {*} populateOpt Populate option for data to populate data, default = 'deep'
  * @param {*} getDraftEntries boolean: returns both draft and publish entries, default = false

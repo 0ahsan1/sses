@@ -26,7 +26,7 @@ export default function Service({ data, layout }) {
   };
   return (
     <>
-      <Layout breadcrumbTitle="Services" data={layout} objKey="main">
+      <Layout breadcrumbTitle="Services" data={layout} objKey="services">
         <Services1 data={data?.servicePage} objKey="services" />
       </Layout>
     </>
@@ -36,13 +36,13 @@ export default function Service({ data, layout }) {
 export async function getStaticProps() {
   try {
     let data = {};
-    const layout = await getFilteredStrapiContent(strapiApiPath.LAYOUT);
+    const layout = (await getFilteredStrapiContent(strapiApiPath.LAYOUT)) ?? {};
     const profile = await getFilteredStrapiContent(
       strapiApiPath.COMPANY_PROFILE
     );
     const banners = await getFilteredStrapiContent(strapiApiPath.BANNERS, [
       {
-        slug: "main",
+        slug: "services",
       },
     ]);
     const servicePage = await getFilteredStrapiContent(
@@ -51,8 +51,10 @@ export async function getStaticProps() {
     if (layout && profile) {
       layout["profile"] = profile;
     }
+    if (banners && banners.length) {
+      layout["banner"] = banners[0];
+    }
 
-    data["banners"] = banners;
     data["servicePage"] = servicePage;
 
     return {

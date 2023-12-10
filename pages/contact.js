@@ -73,7 +73,7 @@ export default function Contact({ data, layout }) {
   }
   return (
     <>
-      <Layout breadcrumbTitle="Contact Us" data={layout}>
+      <Layout data={layout} objKey={"contact"}>
         <section className="contact-area pt-120 pb-120">
           <div className="container">
             <div className="row justify-content-center">
@@ -265,25 +265,25 @@ export default function Contact({ data, layout }) {
 export async function getStaticProps() {
   try {
     let data = {};
-    const layout = await getFilteredStrapiContent(strapiApiPath.LAYOUT);
+    const layout = (await getFilteredStrapiContent(strapiApiPath.LAYOUT)) ?? {};
     const profile = await getFilteredStrapiContent(
       strapiApiPath.COMPANY_PROFILE
     );
     const banners = await getFilteredStrapiContent(strapiApiPath.BANNERS, [
       {
-        slug: "main",
+        slug: "contact",
       },
     ]);
     const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS);
     const pageData = await getFilteredStrapiContent(strapiApiPath.CONTACT_US);
     const form = await getFilteredStrapiContent(strapiApiPath.CONTACT_FORM);
 
-    if (layout && profile) {
+    if (profile) {
       layout["profile"] = profile;
     }
 
     if (banners && banners.length) {
-      data["banner"] = banners[0];
+      layout["banner"] = banners[0];
     }
     data["boards"] = boards;
     data["pageData"] = pageData;
