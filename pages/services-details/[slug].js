@@ -191,13 +191,7 @@ export const getStaticPaths = async () => {
   const services = await getFilteredStrapiContent(strapiApiPath.SERVICES, [], {
     limit: 10,
   });
-  let paths = [
-    {
-      params: {
-        slug: "",
-      },
-    },
-  ];
+  let paths = [];
   for (let i = 0; i < services.length; i++) {
     paths.push({
       params: { slug: `${services[i].slug}` },
