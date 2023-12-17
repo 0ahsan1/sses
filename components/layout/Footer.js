@@ -41,7 +41,7 @@ export default function Footer1({ data }) {
                     <h2 className="fw-title">{data?.services_title}</h2>
                     <div className="footer-link">
                       <ul className="list-wrap">
-                        {data?.services.map((service, index) => {
+                        {data?.services?.map((service, index) => {
                           return (
                             <li key={index}>
                               <Link

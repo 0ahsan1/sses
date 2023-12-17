@@ -22,7 +22,7 @@ export default function Sidebar({ data }) {
   return (
     <>
       <ul className="navigation">
-        {data?.main_menus.map((menu, index) => {
+        {data?.main_menus?.map((menu, index) => {
           return (
             <li key={index}>
               <Link href={menu.link}>{menu.title}</Link>

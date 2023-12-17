@@ -154,7 +154,7 @@ export default function Header({ headerCls, headerTop, data }) {
                     </div>
                     <div className="navbar-wrap main-menu d-none d-lg-flex">
                       <ul className="navigation">
-                        {data?.main_menus.map((menu, index) => {
+                        {data?.main_menus?.map((menu, index) => {
                           return (
                             <li key={index}>
                               <Link href={menu.link}>{menu.title}</Link>

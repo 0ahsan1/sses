@@ -1087,10 +1087,151 @@ export const faqPageContent = {
       title: "What components does a solar powered system have?",
       content:
         "A solar powered energy system consists of solar panels, inverter, mounting structure for solar panels, electrical wiring, breakers and sometime batteries.",
-      expanded: false,
+      expanded: true,
       published_at: "2023-11-19T14:11:56.134Z",
       created_at: "2023-11-19T14:10:52.990Z",
-      updated_at: "2023-11-19T14:11:56.157Z",
+      updated_at: "2023-11-19T23:59:32.771Z",
+    },
+    {
+      id: 2,
+      title: "How does a solar powered system work?",
+      content:
+        "Photovoltaic (PV) cells in solar panels convert sunlight into direct current (DC). Inverters then convert the DC electricity into the alternating current (AC) which is then transferred to the main electrical distribution panel (DB) for use. In off-grid and hybrid systems, batteries can be used for storing the initial DC electricity coming from the solar panels through a charge controller.",
+      expanded: false,
+      published_at: "2023-11-20T00:02:15.224Z",
+      created_at: "2023-11-20T00:02:13.136Z",
+      updated_at: "2023-11-20T00:02:15.267Z",
+    },
+    {
+      id: 3,
+      title: "How does net-metering work?",
+      content:
+        "Net-Metering concept is a process that allows customers to produce their own solar power and share their surplus electricity with the national grid. The monthly bill is then netted off in proportional to the amount of energy sold to the distribution company. The net metering procedure is used globally to promote the use of distributed generation.",
+      expanded: false,
+      published_at: "2023-12-17T20:09:19.309Z",
+      created_at: "2023-12-17T20:09:14.908Z",
+      updated_at: "2023-12-17T23:15:32.038Z",
+    },
+    {
+      id: 5,
+      title: "How much space would I need to install my solar powered system?",
+      content:
+        "Space requirements range from 100 to 130 square feet per kW of solar PV installed, depending the tilt angle of the solar PV modules and facing towards the path that sun follows in that region.",
+      expanded: false,
+      published_at: "2023-12-17T23:21:22.271Z",
+      created_at: "2023-12-17T23:21:20.170Z",
+      updated_at: "2023-12-17T23:21:22.295Z",
+    },
+    {
+      id: 6,
+      title: "What if my system produces more energy than I require?",
+      content:
+        "The excess electricity would either be sold back to the grid using the net metering or will be stored in the form of batteries and used later by the same load center.",
+      expanded: false,
+      published_at: "2023-12-17T23:21:54.322Z",
+      created_at: "2023-12-17T23:21:52.423Z",
+      updated_at: "2023-12-17T23:21:54.340Z",
+    },
+    {
+      id: 7,
+      title:
+        "Will the weight of the solar PV system be of any concern for my roof?",
+      content:
+        "Concrete roofs have no problems at all in handling the distributed load nature of solar PV panels and its frames, however T-slabs & truss based roofs have to be analyzed first before they are used for installation.",
+      expanded: false,
+      published_at: "2023-12-17T23:22:44.646Z",
+      created_at: "2023-12-17T23:22:42.789Z",
+      updated_at: "2023-12-17T23:22:44.667Z",
+    },
+    {
+      id: 4,
+      title: "What of its maintenance?",
+      content:
+        "The only kind of maintenance a solar powered energy system requires is the cleaning of solar panel itself and nothing else. The frequency of cleaning can be weekly or bi-monthly according to the site situation.",
+      expanded: false,
+      published_at: "2023-12-17T23:20:47.052Z",
+      created_at: "2023-12-17T23:20:45.054Z",
+      updated_at: "2023-12-17T23:20:47.072Z",
+    },
+    {
+      id: 9,
+      title: "Does SSES provide O&M services?",
+      content: "Yes, we do.",
+      expanded: false,
+      published_at: "2023-12-17T23:23:31.751Z",
+      created_at: "2023-12-17T23:23:29.851Z",
+      updated_at: "2023-12-17T23:23:31.773Z",
+    },
+    {
+      id: 10,
+      title: "<b>Sustainable Solar Energy Solutions - SSES</b>",
+      content: null,
+      expanded: false,
+      published_at: "2023-12-17T23:25:44.358Z",
+      created_at: "2023-12-17T23:25:42.084Z",
+      updated_at: "2023-12-17T23:25:44.381Z",
+    },
+    {
+      id: 12,
+      title: "What is the point of origin of SSES’s products?",
+      content:
+        "SSES sources its components from various countries. Some of these countries include Germany, Austria, Italy, United States, China and Pakistan. SSES focuses its efforts on designing the most optimum technical and commercial solution on a case to case basis.",
+      expanded: false,
+      published_at: "2023-12-17T23:28:10.369Z",
+      created_at: "2023-12-17T23:28:08.533Z",
+      updated_at: "2023-12-17T23:28:10.386Z",
+    },
+    {
+      id: 13,
+      title:
+        "How to check if the components offered are off the best quality or not?",
+      content:
+        "There is nothing hidden during these times of information available at hand. Nowadays market is full of deceit. We give our costumer the virtual choices they can select from according to their requirement and need after they choose and the goods are delivered, they can scan the QR codes of those equipment to cross check what they had chosen earlier.",
+      expanded: false,
+      published_at: "2023-12-17T23:28:46.984Z",
+      created_at: "2023-12-17T23:28:45.077Z",
+      updated_at: "2023-12-17T23:28:47.003Z",
+    },
+    {
+      id: 14,
+      title:
+        "What safety protocols are important to consider while putting up a solar PV system?",
+      content:
+        "The National Electric Code (NEC) is an electrical safety code and has a section dedicated to solar PV system electrical installations safety. The NEC drives several design and installation decisions. The National Fire Protection Association (NFPA) has dedicated sections on hazard identification and installation best practices for solar PV systems. California Fire Code (CalFire) is a set of rooftop solar installation safety best practices made by the state of California and used globally for installing solar PV modules to facilitate fire emergency services. International building Code (IBC) used for standard safety practices to evaluate roofs/structures before installing solar PV modules.",
+      expanded: false,
+      published_at: "2023-12-17T23:29:33.516Z",
+      created_at: "2023-12-17T23:29:31.428Z",
+      updated_at: "2023-12-17T23:29:33.532Z",
+    },
+    {
+      id: 15,
+      title: "How much would a solar powered system installed by SSES cost?",
+      content:
+        "SSES can provide the best information on what it will cost to go solar for your load. However, once customers begin to explore solar options, they can find vastly varying rates in the market for the same system, what differ are the genuine parts and equipment used by us and some local street vendors. Moreover it is important for costumers to know that the total up-front cost of solar is less relevant than the financing terms, return-on-investment, and cash flow calculation. Financial options such as solar leases and other innovative financing models can help you convert to solar for little or no money along with an efficient design that can also help bring the costs down.",
+      expanded: false,
+      published_at: "2023-12-17T23:30:33.944Z",
+      created_at: "2023-12-17T23:30:31.720Z",
+      updated_at: "2023-12-17T23:30:33.963Z",
+    },
+    {
+      id: 8,
+      title: "How long does a solar powered energy system last?",
+      content:
+        "Our systems are designed to have a useful life of 25 years or much more, according to the climate and atmosphere it has been used it.",
+      expanded: false,
+      published_at: "2023-12-17T23:23:03.929Z",
+      created_at: "2023-12-17T23:23:01.897Z",
+      updated_at: "2023-12-17T23:23:03.952Z",
+    },
+    {
+      id: 11,
+      title: "Why should we go with SSES?",
+      content:
+        "<p>SSES was started by the first ever Energy Engineers of Pakistan. We are here to elevate the standards of services in the solar field. SSES has successfully installed hundreds of solar projects with unbeatable price and services within Pakistan. We strive to live by the following codes of ethic.</p><p>• Use of correct design principles.</p><p>• Always use original and quality products. </p><p>• Eliminate incorrect installation practices. </p><p>• Safety of client and labor always comes first. </p>",
+      expanded: false,
+      published_at: "2023-12-17T23:27:29.791Z",
+      created_at: "2023-12-17T23:27:27.582Z",
+      updated_at: "2023-12-17T23:27:29.810Z",
     },
   ],
 };

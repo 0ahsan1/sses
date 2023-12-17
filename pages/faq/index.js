@@ -5,8 +5,9 @@ import { setBackgroundImageUrl, strapiImageLoader } from "@/helpers/util";
 import { getFilteredStrapiContent } from "@/services/ApiService";
 import Image from "next/image";
 import { useState } from "react";
+
 export default function Faq1({ data, layout }) {
-  data = data ?? faqPageContent;
+  data = data?.title ? data : faqPageContent;
 
   const [isActive, setIsActive] = useState({
     status: false,
@@ -25,6 +26,7 @@ export default function Faq1({ data, layout }) {
       });
     }
   };
+
   return (
     <>
       <Layout breadcrumbTitle="FAQ" data={layout}>
@@ -99,9 +101,10 @@ export default function Faq1({ data, layout }) {
                                   ? "accordion-button"
                                   : "accordion-button collapsed "
                               }
-                            >
-                              {item?.title}
-                            </button>
+                              dangerouslySetInnerHTML={{
+                                __html: item?.title,
+                              }}
+                            ></button>
                           </h2>
                           <div
                             className={
@@ -111,15 +114,20 @@ export default function Faq1({ data, layout }) {
                             }
                           >
                             <div className="accordion-body">
-                              <p>{item?.content}</p>
+                              <p
+                                dangerouslySetInnerHTML={{
+                                  __html: item?.content,
+                                }}
+                              ></p>
                             </div>
                           </div>
                         </div>
                       );
                     })}
                   </div>
-                  <div className="accordion">
-                    {/* <div className="accordion-item">
+
+                  {/* <div className="accordion">
+                    <div className="accordion-item">
                       <h2
                         className="accordion-header"
                         onClick={() => handleToggle(1)}
@@ -186,52 +194,158 @@ export default function Faq1({ data, layout }) {
                           </p>
                         </div>
                       </div>
+                    </div>
+                    {/* <div className="accordion-item">
+                      <h2
+                        className="accordion-header"
+                        onClick={() => handleToggle(3)}
+                      >
+                        <button
+                          className={
+                            isActive.key == 3
+                              ? "accordion-button"
+                              : "accordion-button collapsed "
+                          }
+                        >
+                          How many type solar powered electrical systems are
+                          there?{" "}
+                        </button>
+                      </h2>
+                      <div
+                        className={
+                          isActive.key == 3
+                            ? "accordion-collapse collapse  show"
+                            : "accordion-collapse collapse "
+                        }
+                      >
+                        <div className="accordion-body">
+                          <p>There are Four main types.</p>
+                          <p>
+                            <h4 style="color: #1d8644;">
+                              <b>A. On-Grid Solar PV Systems </b>
+                            </h4>{" "}
+                          </p>
+                          <p>
+                            • On-grid or grid-tie solar systems are by far the
+                            most common and widely used by homes and businesses.
+                            These systems do not need batteries and use common
+                            solar inverters and are connected to the public
+                            electricity grid. Any excess solar power that you
+                            generate is exported to the electricity grid and you
+                            usually get paid a feed-in-tariff (FiT) or credits
+                            for the energy you export.
+                          </p>
+                          <p>• ON-Grid Applications:</p>
+                          <p>
+                            Electricity Bill reduction for Residential and
+                            Industrial users.
+                          </p>
+                          <p>Feed in Tariff (FIT/Reverse Metering). </p>
+                          <p>
+                            <h4 style="color: #1d8644;">
+                              <b>B. Off-Grid Solar PV Systems</b>
+                            </h4>
+                          </p>
+                          <p>
+                            • Off-grid can be stand-alone powered system or
+                            mini-grids typically to provide a smaller community
+                            with electricity.
+                          </p>
+                          <p>
+                            • Off-grid solar power also stores DC electricity in
+                            batteries.
+                          </p>
+                          <p>• Off-Grid Applications:</p>
+                          <p>Solar Home system.</p>
+                          <p>Solar battery charging system.</p>
+                          <p>Solar power traffic lighting system.</p>
+                          <p>
+                            <h4 style="color: #1d8644;">
+                              <b>C. Hybrid Solar PV Systems</b>
+                            </h4>
+                          </p>
+                          <p>
+                            • Hybrid System is combination of off-grid and
+                            on-grid system. Modern hybrid systems combine solar
+                            and battery storage in one and are now available in
+                            many different forms and configurations. Due to the
+                            decreasing cost of battery storage, systems that are
+                            already connected to the electricity grid can start
+                            taking advantage of battery storage as well.{" "}
+                          </p>
+                          <p>
+                            <h4 style="color: #1d8644;">
+                              <b>D. Solar Water Pumping</b>
+                            </h4>
+                          </p>
+                          <p>
+                            • The system operates on power generated using solar
+                            PV (photovoltaic) system. The photovoltaic array
+                            converts the solar energy into electricity, which is
+                            used for running the motor pump set. The pumping
+                            system draws water from the open well, bore well,
+                            stream, pond, canal etc.{" "}
+                          </p>
+                          <p>
+                            •Solar water pumping systems can be a practical and
+                            affordable solution used to provide reliable and
+                            cost effective water supplies where there is no grid
+                            power or where power supply is unreliable.{" "}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="accordion-item">
+                      <h2
+                        className="accordion-header"
+                        onClick={() => handleToggle(4)}
+                      >
+                        <button
+                          className={
+                            isActive.key == 4
+                              ? "accordion-button"
+                              : "accordion-button collapsed "
+                          }
+                        >
+                          Which type of solar powered system is suitable for me?{" "}
+                        </button>
+                      </h2>
+                      <div
+                        className={
+                          isActive.key == 4
+                            ? "accordion-collapse collapse  show"
+                            : "accordion-collapse collapse "
+                        }
+                      >
+                        <div className="accordion-body">
+                          <p>
+                            <h4 style="color: #1d8644;">
+                              <b>A. On-Grid Solar PV Systems </b>
+                            </h4>
+                          </p>
+                          <p>
+                            • If you are looking for a long term investment gain
+                            from it.
+                          </p>
+                          <p>• Noticeable reduction in electricity bill.</p>
+                          <p>
+                            <h4 style="color: #1d8644;">
+                              <b>B. Off-Grid Solar PV Systems</b>
+                            </h4>
+                          </p>
+                          <p>
+                            • When the load is in remote areas where there is no
+                            grid close by.
+                          </p>
+                          <p>
+                            • Load is located around the area which is subjected
+                            to frequent load shedding.
+                          </p>
+                        </div>
+                      </div>
                     </div> */}
-                    {/* <div className="accordion-item">
-                                        <h2 className="accordion-header" onClick={() => handleToggle(3)}>
-                                            <button className={isActive.key == 3 ? "accordion-button" : "accordion-button collapsed "}>
-                                            How many type solar powered electrical systems are there?                                            </button>
-                                        </h2>
-                                        <div className={isActive.key == 3 ? "accordion-collapse collapse  show" : "accordion-collapse collapse "}>
-                                            <div className="accordion-body">
-                                            <p>There are Four main types.</p>
-                                    <p><h4 style="color: #1d8644;"><b>A. On-Grid Solar PV Systems </b></h4> </p>
-                                    <p>• On-grid or grid-tie solar systems are by far the most common and widely used by homes and businesses. These systems do not need batteries and use common solar inverters and are connected to the public electricity grid. Any excess solar power that you generate is exported to the electricity grid and you usually get paid a feed-in-tariff (FiT) or credits for the energy you export.</p>
-                                    <p>• ON-Grid Applications:</p>
-                                    <p>Electricity Bill reduction for Residential and Industrial users.</p>
-                                    <p>Feed in Tariff (FIT/Reverse Metering). </p>
-                                    <p><h4 style="color: #1d8644;"><b>B. Off-Grid Solar PV Systems</b></h4></p>
-                                    <p>• Off-grid can be stand-alone powered system or mini-grids typically to provide a smaller community with electricity.</p>
-                                    <p>• Off-grid solar power also stores DC electricity in batteries.</p>
-                                    <p>• Off-Grid Applications:</p>
-                                    <p>Solar Home system.</p>
-                                    <p>Solar battery charging system.</p>
-                                    <p>Solar power traffic lighting system.</p>
-                                    <p><h4 style="color: #1d8644;"><b>C. Hybrid Solar PV Systems</b></h4></p>
-                                    <p>• Hybrid System is combination of off-grid and on-grid system. Modern hybrid systems combine solar and battery storage in one and are now available in many different forms and configurations. Due to the decreasing cost of battery storage, systems that are already connected to the electricity grid can start taking advantage of battery storage as well.  </p>
-                                    <p><h4 style="color: #1d8644;"><b>D. Solar Water Pumping</b></h4></p>
-                                    <p>• The system operates on power generated using solar PV (photovoltaic) system. The photovoltaic array converts the solar energy into electricity, which is used for running the motor pump set. The pumping system draws water from the open well, bore well, stream, pond, canal etc. </p>
-                                    <p>•Solar water pumping systems can be a practical and affordable solution used to provide reliable and cost effective water supplies where there is no grid power or where power supply is unreliable.  </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="accordion-item">
-                                        <h2 className="accordion-header" onClick={() => handleToggle(4)}>
-                                            <button className={isActive.key == 4 ? "accordion-button" : "accordion-button collapsed "}>
-                                            Which type of solar powered system is suitable for me?                                            </button>
-                                        </h2>
-                                        <div className={isActive.key == 4 ? "accordion-collapse collapse  show" : "accordion-collapse collapse "}>
-                                            <div className="accordion-body">
-                                            <p><h4 style="color: #1d8644;"><b>A. On-Grid Solar PV Systems </b></h4></p>
-                                    <p>• If you are looking for a long term investment gain from it.</p>
-                                    <p>• Noticeable reduction in electricity bill.</p>
-                                    <p><h4 style="color: #1d8644;"><b>B. Off-Grid Solar PV Systems</b></h4></p>
-                                    <p>• When the load is in remote areas where there is no grid close by.</p>
-                                    <p>• Load is located around the area which is subjected to frequent load shedding.</p>
-                                                                            </div>
-                                        </div>
-                                    </div> */}
-                    {/* <div className="accordion-item">
+
+                  {/* <div className="accordion-item">
                       <h2
                         className="accordion-header"
                         onClick={() => handleToggle(5)}
@@ -269,7 +383,7 @@ export default function Faq1({ data, layout }) {
                     <div className="accordion-item">
                       <h2
                         className="accordion-header"
-                        onClick={() => handleToggle(5)}
+                        onClick={() => handleToggle(6)}
                       >
                         <button
                           className={
@@ -302,7 +416,7 @@ export default function Faq1({ data, layout }) {
                     <div className="accordion-item">
                       <h2
                         className="accordion-header"
-                        onClick={() => handleToggle(5)}
+                        onClick={() => handleToggle(7)}
                       >
                         <button
                           className={
@@ -335,7 +449,7 @@ export default function Faq1({ data, layout }) {
                     <div className="accordion-item">
                       <h2
                         className="accordion-header"
-                        onClick={() => handleToggle(5)}
+                        onClick={() => handleToggle(8)}
                       >
                         <button
                           className={
@@ -367,7 +481,7 @@ export default function Faq1({ data, layout }) {
                     <div className="accordion-item">
                       <h2
                         className="accordion-header"
-                        onClick={() => handleToggle(5)}
+                        onClick={() => handleToggle(9)}
                       >
                         <button
                           className={
@@ -401,7 +515,7 @@ export default function Faq1({ data, layout }) {
                     <div className="accordion-item">
                       <h2
                         className="accordion-header"
-                        onClick={() => handleToggle(5)}
+                        onClick={() => handleToggle(10)}
                       >
                         <button
                           className={
@@ -432,7 +546,7 @@ export default function Faq1({ data, layout }) {
                     <div className="accordion-item">
                       <h2
                         className="accordion-header"
-                        onClick={() => handleToggle(5)}
+                        onClick={() => handleToggle(11)}
                       >
                         <button
                           className={
@@ -459,7 +573,7 @@ export default function Faq1({ data, layout }) {
                     <div className="accordion-item">
                       <h2
                         className="accordion-header"
-                        onClick={() => handleToggle(5)}
+                        onClick={() => handleToggle(12)}
                       >
                         <button
                           className={
@@ -484,7 +598,7 @@ export default function Faq1({ data, layout }) {
                     <div className="accordion-item">
                       <h2
                         className="accordion-header"
-                        onClick={() => handleToggle(5)}
+                        onClick={() => handleToggle(13)}
                       >
                         <button
                           className={
@@ -524,7 +638,7 @@ export default function Faq1({ data, layout }) {
                     <div className="accordion-item">
                       <h2
                         className="accordion-header"
-                        onClick={() => handleToggle(5)}
+                        onClick={() => handleToggle(14)}
                       >
                         <button
                           className={
@@ -558,7 +672,7 @@ export default function Faq1({ data, layout }) {
                     <div className="accordion-item">
                       <h2
                         className="accordion-header"
-                        onClick={() => handleToggle(5)}
+                        onClick={() => handleToggle(15)}
                       >
                         <button
                           className={
@@ -595,7 +709,7 @@ export default function Faq1({ data, layout }) {
                     <div className="accordion-item">
                       <h2
                         className="accordion-header"
-                        onClick={() => handleToggle(5)}
+                        onClick={() => handleToggle(16)}
                       >
                         <button
                           className={
@@ -638,7 +752,7 @@ export default function Faq1({ data, layout }) {
                     <div className="accordion-item">
                       <h2
                         className="accordion-header"
-                        onClick={() => handleToggle(5)}
+                        onClick={() => handleToggle(17)}
                       >
                         <button
                           className={
@@ -677,8 +791,9 @@ export default function Faq1({ data, layout }) {
                           </p>
                         </div>
                       </div>
-                    </div> */}
-                  </div>
+                    </div>
+                    </div>
+                      */}
                 </div>
               </div>
             </div>
@@ -714,7 +829,7 @@ export async function getStaticProps() {
     return {
       props: {
         layout: layout ?? {},
-        data: data,
+        data: data ?? {},
       },
       revalidate: 20,
     };

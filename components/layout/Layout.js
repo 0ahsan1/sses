@@ -16,7 +16,7 @@ export default function Layout({
   data,
   objKey,
 }) {
-  const content = data ?? layout;
+  const content = data.footer_title ? data : layout;
   useEffect(() => {
     const WOW = require("wowjs");
     window.wow = new WOW.WOW({
