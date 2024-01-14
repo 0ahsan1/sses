@@ -51,18 +51,18 @@ export default function Project1({ data, objKey }) {
           </div>
           <div className="row">
             <div className="col-lg-12">
-              {board?.projects.map((item) => {
+              {board?.projects.map((item, index) => {
                 return (
                   <div
                     className="project-item wow fadeInUp"
                     data-wow-delay=".2s"
-                    onMouseEnter={() => handleToggle(1)}
-                    onMouseLeave={() => handleToggle(1)}
+                    onMouseEnter={() => handleToggle(index + 1)}
+                    onMouseLeave={() => handleToggle(index + 1)}
                   >
                     <div
                       className="project-thumb"
                       style={{
-                        display: `${isActive.key == 1 ? "block" : "none"}`,
+                        display: `${isActive.key == (index + 1) ? "block" : "none"}`,
                       }}
                     >
                       <Image
@@ -83,7 +83,7 @@ export default function Project1({ data, objKey }) {
                         </h2>
                         <p
                           style={{
-                            display: `${isActive.key == 1 ? "block" : "none"}`,
+                            display: `${isActive.key == (index + 1) ? "block" : "none"}`,
                           }}
                         >
                           {item?.excerpt}
