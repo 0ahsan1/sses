@@ -40,20 +40,20 @@ export default function Services1({ data, objKey }) {
             </div>
           </div>
           <div className="row justify-content-center">
-            {board.services.map((item) => {
+            {board.services.map((item, index) => {
               return (
                 <div className="col-lg-4 col-md-6 col-sm-10">
                   <div
                     className="services-item wow fadeInUp"
                     data-wow-delay=".2s"
                     data-background={`${strapiBasePath}${item?.background_image?.url}`}
-                    onMouseEnter={() => handleToggle(1)}
-                    onMouseLeave={() => handleToggle(1)}
+                    onMouseEnter={() => handleToggle(index + 1)}
+                    onMouseLeave={() => handleToggle(index + 1)}
                   >
                     <div
                       className="services-icon"
                       style={{
-                        display: `${isActive.key == 1 ? "none" : "flex"}`,
+                        display: `${isActive.key == (index + 1) ? "none" : "flex"}`,
                       }}
                     >
                       <Image
@@ -67,7 +67,7 @@ export default function Services1({ data, objKey }) {
                       <h2
                         className="title"
                         style={{
-                          display: `${isActive.key == 1 ? "none" : "block"}`,
+                          display: `${isActive.key == (index + 1) ? "none" : "block"}`,
                         }}
                       >
                         <Link href={`${item?.button_link}/${item?.slug}`}>
@@ -79,7 +79,7 @@ export default function Services1({ data, objKey }) {
                     <div
                       className="services-overlay-content"
                       style={{
-                        display: `${isActive.key == 1 ? "block" : "none"}`,
+                        display: `${isActive.key == (index + 1) ? "block" : "none"}`,
                       }}
                     >
                       <h2 className="title">
