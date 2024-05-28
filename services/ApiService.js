@@ -55,7 +55,7 @@ export async function getFilteredStrapiContent(
   }
 
   try {
-    response = await axios(url, strapiConfig);
+    response = await axios(url);
     let mappedResponse = response.data;
     if (mappedResponse && mappedResponse.length) {
       mappedResponse = sortData(mappedResponse);
