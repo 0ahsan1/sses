@@ -6,7 +6,6 @@ export default async function handler(req, res) {
     return;
   }
     try {
-      console.log('email payload',req.body)
         sendEmail(req.body);
         res.status(200).send({ message: "Success" });
     } catch (error) {
