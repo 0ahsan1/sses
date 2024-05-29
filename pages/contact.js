@@ -20,11 +20,6 @@ export default function Contact({ data, layout }) {
   if (form && form.input_fields) {
     form.input_fields = sortData(form.input_fields);
   }
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [phone, setPhone] = useState("");
-  // const [subject, setSubject] = useState("");
-  // const [message, setMessage] = useState("");
 
   const [inputFields, setInputFields] = useState(["", "", "", "", ""]);
 
@@ -43,11 +38,9 @@ export default function Contact({ data, layout }) {
     if (!payload.name || !payload.email || !payload.phone) {
       return;
     }
-    console.log("email payload", payload, email);
     try {
       let res = axios.post("/api/sendemail", { ...payload });
-      console.log("email res", res);
-      toast.success(res.resp, {
+      toast.success("Thank you! We've received your message and will follow up shortly", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -57,9 +50,9 @@ export default function Contact({ data, layout }) {
         progress: undefined,
         theme: "light",
       });
+      setInputFields(["", "", "", "", ""]);
     } catch (error) {
-      console.log("email error", error);
-      toast.success(res.resp, {
+      toast.success("Submission failed please try again later", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -84,7 +77,7 @@ export default function Contact({ data, layout }) {
                 >
                   <h2 className="title">{form?.title}</h2>
                   <p>{form?.subtitle}</p>
-                  <form action="#" className="contact-form">
+                  <form className="contact-form">
                     <div className="row">
                       {form.input_fields &&
                         form?.input_fields.map((item, index) => {
@@ -119,51 +112,8 @@ export default function Contact({ data, layout }) {
                             </div>
                           );
                         })}
-                      {/* <div className="form-grp">
-                        <input
-                          id="firstName"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          type="text"
-                          placeholder="First Name*"
-                        />
-                      </div>
-                      <div className="form-grp">
-                        <input
-                          id="email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          type="email"
-                          placeholder="Email Address*"
-                        />
-                      </div>
-                      <div className="form-grp">
-                        <input
-                          id="phone"
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          type="text"
-                          placeholder="Phone Number*"
-                        />
-                      </div> */}
                     </div>
-                    {/* <div className="form-grp">
-                      <input
-                        id="subject"
-                        value={subject}
-                        onChange={(e) => setSubject(e.target.value)}
-                        type="text"
-                        placeholder="Subject"
-                      />
-                    </div>
-                    <div className="form-grp">
-                      <textarea
-                        id="message"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        placeholder="Your Message here"
-                      />
-                    </div> */}
+                    
                     <button
                       onClick={() => submitEmail()}
                       className="btn"
@@ -189,12 +139,12 @@ export default function Contact({ data, layout }) {
                 </div>
               </div>
               <div className="col-xl-6 col-lg-10">
-                <div className="contact-info-wrap">
+                <div className="contact-info-wrap text-xs">
                   <h2 className="title">{pageData?.help_title}</h2>
                   <p>{pageData?.help_subtitle}</p>
-                  <ul className="list-wrap">
+                  <ul className="list-wrap justify-content-center">
                     <li>
-                      <div className="contact-info-item">
+                      <div className="contact-info-item ">
                         <div className="icon">
                           <i className="fas fa-phone-alt" />
                         </div>
@@ -229,13 +179,13 @@ export default function Contact({ data, layout }) {
                           <i className="fas fa-map-marker-alt" />
                         </div>
                         <div className="content">
-                          <p
+                          <span
                             dangerouslySetInnerHTML={{
                               __html: fomatEditorContent(
                                 companyProfile?.secondary_address
                               ),
                             }}
-                          ></p>
+                          ></span>
                         </div>
                       </div>
                     </li>

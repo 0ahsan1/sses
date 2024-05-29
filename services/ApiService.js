@@ -62,6 +62,5 @@ export async function getFilteredStrapiContent(
     }
     return JSON.parse(JSON.stringify(mappedResponse));
   } catch (error) {
-    console.log("axios err: ", error);
   }
 }
