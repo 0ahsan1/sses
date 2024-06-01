@@ -2,21 +2,13 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Sidebar({ data }) {
-  const [isActive, setIsActive] = useState({
-    status: false,
-    key: "",
-  });
+  const [isActive, setIsActive] = useState(false);
 
-  const handleToggle = (key) => {
-    if (isActive.key === key) {
-      setIsActive({
-        status: false,
-      });
+  const handleToggle = () => {
+    if (isActive) {
+      setIsActive(false);
     } else {
-      setIsActive({
-        status: true,
-        key,
-      });
+      setIsActive(true);
     }
   };
   return (
@@ -24,7 +16,7 @@ export default function Sidebar({ data }) {
       <ul className="navigation">
         {data?.main_menus?.map((menu, index) => {
           return (
-            <li key={index}>
+            <li key={index} onClick={() => handleToggle()}>
               <Link href={menu.link}>{menu.title}</Link>
             </li>
           );
