@@ -222,7 +222,7 @@ export default function Header({ headerCls, headerTop, data }) {
                       <ul className="clearfix list-wrap">
                         {data?.profile?.social_links
                           .sort((a, b) => a.id - b.id)
-                          .map((link, index) => {
+                          .map((link, index) => { 
                             return (
                               <li key={index}>
                                 <Link href={link.link}>

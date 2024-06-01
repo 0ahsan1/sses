@@ -1,23 +1,17 @@
 import Link from "next/link";
-import { useState } from "react";
 
 export default function Sidebar({ data }) {
-  const [isActive, setIsActive] = useState(false);
-
-  const handleToggle = () => {
-    if (isActive) {
-      setIsActive(false);
-    } else {
-      setIsActive(true);
-    }
+  const handleToggled = () => {
+      document.body.classList.remove("mobile-menu-visible");
   };
+
   return (
     <>
       <ul className="navigation">
         {data?.main_menus?.map((menu, index) => {
           return (
-            <li key={index} onClick={() => handleToggle()}>
-              <Link href={menu.link}>{menu.title}</Link>
+            <li key={index}>
+              <Link href={menu.link} onClick={handleToggled}>{menu.title}</Link>
             </li>
           );
         })}
