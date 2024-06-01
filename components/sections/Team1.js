@@ -58,7 +58,7 @@ export default function Team1({ data, objKey }) {
                     </div>
                     <div className="team-content">
                       <h2 className="title">
-                        <Link href="#">{item?.title}</Link>
+                        <Link href="#" onClick={(e) => { e.preventDefault() }}>{item?.title}</Link>
                       </h2>
                       <span>{item?.subtitle}</span>
                     </div>
