@@ -3,7 +3,6 @@ import { banners } from "../sections/items";
 import { setBackgroundImageUrl } from "@/helpers/util";
 
 export default function Breadcrumb({ data, objKey }) {
-  data = data ?? banners.find((d) => d.slug === objKey);
 
   return (
     <>
