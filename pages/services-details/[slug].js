@@ -6,13 +6,74 @@ import Image from "next/image";
 import { setBackgroundImageUrl, strapiImageLoader } from "@/helpers/util";
 import { services } from "@/components/sections/items";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import axios from "axios";
 
 export default function ServiceDetails({ data, layout }) {
   const router = useRouter();
   const pageData = data?.pageData;
   data["services"] = data?.services ?? services;
   const service = data.services.find((d) => d.slug === router?.query?.slug);
+  const [inputFields, setInputFields] = useState(["", "", "", "", ""]);
 
+  const handleFormChange = (index, value) => {
+    let data = [...inputFields];
+    data[index] = value;
+    setInputFields(data);
+  };
+  function submitEmail() {
+    console.log('form data', inputFields)
+    const payloadFields = ["name", "email", "phone", "subject", "message"];
+    let payload = {};
+    payloadFields.forEach((key, index) => {
+      payload[key] = inputFields[index];
+    });
+    if (!payload.name || !payload.email || !payload.phone) {
+      toast.error("Invalid Form Data", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+    console.log('payloadFields', payload, data?.form?.input_fields)
+    try {
+      let res = axios.post("/api/sendemail", { ...payload });
+      console.log('api res',res)
+      toast.success("Thank you! We've received your message and will follow up shortly", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setInputFields(["", "", "", "", ""]);
+    } catch (error) {
+      console.log('api error',error)
+
+      toast.error("Submission failed please try again later", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }
   return (
     <>
       <Layout breadcrumbTitle="Service Details" data={layout}>
@@ -61,36 +122,6 @@ export default function ServiceDetails({ data, layout }) {
                               </li>
                             );
                           })}
-                          {/* <li>
-                            <Link href="/services-details/solar-water-pumping-system">
-                              Solar Water Pumping System
-                              <i className="fas fa-arrow-right" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="/services-details/On-Grid-Solar-PV-System">
-                              ON-GRID SOLAR SYSTEM
-                              <i className="fas fa-arrow-right" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="/services-details/Off-Grid-Solar-PV-System">
-                              OFF-GRID SOLAR SYSTEM
-                              <i className="fas fa-arrow-right" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="/services-details/Hybrid-Solar-PV-System">
-                              Hybrid Solar PV System
-                              <i className="fas fa-arrow-right" />
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="/services-details/Solar-Water-Heater-System">
-                              Metal Engineering
-                              <i className="fas fa-arrow-right" />
-                            </Link>
-                          </li> */}
                         </ul>
                       </div>
                     </div>
@@ -101,12 +132,15 @@ export default function ServiceDetails({ data, layout }) {
                       )}
                     >
                       <h4 className="widget-title">{data?.form?.title}</h4>
-                      <form action="#" className="sidebar-form">
+                      <form className="sidebar-form">
                         {data?.form?.input_fields &&
                           data?.form?.input_fields.map((item, index) => {
                             return item?.type !== "textarea" ? (
                               <div key={index} className="form-grp">
                                 <input
+                                  onChange={(e) =>
+                                    handleFormChange(index, e.target.value)
+                                  }
                                   id={item?.id}
                                   type={item?.type}
                                   placeholder={item?.placeholder}
@@ -115,15 +149,33 @@ export default function ServiceDetails({ data, layout }) {
                             ) : (
                               <div key={index} className="form-grp">
                                 <textarea
+                                  onChange={(e) =>
+                                    handleFormChange(index, e.target.value)
+                                  }
                                   id={item?.id}
                                   placeholder={item?.placeholder}
                                 />
                               </div>
                             );
                           })}
-                        <button type="submit" className="btn btn-two">
+                        <button type="submit" className="btn btn-two" onClick={() => submitEmail()}
+                        >
                           {data?.form.button_text}
                         </button>
+                        <ToastContainer
+                          position="top-right"
+                          autoClose={5000}
+                          hideProgressBar={false}
+                          newestOnTop={false}
+                          closeOnClick
+                          rtl={false}
+                          pauseOnFocusLoss
+                          draggable
+                          pauseOnHover
+                          theme="light"
+                        />
+                        {/* Same as */}
+                        <ToastContainer />
                       </form>
                     </div>
                   </aside>

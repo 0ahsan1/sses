@@ -16,6 +16,7 @@ import { getFilteredStrapiContent } from "@/services/ApiService";
 
 export default function Home({ data, layout }) {
   const objKey = "main";
+  console.log('Home data',data,layout)
 
   return (
     <>

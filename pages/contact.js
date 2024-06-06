@@ -35,7 +35,18 @@ export default function Contact({ data, layout }) {
     payloadFields.forEach((key, index) => {
       payload[key] = inputFields[index];
     });
+    console.log('contact payloadFields',payload)
     if (!payload.name || !payload.email || !payload.phone) {
+      toast.error("Invalid Form Data", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return;
     }
     try {
@@ -52,7 +63,7 @@ export default function Contact({ data, layout }) {
       });
       setInputFields(["", "", "", "", ""]);
     } catch (error) {
-      toast.success("Submission failed please try again later", {
+      toast.error("Submission failed please try again later", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -140,8 +151,8 @@ export default function Contact({ data, layout }) {
               </div>
               <div className="col-xl-6 col-lg-10">
                 <div className="contact-info-wrap text-xs">
-                  <h2 className="title">{pageData?.help_title}</h2>
-                  <p>{pageData?.help_subtitle}</p>
+                  <h2 className="title">{form?.help_title}</h2>
+                  <p>{form?.help_subtitle}</p>
                   <ul className="list-wrap justify-content-center">
                     <li>
                       <div className="contact-info-item ">
@@ -194,7 +205,7 @@ export default function Contact({ data, layout }) {
                 {/* contact-map */}
                 <div id="contact-map">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d68861.52188624057!2d67.0672045939393!3d24.894982106625328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f87ee80b22b%3A0xb1d92b9696d7c5dd!2sSustainable%20Solar%20Energy%20Solutions%20-%20SSES!5e0!3m2!1sen!2s!4v1600544364851!5m2!1sen!2s"
+                    src={companyProfile?.map}
                     height={570}
                     style={{ border: 0, width: "100%" }}
                     allowFullScreen
