@@ -13,7 +13,6 @@ function generateSiteMap() {
     <lastmod>2024-06-06T08:52:10+00:00</lastmod>
   </url>
   
-  
   </urlset>`;
 }
 
