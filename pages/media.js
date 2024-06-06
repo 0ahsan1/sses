@@ -70,7 +70,7 @@ const Gallery = (data) => {
                       <div>{x.title}</div>
                     </div>
                   </div>
-                  <div
+                  {/* <div
                     className="bg-black opacity-0 group-hover:opacity-75 absolute inset-0 flex items-center justify-center transition-all duration-300 ease-in-out"
                     onClick={() => {
                       setOpen(true);
@@ -80,7 +80,7 @@ const Gallery = (data) => {
                     <p className="text-white">
                       <AiOutlineExpandAlt className="text-5xl border w-16 h-16 bg-neutral-500 hover:bg-white hover:text-black p-3 cursor-pointer rounded-full" />
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             );
