@@ -7,6 +7,7 @@ import { strapiApiPath } from "@/constants/ApiPath";
 import { Project1 } from "@/components/content/projects";
 import Image from "next/image";
 import { dateFormatter, strapiImageLoader } from "@/helpers/util";
+import { NextSeoCom } from "@/components/meta/NextSeoCom";
 
 export default function ProjectDetails({ data }) {
   const router = useRouter();
@@ -15,6 +16,8 @@ export default function ProjectDetails({ data }) {
 
   return (
     <>
+   {project && project.meta ? <NextSeoCom data={{...project.meta}} />: <></>} 
+
       <Layout breadcrumbTitle="Project Details" data={data?.layout}>
         <div>
           <section className="project-details-area pt-120">

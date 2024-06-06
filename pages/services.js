@@ -5,6 +5,7 @@ import Counter2 from "@/components/sections/Counter2";
 import Services1 from "@/components/sections/Services1";
 import { strapiApiPath } from "@/constants/ApiPath";
 import { getFilteredStrapiContent } from "@/services/ApiService";
+import { NextSeoCom } from "@/components/meta/NextSeoCom";
 
 export default function Service({ data, layout }) {
   const [isActive, setIsActive] = useState({
@@ -26,6 +27,7 @@ export default function Service({ data, layout }) {
   };
   return (
     <>
+   {data?.servicePage &&data?.servicePage.meta ? <NextSeoCom data={{...data?.servicePage.meta}} />: <></>} 
       <Layout breadcrumbTitle="Services" data={layout} objKey="services">
         <Services1 data={data?.servicePage} objKey="services" />
       </Layout>

@@ -1,5 +1,6 @@
 import VideoPopup from "@/components/elements/VideoPopup";
 import Layout from "@/components/layout/Layout";
+import { NextSeoCom } from "@/components/meta/NextSeoCom";
 import Brand1 from "@/components/sections/Brand1";
 import Brand3 from "@/components/sections/Brand3";
 import Team1 from "@/components/sections/Team1";
@@ -27,6 +28,8 @@ export default function About({ data, layout }) {
 
   return (
     <>
+   {aboutSection && aboutSection.meta ? <NextSeoCom data={{...aboutSection.meta}} />: <></>} 
+
       <Layout breadcrumbTitle="About Us" data={layout} objKey={objKey}>
         <section className="about-area inner-about-area pt-120 pb-120">
           <div className="container">

@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import axios from "axios";
+import { NextSeoCom } from "@/components/meta/NextSeoCom";
 
 export default function ServiceDetails({ data, layout }) {
   const router = useRouter();
@@ -71,6 +72,8 @@ export default function ServiceDetails({ data, layout }) {
   }
   return (
     <>
+   {service && service.meta ? <NextSeoCom data={{...service.meta}} />: <></>} 
+
       <Layout breadcrumbTitle="Service Details" data={layout}>
         <div>
           <section className="services-details-area pt-120">

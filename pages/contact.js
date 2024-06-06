@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import { NextSeoCom } from "@/components/meta/NextSeoCom";
 import { strapiApiPath } from "@/constants/ApiPath";
 import {
   fomatEditorContent,
@@ -77,6 +78,7 @@ export default function Contact({ data, layout }) {
   }
   return (
     <>
+   {form && form.meta ? <NextSeoCom data={{...form.meta}} />: <></>} 
       <Layout data={layout} objKey={"contact"}>
         <section className="contact-area pt-120 pb-120">
           <div className="container">

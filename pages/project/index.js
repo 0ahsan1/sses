@@ -23,6 +23,7 @@ import { getFilteredStrapiContent } from "@/services/ApiService";
 import { strapiApiPath } from "@/constants/ApiPath";
 import Image from "next/image";
 import { strapiImageLoader } from "@/helpers/util";
+import { NextSeoCom } from "@/components/meta/NextSeoCom";
 
 export const projects = [
   {
@@ -145,6 +146,8 @@ export default function Project({ data, layout }) {
 
   return (
     <>
+   {pageData && pageData.meta ? <NextSeoCom data={{...pageData.meta}} />: <></>} 
+
       <Layout data={layout} objKey={"projects"}>
         <section className="inner-project-area pt-115 pb-90">
           <div className="container">

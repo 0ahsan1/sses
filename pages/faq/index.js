@@ -1,4 +1,5 @@
 import Layout from "@/components/layout/Layout";
+import { NextSeoCom } from "@/components/meta/NextSeoCom";
 import { faqPageContent } from "@/components/sections/items";
 import { strapiApiPath } from "@/constants/ApiPath";
 import { setBackgroundImageUrl, strapiImageLoader } from "@/helpers/util";
@@ -29,6 +30,8 @@ export default function Faq1({ data, layout }) {
 
   return (
     <>
+   {data && data.meta ? <NextSeoCom data={{...data.meta}} />: <></>} 
+
       <Layout breadcrumbTitle="FAQ" data={layout}>
         <section
           className="faq-area faq-bg"

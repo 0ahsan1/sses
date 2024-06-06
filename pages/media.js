@@ -8,16 +8,21 @@ import { useState } from "react";
 import { strapiApiPath } from "@/constants/ApiPath";
 import { getFilteredStrapiContent } from "@/services/ApiService";
 import { strapiImageLoader } from "@/helpers/util";
+import { NextSeoCom } from "@/components/meta/NextSeoCom";
 
 export default function Media(data) {
    data = data.data
   console.log('data',data)
   return (
-    <Layout breadcrumbTitle="Media">
+    <>
+   {data && data.meta ? <NextSeoCom data={{...data.meta}} />: <></>} 
+   <Layout breadcrumbTitle="Media">
       <div className="my-24 w-full">
         <Gallery data={data}/>
       </div>
     </Layout>
+    </>
+
   );
 }
 
