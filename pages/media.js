@@ -5,49 +5,34 @@ import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 import { useState } from "react";
+import { strapiApiPath } from "@/constants/ApiPath";
+import { getFilteredStrapiContent } from "@/services/ApiService";
+import { strapiImageLoader } from "@/helpers/util";
 
-export default function Media() {
+export default function Media(data) {
+   data = data.data
+  console.log('data',data)
   return (
     <Layout breadcrumbTitle="Media">
       <div className="my-24 w-full">
-        <Gallery />
+        <Gallery data={data}/>
       </div>
     </Layout>
   );
 }
 
-const Gallery = () => {
+const Gallery = (data) => {
+  const strapiBasePath = process.env.NEXT_PUBLIC_STRAPI_BASE_URL
+  data = data.data
   const [open, setOpen] = useState(false);
   const [image, setImage] = useState("");
+  const galleryTab = data.galleries.map(g=>{
+    return {
+      title:g.title,
+      imageUrl: `${strapiBasePath}${g.image.url}`
+    }
+  })
 
-  const galleryTab = [
-    // you can add more image if you want
-    {
-      imageUrl: "/assets/img/product/product-1.jpg",
-      type: "",
-      title: "CEO - Mr. Hassan Jafri talking to media",
-    },
-    {
-      imageUrl: "/assets/img/product/product-2.jpg",
-      type: "",
-      title: "Team SSES receiving award from IEEEP",
-    },
-    {
-      imageUrl: "/assets/img/product/product-3.jpg",
-      type: "",
-      title: "SSES stall at IEEEP Fair - 2018",
-    },
-    {
-      imageUrl: "/assets/img/product/product-4.jpg",
-      type: "",
-      title: "CEO - Mr. Hassan Jafri meeting with corporate clients",
-    },
-    {
-      imageUrl: "/assets/img/product/product-5.jpg",
-      type: "",
-      title: "CEO - Mr. Hassan Jafri with chinese delegation",
-    },
-  ];
   const slides = galleryTab.map((item) => ({
     src: item.imageUrl,
     width: 3840,
@@ -66,8 +51,8 @@ const Gallery = () => {
       <div className="row justify-content-center">
         <div className="col-lg-8">
           <div className="section-title text-center mb-60 tg-heading-subheading animation-style3">
-            <span className="sub-title tg-element-title">Event Gallery</span>
-            <h2 className="title">IEEEP Event</h2>
+            <span className="sub-title tg-element-title">{data?.title}</span>
+            <h2 className="title">{data?.subtitle}</h2>
           </div>
         </div>
       </div>
@@ -82,7 +67,6 @@ const Gallery = () => {
                     style={{ backgroundImage: `url("${x.imageUrl}")` }}
                   >
                     <div className="text-2xl text-white absolute bottom-0 left-2 z-10">
-                      <div>{x.type}</div>
                       <div>{x.title}</div>
                     </div>
                   </div>
@@ -103,13 +87,32 @@ const Gallery = () => {
           })}
         </div>
       </div>
-      <Lightbox
+      {/* <Lightbox
         open={open}
         close={() => setOpen(false)}
         plugins={[Zoom]}
         showPrevNext={false}
         slides={slides}
-      />
+      /> */}
     </div>
   );
 };
+export async function getStaticProps() {
+  try {
+    const data = await getFilteredStrapiContent(strapiApiPath.MEDIA);
+ 
+
+    return {
+      props: {
+        data,
+      },
+      revalidate: 20,
+    };
+  } catch (error) {
+    return {
+      props: {
+        error: JSON.parse(JSON.stringify(error)),
+      },
+    };
+  }
+}

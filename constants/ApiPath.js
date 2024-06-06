@@ -20,4 +20,5 @@ export const strapiApiPath = {
   CONTACT_US: "/contact-us",
   QUOTATION_FORM: "/quotation-form",
   CONTACT_FORM: "/contact-form",
+  MEDIA: '/mediaa'
 };
