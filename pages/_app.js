@@ -12,6 +12,7 @@ import "../public/assets/css/default.css"
 import "../public/assets/css/jarallax.css"
 import "../public/assets/css/style.css"
 import "../public/assets/css/responsive.css"
+import { DefaultSeo } from 'next-seo';
 
 function MyApp({ Component, pageProps }) {
 
@@ -23,8 +24,25 @@ function MyApp({ Component, pageProps }) {
 
     }, [])
     return (<>
+        <DefaultSeo
+            title="Sustainable Solar Energy Solutions"
+            description="At SSES, We are an EPC (Engineering, Procurement and Construction) company that provides cost effective and environment friendly solar energy solutions"
+            openGraph={{
+                type: 'website',
+                locale: 'en_IE',
+                url: 'https://www.sses.pk/',
+                siteName: 'SiteName',
+            }}
+            twitter={{
+                handle: '@handle',
+                site: '@site',
+                cardType: 'summary_large_image',
+            }}
+        />
         {!loading ? (
-            <Component {...pageProps} />
+            <>
+                <Component {...pageProps} />
+            </>
         ) : (
             <Preloader />
         )}

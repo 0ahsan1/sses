@@ -7,19 +7,18 @@ import About1 from "@/components/sections/About1";
 import Services1 from "@/components/sections/Services1";
 import Project1 from "@/components/sections/Project1";
 import Team1 from "@/components/sections/Team1";
-import Counter1 from "@/components/sections/Counter1";
 import Testimonial1 from "@/components/sections/Testimonial1";
-import Blog1 from "@/components/sections/Blog1";
-import Newsletter1 from "@/components/sections/Newsletter1";
 import { strapiApiPath } from "@/constants/ApiPath";
 import { getFilteredStrapiContent } from "@/services/ApiService";
+import { NextSeoCom } from "@/components/meta/NextSeoCom";
 
 export default function Home({ data, layout }) {
   const objKey = "main";
-  console.log('Home data',data,layout)
+  console.log('Home data',layout)
 
   return (
     <>
+   {layout && layout.meta ? <NextSeoCom data={{...layout.meta}} />: <></>} 
       <Layout headerCls="transparent-header" data={layout} objKey={objKey}>
         <Banner1
           data={data?.banner}

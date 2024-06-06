@@ -161,40 +161,6 @@ export default function Header({ headerCls, headerTop, data }) {
                             </li>
                           );
                         })}
-
-                        {/* <li>
-                                                    <Link href="/#">Home</Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/about">About us</Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/services">Services</Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/project">Projects</Link>
-                                                </li> */}
-                        {/* <li className="menu-item-has-children"><Link href="/#">Pages</Link>
-                                                    <ul className="sub-menu">
-                                                        <li><Link href="/project">Project Page</Link></li>
-                                                        <li><Link href="/project-details">Project Details</Link></li>
-                                                        <li><Link href="/team">Our Team</Link></li>
-                                                        <li><Link href="/team-details">Team Details</Link></li>
-                                                        <li><Link href="/error">404 Error</Link></li>
-                                                    </ul>
-                                                </li>
-                                                <li className="menu-item-has-children"><Link href="/#">Blog</Link>
-                                                    <ul className="sub-menu">
-                                                        <li><Link href="/blog">Our Blog</Link></li>
-                                                        <li><Link href="/blog-details">Blog Details</Link></li>
-                                                    </ul>
-                                                </li> */}
-                        {/* <li>
-                                                    <Link href="/faq">FAQ</Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/contact">Contact</Link>
-                                                </li> */}
                       </ul>
                     </div>
                     <div className="header-action d-none d-md-block">
