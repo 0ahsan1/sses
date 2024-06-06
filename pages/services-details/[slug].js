@@ -25,7 +25,6 @@ export default function ServiceDetails({ data, layout }) {
     setInputFields(data);
   };
   function submitEmail() {
-    console.log('form data', inputFields)
     const payloadFields = ["name", "email", "phone", "subject", "message"];
     let payload = {};
     payloadFields.forEach((key, index) => {
@@ -44,10 +43,8 @@ export default function ServiceDetails({ data, layout }) {
       });
       return;
     }
-    console.log('payloadFields', payload, data?.form?.input_fields)
     try {
       let res = axios.post("/api/sendemail", { ...payload });
-      console.log('api res',res)
       toast.success("Thank you! We've received your message and will follow up shortly", {
         position: "top-right",
         autoClose: 5000,
@@ -60,8 +57,6 @@ export default function ServiceDetails({ data, layout }) {
       });
       setInputFields(["", "", "", "", ""]);
     } catch (error) {
-      console.log('api error',error)
-
       toast.error("Submission failed please try again later", {
         position: "top-right",
         autoClose: 5000,

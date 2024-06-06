@@ -13,7 +13,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Contact({ data, layout }) {
-  const pageData = data?.pageData;
   const form = data?.form;
   const companyProfile = layout?.profile;
 
@@ -61,6 +60,7 @@ export default function Contact({ data, layout }) {
         progress: undefined,
         theme: "light",
       });
+      payload = {}
       setInputFields(["", "", "", "", ""]);
     } catch (error) {
       toast.error("Submission failed please try again later", {
@@ -236,7 +236,6 @@ export async function getStaticProps() {
       },
     ]);
     const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS);
-    const pageData = await getFilteredStrapiContent(strapiApiPath.CONTACT_US);
     const form = await getFilteredStrapiContent(strapiApiPath.CONTACT_FORM);
 
     if (profile) {
@@ -247,7 +246,6 @@ export async function getStaticProps() {
       layout["banner"] = banners[0];
     }
     data["boards"] = boards;
-    data["pageData"] = pageData;
     data["form"] = form;
 
     return {
