@@ -119,7 +119,7 @@ export default function Footer1({ data }) {
                       </div>
                       <div className="content">
                         <span>Phone No</span>
-                        <Link href={`/tel:${data?.profile?.phone}`}>
+                        <Link href={`tel:${data?.profile?.phone}`}>
                           {data?.profile?.phone}
                         </Link>
                       </div>
