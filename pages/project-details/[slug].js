@@ -16,7 +16,7 @@ export default function ProjectDetails({ data }) {
 
   return (
     <>
-   {project && project.meta ? <NextSeoCom data={{...project.meta}} />: <></>} 
+      {project && project.meta ? <NextSeoCom data={{ ...project.meta }} /> : <></>}
 
       <Layout breadcrumbTitle="Project Details" data={data?.layout}>
         <div>
@@ -47,21 +47,24 @@ export default function ProjectDetails({ data }) {
                         {project?.project_details_text}
                       </h4>
                       <div className="project-info-list">
-                        <ul className="list-wrap">
-                          <li>
-                            <span>Date :</span>{" "}
-                            {dateFormatter(new Date(project?.date), "LL")}
-                          </li>
-                          <li>
-                            <span>Clients :</span> {project?.clients}
-                          </li>
-                          <li>
-                            <span>Category:</span> {project?.category}
-                          </li>
-                          <li>
-                            <span>Location :</span> {project?.location}
-                          </li>
-                        </ul>
+                        <table class="table-auto text-sm">
+                            <tr>
+                              <th>Date</th>
+                              <td className="px-4 py-2">{dateFormatter(new Date(project?.date), "LL")} </td>
+                            </tr>
+                            <tr>
+                              <th>Client</th>
+                              <td className="px-4 py-2">{project?.clients}</td>
+                            </tr>
+                            <tr>
+                              <th>Category</th>
+                              <td className="px-4 py-2">{project?.category}</td>
+                            </tr>
+                            <tr>
+                              <th>Location</th>
+                              <td className="px-4 py-2">{project?.location}</td>
+                            </tr>
+                        </table>
                       </div>
                     </div>
                   </aside>
