@@ -35,7 +35,6 @@ export default function Contact({ data, layout }) {
     payloadFields.forEach((key, index) => {
       payload[key] = inputFields[index];
     });
-    console.log('contact payloadFields',payload)
     if (!payload.name || !payload.email || !payload.phone) {
       toast.error("Invalid Form Data", {
         position: "top-right",

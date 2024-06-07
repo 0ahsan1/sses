@@ -6,7 +6,7 @@ import { strapiImageLoader } from "@/helpers/util";
 
 export default function Header({ headerCls, headerTop, data }) {
   const [scroll, setScroll] = useState(0);
-
+  const [menu, setMenu] = useState(null)
   const [isToggled, setToggled] = useState(false);
   const handleToggled = () => {
     setToggled(!isToggled);
@@ -16,6 +16,10 @@ export default function Header({ headerCls, headerTop, data }) {
   };
 
   useEffect(() => {
+    if(data && data.main_menus.length>0){
+      data.main_menus = data.main_menus.sort((a, b) => a.order - b.order);
+    }
+    setMenu(data.main_menus)
     document.addEventListener("scroll", () => {
       const scrollCheck = window.scrollY > 100;
       if (scrollCheck !== scroll) {
@@ -154,10 +158,10 @@ export default function Header({ headerCls, headerTop, data }) {
                     </div>
                     <div className="navbar-wrap main-menu d-none d-lg-flex">
                       <ul className="navigation">
-                        {data?.main_menus?.map((menu, index) => {
+                        {menu && menu.map((m, index) => {
                           return (
                             <li key={index}>
-                              <Link href={menu.link}>{menu.title}</Link>
+                              <Link href={m.link}>{m.title}</Link>
                             </li>
                           );
                         })}
@@ -182,7 +186,7 @@ export default function Header({ headerCls, headerTop, data }) {
                       </Link>
                     </div>
                     <div className="menu-outer">
-                      <Sidebar data={data} />
+                      <Sidebar data={menu} />
                     </div>
                     <div className="social-links">
                       <ul className="clearfix list-wrap">
@@ -197,31 +201,6 @@ export default function Header({ headerCls, headerTop, data }) {
                               </li>
                             );
                           })}
-                        {/* <li>
-                          <Link href="/#">
-                            <i className="fab fa-facebook-f" />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/#">
-                            <i className="fab fa-twitter" />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/#">
-                            <i className="fab fa-instagram" />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/#">
-                            <i className="fab fa-linkedin-in" />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/#">
-                            <i className="fab fa-youtube" />
-                          </Link>
-                        </li> */}
                       </ul>
                     </div>
                   </nav>

@@ -4,7 +4,6 @@ import Head from "next/head"
 
 
 export const NextSeoCom = (meta) => {
-  console.log('NextSeoCom', meta)
   return <Head>
       <NextSeo
         title={meta.title}

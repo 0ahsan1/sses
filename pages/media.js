@@ -12,7 +12,6 @@ import { NextSeoCom } from "@/components/meta/NextSeoCom";
 
 export default function Media(data) {
    data = data.data
-  console.log('data',data)
   return (
     <>
    {data && data.meta ? <NextSeoCom data={{...data.meta}} />: <></>} 

@@ -14,7 +14,6 @@ import { NextSeoCom } from "@/components/meta/NextSeoCom";
 
 export default function Home({ data, layout }) {
   const objKey = "main";
-  console.log('Home data',layout)
 
   return (
     <>
