@@ -10,12 +10,11 @@ import { getFilteredStrapiContent } from "@/services/ApiService";
 import { strapiImageLoader } from "@/helpers/util";
 import { NextSeoCom } from "@/components/meta/NextSeoCom";
 
-export default function Media(data) {
-   data = data.data
+export default function Media({data,layout}) {
   return (
     <>
    {data && data.meta ? <NextSeoCom data={{...data.meta}} />: <></>} 
-   <Layout breadcrumbTitle="Media">
+   <Layout breadcrumbTitle="Media" data={layout} objKey="media">
       <div className="my-24 w-full">
         <Gallery data={data}/>
       </div>
@@ -25,9 +24,8 @@ export default function Media(data) {
   );
 }
 
-const Gallery = (data) => {
+const Gallery = ({data}) => {
   const strapiBasePath = process.env.NEXT_PUBLIC_STRAPI_BASE_URL
-  data = data.data
   const [open, setOpen] = useState(false);
   const [image, setImage] = useState("");
   const galleryTab = data.galleries.map(g=>{
@@ -104,10 +102,10 @@ const Gallery = (data) => {
 export async function getStaticProps() {
   try {
     const data = await getFilteredStrapiContent(strapiApiPath.MEDIA);
- 
-
+    const layout = (await getFilteredStrapiContent(strapiApiPath.LAYOUT)) ?? {};
     return {
       props: {
+        layout,
         data,
       },
       revalidate: 20,

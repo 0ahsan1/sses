@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer1({ data }) {
+  console.log('data',data)
   return (
     <>
       <footer>
@@ -53,36 +54,6 @@ export default function Footer1({ data }) {
                             </li>
                           );
                         })}
-                        {/* <li>
-                          <Link href="/services-details/solar-water-pumping-system">
-                            <i className="fas fa-angle-double-right" />
-                            SOLAR WATER PUMPING SYSTEM
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services-details/On-Grid-Solar-PV-System">
-                            <i className="fas fa-angle-double-right" />
-                            ON-GRID SOLAR SYSTEM
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services-details/Off-Grid-Solar-PV-System">
-                            <i className="fas fa-angle-double-right" />
-                            OFF-GRID SOLAR SYSTEM
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services-details/Hybrid-Solar-PV-System">
-                            <i className="fas fa-angle-double-right" />
-                            HYBRID SOLAR PV SYSTEM
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services-details/Solar-Water-Heater-System">
-                            <i className="fas fa-angle-double-right" />
-                            SOLAR WATER HEATER SYSTEM
-                          </Link>
-                        </li> */}
                       </ul>
                     </div>
                   </div>
@@ -102,36 +73,6 @@ export default function Footer1({ data }) {
                             </li>
                           );
                         })}
-                        {/* <li>
-                          <Link href="/contact">
-                            <i className="fas fa-angle-double-right" />
-                            All Projects
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/contact">
-                            <i className="fas fa-angle-double-right" />
-                            Karsaz, Karachi
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/contact">
-                            <i className="fas fa-angle-double-right" />
-                            Gulshan e Maymar
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/contact">
-                            <i className="fas fa-angle-double-right" />
-                            Lasbele University
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/contact">
-                            <i className="fas fa-angle-double-right" />
-                            KDA Scheme, Karachi
-                          </Link>
-                        </li> */}
                       </ul>
                     </div>
                   </div>
@@ -150,10 +91,6 @@ export default function Footer1({ data }) {
                               height={70}
                               loader={strapiImageLoader}
                             />
-                            {/* <img
-                              src="/assets/img/services/img-one.jpg"
-                              alt=""
-                            /> */}
                           </Link>
                         </li>
                       </ul>
@@ -173,7 +110,6 @@ export default function Footer1({ data }) {
                           height={63}
                           loader={strapiImageLoader}
                         />
-                        {/* <img src="/assets/img/logo/footer.png" alt="" /> */}
                       </Link>
                     </div>
                   </div>
@@ -205,26 +141,6 @@ export default function Footer1({ data }) {
                               </li>
                             );
                           })}
-                        {/* <li>
-                          <Link href="https://www.facebook.com/SustainableSolarEnergySolutions/">
-                            <i className="fab fa-facebook-f" />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="#">
-                            <i className="fab fa-twitter" />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="https://www.linkedin.com/company/sustainable-solar-energy-solutions/">
-                            <i className="fab fa-linkedin-in" />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="https://www.youtube.com/channel/UCuY7QJnQaI3u10HwatPCRDw">
-                            <i className="fab fa-youtube" />
-                          </Link>
-                        </li> */}
                       </ul>
                     </div>
                   </div>
