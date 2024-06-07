@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer1({ data }) {
-  console.log('data',data)
+  console.log('data footer',data)
   return (
     <>
       <footer>

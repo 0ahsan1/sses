@@ -103,6 +103,12 @@ export async function getStaticProps() {
   try {
     const data = await getFilteredStrapiContent(strapiApiPath.MEDIA);
     const layout = (await getFilteredStrapiContent(strapiApiPath.LAYOUT)) ?? {};
+    const profile = await getFilteredStrapiContent(
+      strapiApiPath.COMPANY_PROFILE
+    );
+    if (layout && profile) {
+      layout["profile"] = profile;
+    }
     return {
       props: {
         layout,
