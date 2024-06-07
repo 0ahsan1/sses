@@ -4,7 +4,6 @@ export default function Sidebar({ data }) {
   const handleToggled = () => {
       document.body.classList.remove("mobile-menu-visible");
   };
-console.log('menu',data)
   return (
     <>
       <ul className="navigation">
