@@ -23,10 +23,10 @@ export default function Features1({ data, objKey }) {
                       <div className="features-content">
                         <h4 className="title">{item?.title}</h4>
                         <p>{item?.content}</p>
-                        <Link href={item?.button_link} className="link-btn">
+                        {/* <Link href={item?.button_link} className="link-btn">
                           <i className="fas fa-arrow-right" />{" "}
                           {item?.button_title}
-                        </Link>
+                        </Link> */}
                       </div>
                       <div className="features-icon">
                         {/* <img src="/assets/img/icon/features_icon01.svg" alt="" /> */}

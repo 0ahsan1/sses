@@ -1554,6 +1554,7 @@ label {
 	position: relative;
 	overflow: hidden;
 	z-index: 1;
+	min-height: 260px;
 }
 .features-content .title {
 	font-weight: 600;
