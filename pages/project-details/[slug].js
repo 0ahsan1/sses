@@ -48,22 +48,22 @@ export default function ProjectDetails({ data }) {
                       </h4>
                       <div className="project-info-list">
                         <table class="table-auto text-sm">
-                            <tr>
-                              <th>Date</th>
-                              <td className="px-4 py-2">{dateFormatter(new Date(project?.date), "LL")} </td>
-                            </tr>
-                            <tr>
-                              <th>Client</th>
-                              <td className="px-4 py-2">{project?.clients}</td>
-                            </tr>
-                            <tr>
-                              <th>Category</th>
-                              <td className="px-4 py-2">{project?.category}</td>
-                            </tr>
-                            <tr>
-                              <th>Location</th>
-                              <td className="px-4 py-2">{project?.location}</td>
-                            </tr>
+                          <tr>
+                            <th>Date</th>
+                            <td className="px-4 py-2">{dateFormatter(new Date(project?.date), "LL")} </td>
+                          </tr>
+                          <tr>
+                            <th>Client</th>
+                            <td className="px-4 py-2">{project?.clients}</td>
+                          </tr>
+                          <tr>
+                            <th>Category</th>
+                            <td className="px-4 py-2">{project?.category}</td>
+                          </tr>
+                          <tr>
+                            <th>Location</th>
+                            <td className="px-4 py-2">{project?.location}</td>
+                          </tr>
                         </table>
                       </div>
                     </div>
