@@ -1,11 +1,9 @@
 import { strapiImageLoader } from "@/helpers/util"
 import { NextSeo } from "next-seo"
-import Head from "next/head"
 
 
 export const NextSeoCom = (meta) => {
-  return <Head>
-      <NextSeo
+  return <NextSeo
         title={meta.title}
         description={meta.description}
         openGraph={{
@@ -27,5 +25,4 @@ export const NextSeoCom = (meta) => {
           cardType: "summary",
         }}
       />
-  </Head>
 }

@@ -14,11 +14,11 @@ import { NextSeoCom } from "@/components/meta/NextSeoCom";
 
 export default function Home({ data, layout }) {
   const objKey = "main";
-
   return (
     <>
    {layout && layout.meta ? <NextSeoCom data={{...layout.meta}} />: <></>} 
-      <Layout headerCls="transparent-header" data={layout} objKey={objKey}>
+     <main>
+     <Layout headerCls="transparent-header" data={layout} objKey={objKey}>
         <Banner1
           data={data?.banner}
           sliderImages={data?.sliderImages}
@@ -34,6 +34,7 @@ export default function Home({ data, layout }) {
         {/* <Blog1 /> */}
         {/* <Newsletter1 /> */}
       </Layout>
+     </main>
     </>
   );
 }
