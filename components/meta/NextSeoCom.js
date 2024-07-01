@@ -2,9 +2,8 @@ import { strapiImageLoader } from "@/helpers/util"
 import { NextSeo } from "next-seo"
 
 
-export const NextSeoCom = (meta) => {
-    meta = meta?.data
-  console.log('NextSeoCom',meta.data)
+export const NextSeoCom = (data) => {
+    const meta = data?.data
   return <NextSeo
         title={meta.title}
         description={meta.description}

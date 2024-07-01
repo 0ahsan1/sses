@@ -16,8 +16,8 @@ export default function Home({ data, layout }) {
   const objKey = "main";
   return (
     <>
-   {layout && layout.meta ? <NextSeoCom data={{...layout.meta}} />: <></>} 
-     <main>
+    <NextSeoCom data={{...layout?.meta}} />
+    <main>
      <Layout headerCls="transparent-header" data={layout} objKey={objKey}>
         <Banner1
           data={data?.banner}

@@ -20,17 +20,8 @@ function MyApp({ Component, pageProps }) {
         setTimeout(() => {
             setLoading(false)
         }, 1000)
-
     }, [])
-    return (<>
-        {!loading ? (
-            <>
-                <Component {...pageProps} />
-            </>
-        ) : (
-            <Preloader />
-        )}
-    </>)
+    return <Component {...pageProps} />
 }
 
 export default MyApp
