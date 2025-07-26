@@ -12,6 +12,7 @@ import "../public/assets/css/default.css"
 import "../public/assets/css/jarallax.css"
 import "../public/assets/css/style.css"
 import "../public/assets/css/responsive.css"
+import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
 
@@ -21,7 +22,15 @@ function MyApp({ Component, pageProps }) {
             setLoading(false)
         }, 1000)
     }, [])
-    return <Component {...pageProps} />
+    return <>
+        <Script
+            src="https://analytics.ahrefs.com/analytics.js"
+            strategy="afterInteractive"
+            data-key="eTOK4cHSGzspTwrw/gJOIg"
+        />
+        <Component {...pageProps} />
+    </>
+    
 }
 
 export default MyApp
