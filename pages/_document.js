@@ -7,6 +7,11 @@ export default function Document() {
             <link rel="shortcut icon" href="/assets/img/favicon.png" />
             <link rel="preconnect" href="https://fonts.bunny.net" />
             <link href="https://fonts.bunny.net/css?family=dm-sans:400,400i,500,500i,700,700i|poppins:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet" />
+            <script
+                src="https://analytics.ahrefs.com/analytics.js"
+                data-key="eTOK4cHSGzspTwrw/gJOIg"
+                async
+            ></script>
             <body>
                 <Main />
                 <NextScript />
