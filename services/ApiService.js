@@ -55,12 +55,11 @@ export async function getFilteredStrapiContent(
   }
 
   try {
-    response = await axios(url);
-    let mappedResponse = response.data;
-    if (mappedResponse && mappedResponse.length) {
-      mappedResponse = sortData(mappedResponse);
-    }
-    return JSON.parse(JSON.stringify(mappedResponse));
+    response = await axios(url,strapiConfig);
+    console.log('strapi response',response.data.data)
+    
+    return response.data.data
   } catch (error) {
+    console.log('strapi error',error.data.error)
   }
 }

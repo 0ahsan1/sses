@@ -6,6 +6,9 @@ import { setBackgroundImageUrl } from "@/helpers/util";
 import { banners } from "../layout/items";
 
 export default function Banner1({ data, sliderImages, objKey }) {
+  
+  console.log('Banner1',data)
+  return
   sliderImages = sliderImages ?? brands;
   const banner = data ?? banners.find((d) => d.slug === objKey);
   const [isActive, setIsActive] = useState({

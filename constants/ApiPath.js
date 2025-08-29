@@ -20,5 +20,6 @@ export const strapiApiPath = {
   CONTACT_US: "/contact-us",
   QUOTATION_FORM: "/quotation-form",
   CONTACT_FORM: "/contact-form",
-  MEDIA: '/mediaa'
+  MEDIA: '/mediaa',
+  WEB_PAGES: '/webpages?filters[slug][$eq]=home&populate[meta_info][populate][keywords]=true&populate[banner]=true&populate[boardA]=true&populate[boardB]=true&populate[boardC]=true&populate[boardD]=true&populate[boardE]=true&populate[boardF]=true&populate[boardG]=true&populate[service_section]=true&populate[project_section]=true&populate[ctaA]=true&populate[ctaB]=true&populate[ctaC]=true&populate[testimonial]=true&populate[faq]=true',
 };

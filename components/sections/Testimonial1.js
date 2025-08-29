@@ -37,9 +37,9 @@ export default function Testimonial1({ data, objKey }) {
               <div className="testimonial-content">
                 <div className="section-title mb-45 tg-heading-subheading animation-style3">
                   <span className="sub-title tg-element-title">
-                    {board.subtitle}
+                    {board?.subtitle}
                   </span>
-                  <h2 className="title tg-element-title">{board.title}</h2>
+                  <h2 className="title tg-element-title">{board?.title}</h2>
                 </div>
                 <Slider {...settings} className="testimonial-active">
                   {board?.testimonials.map((item) => {

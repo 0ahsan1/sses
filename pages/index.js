@@ -11,14 +11,17 @@ import Testimonial1 from "@/components/sections/Testimonial1";
 import { strapiApiPath } from "@/constants/ApiPath";
 import { getFilteredStrapiContent } from "@/services/ApiService";
 import { NextSeoCom } from "@/components/meta/NextSeoCom";
+import axios from "axios";
 
-export default function Home({ data, layout }) {
+export default function Home({ data,error }) {
   const objKey = "main";
+  console.log(data,error);
+  
   return (
     <>
-    <NextSeoCom data={{...layout?.meta}} />
+    <NextSeoCom meta={data?.meta_info} />
     <main>
-     <Layout headerCls="transparent-header" data={layout} objKey={objKey}>
+     {/*<Layout headerCls="transparent-header" data={layout} objKey={objKey}>*/}
         <Banner1
           data={data?.banner}
           sliderImages={data?.sliderImages}
@@ -28,62 +31,29 @@ export default function Home({ data, layout }) {
         <About1 data={data?.aboutSection} objKey={objKey} />
         <Services1 data={data?.servicePage} objKey={"services"} />
         <Project1 data={data?.boards} objKey={"main-board-3"} />
-        <Team1 data={data?.boards} objKey={"team"} />
-        {/* <Counter1 /> */}
+        {/*<Team1 data={data?.boards} objKey={"team"} />*/}
+         {/*<Counter1 /> */}
         <Testimonial1 data={data?.boards} objKey={"testimonials"} />
-        {/* <Blog1 /> */}
-        {/* <Newsletter1 /> */}
-      </Layout>
+         {/*<Blog1 /> */}
+         {/*<Newsletter1 /> */}
+      {/*</Layout>*/}
      </main>
     </>
   );
 }
 
 export async function getStaticProps() {
+    const slug = 'home';
   try {
-    let data = {};
-    const layout = await getFilteredStrapiContent(strapiApiPath.LAYOUT);
-    const profile = await getFilteredStrapiContent(
-      strapiApiPath.COMPANY_PROFILE
-    );
-    const banners = await getFilteredStrapiContent(strapiApiPath.BANNERS, [
-      {
-        slug: "main",
-      },
-    ]);
-    const boards = await getFilteredStrapiContent(strapiApiPath.BOARDS);
-    const aboutSection = await getFilteredStrapiContent(
-      strapiApiPath.ABOUT_SECTION_HOME
-    );
-    const sliderImages = await getFilteredStrapiContent(
-      strapiApiPath.SLIDER_IMAGES
-    );
-    const team = await getFilteredStrapiContent(strapiApiPath.TEAM);
-    const testimonials = await getFilteredStrapiContent(
-      strapiApiPath.TESTIMONIALS
-    );
-
-    const servicePage = await getFilteredStrapiContent(
-      strapiApiPath.SERVICE_PAGE
-    );
-
-    if (layout && profile) {
-      layout["profile"] = profile;
-    }
-    if (banners && banners.length) {
-      data["banner"] = banners[0];
-    }
-    data["boards"] = boards;
-    data["servicePage"] = servicePage;
-    data["aboutSection"] = aboutSection;
-    data["sliderImages"] = sliderImages;
-    data["team"] = team;
-    data["testimonials"] = testimonials;
+      const content = await getFilteredStrapiContent(strapiApiPath.WEB_PAGES,[
+        {
+            slug: slug,
+            type: '$eq'
+        }])
 
     return {
       props: {
-        layout: layout ?? {},
-        data: data,
+          data: content ? JSON.parse(JSON.stringify(content[0])) : {},
       },
       revalidate: 20,
     };
