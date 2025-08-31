@@ -10,7 +10,7 @@ export default function Banner1({ data, sliderImages, objKey }) {
   console.log('Banner1',data)
   return
   sliderImages = sliderImages ?? brands;
-  const banner = data ?? banners.find((d) => d.slug === objKey);
+ 
   const [isActive, setIsActive] = useState({
     status: false,
     key: "",
@@ -34,27 +34,35 @@ export default function Banner1({ data, sliderImages, objKey }) {
       <section className="banner-area">
         <div
           className="banner-shape"
-          style={setBackgroundImageUrl(banner?.background_image_2)}
+          style={setBackgroundImageUrl('/assets/img/banner/banner_shape.jpg')}
           // data-background="/assets/img/banner/banner_shape.jpg"
         />
         <div
           className="banner-bg"
-          style={setBackgroundImageUrl(banner?.background_image)}
+          style={setBackgroundImageUrl(data?.image)}
         >
           <div className="banner-content">
             <h2 className="title wow fadeInDown" data-wow-delay=".2s">
-              {banner?.title}
+              {data?.title}
             </h2>
-            <p className="wow fadeInUp" data-wow-delay=".2s">
-              {banner?.content}
+            <p className="wow fadeInUp" data-wow-delay=".2s" dangerouslySetInnerHTML={{ __html: data?.description }}>
+            
             </p>
-            <Link
-              href={banner?.button_link}
-              className="btn wow fadeInUp"
-              data-wow-delay=".4s"
-            >
-              {banner?.button_title}
-            </Link>
+            {data?.button && data?.button.length > 0 && (
+                <div className="flex flex-wrap gap-4 mt-4">
+                  {data?.button.map((btn, idx) => (
+                      <Link
+                          key={idx}
+                          href={btn.link}
+                          className="btn wow fadeInUp"
+                          data-wow-delay={`${0.2 + idx * 0.2}s`}
+                      >
+                        {btn.label}
+                      </Link>
+                  ))}
+                </div>
+            )}
+          
           </div>
           {/* <div className="banner-tooltip-wrap">
                         <div className={isActive.key == 1 ? "tooltip-item top active" : "tooltip-item top"} onClick={() => handleToggle(1)}>

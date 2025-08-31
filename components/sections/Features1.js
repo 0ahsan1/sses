@@ -4,15 +4,13 @@ import Image from "next/image";
 import { strapiImageLoader } from "@/helpers/util";
 
 export default function Features1({ data, objKey }) {
-  data = data ?? boards;
-  const board = data.find((d) => d.slug === objKey);
 
   return (
     <>
       <section className="features-area pt-120 pb-90">
         <div className="container">
           <div className="row justify-content-center">
-            {board?.items.map((item, index) => {
+            {data?.items.map((item, index) => {
               return (
                 <div className="col-lg-4 col-md-6">
                   <div
@@ -22,16 +20,26 @@ export default function Features1({ data, objKey }) {
                     <div className="features-item-inner">
                       <div className="features-content">
                         <h4 className="title">{item?.title}</h4>
-                        <p>{item?.content}</p>
-                        {/* <Link href={item?.button_link} className="link-btn">
-                          <i className="fas fa-arrow-right" />{" "}
-                          {item?.button_title}
-                        </Link> */}
+                        <p dangerouslySetInnerHTML={{ __html: item?.description }}></p>
+                          {data?.button && data.button.length > 0 && (
+                              <div className="flex flex-wrap gap-4 mt-4">
+                                  {data.button.map((btn, idx) => (
+                                      <Link
+                                          key={idx}
+                                          href={btn.link}
+                                          className="btn wow fadeInUp"
+                                          data-wow-delay={`${0.2 + idx * 0.2}s`}
+                                      >
+                                          {btn.label}
+                                      </Link>
+                                  ))}
+                              </div>
+                          )}
                       </div>
                       <div className="features-icon">
                         {/* <img src="/assets/img/icon/features_icon01.svg" alt="" /> */}
                         <Image
-                          src={item?.media?.url}
+                          src={item?.image?.url}
                           width={39}
                           height={41}
                           loader={strapiImageLoader}

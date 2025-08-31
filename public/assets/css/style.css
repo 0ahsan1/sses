@@ -128,7 +128,15 @@ button:focus {
 	outline: none;
 	box-shadow: none;
 }
-
+.text-primary-color {
+	color: var(--tg-primary-color);
+}
+.bg-primary-color {
+	background: var(--tg-primary-color);
+}
+.text-secondary-color {
+	color: var(--tg-secondary-color);
+}
 a:hover,
 .portfolio-cat a:hover,
 .footer -menu li a:hover {

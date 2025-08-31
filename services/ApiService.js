@@ -2,6 +2,7 @@ import { sortData } from "@/helpers/util";
 import axios from "axios";
 
 export const strapiBasePath = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+export const strapiImagePath = process.env.NEXT_PUBLIC_STRAPI_BASE_URL;
 export const strapiConfig = {
   headers: {
     Authorization: process.env.NEXT_PUBLIC_STRAPI_TOKEN,
@@ -56,9 +57,9 @@ export async function getFilteredStrapiContent(
 
   try {
     response = await axios(url,strapiConfig);
-    console.log('strapi response',response.data.data)
+    console.log('strapi response',response.data)
     
-    return response.data.data
+    return response.data
   } catch (error) {
     console.log('strapi error',error.data.error)
   }

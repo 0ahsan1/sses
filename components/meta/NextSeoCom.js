@@ -8,15 +8,15 @@ export const NextSeoCom = (meta) => {
         title={meta.title}
         description={meta.description}
         openGraph={{
-          title: meta.og_title,
-          description: meta.og_description,
+          title: meta.title,
+          description: meta.description,
           images: [
             {
-              url: strapiImageLoader(meta.og_image[0]?.url),
-              width: meta.og_image?.width,
-              height: meta.og_image?.height,
-              alt: meta.og_image?.alternativeText,
-              type: meta.og_image?.mime,
+              url: 'https://content.sses.pk/uploads/logonew_34af3ac113.png',
+              width: 4500,
+              height: 1728,
+              alt: 'SSES logo',
+              type: 'image/png',
             },
           ],
         }}

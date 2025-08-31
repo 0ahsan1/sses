@@ -9,31 +9,37 @@ import Project1 from "@/components/sections/Project1";
 import Team1 from "@/components/sections/Team1";
 import Testimonial1 from "@/components/sections/Testimonial1";
 import { strapiApiPath } from "@/constants/ApiPath";
-import { getFilteredStrapiContent } from "@/services/ApiService";
+import {getFilteredStrapiContent, strapiBasePath, strapiConfig} from "@/services/ApiService";
 import { NextSeoCom } from "@/components/meta/NextSeoCom";
 import axios from "axios";
+import qs from 'qs';
+import {HeroBanner} from "@/components/Banner";
+import LeftContent from "@/components/LeftContent";
+import {Navbar} from "@/components/Navbar";
+import CTA from "@/components/CTA";
+import {FAQ} from "@/components/FAQ";
 
 export default function Home({ data,error }) {
   const objKey = "main";
-  console.log(data,error);
-  
+  console.log('content',data);
   return (
     <>
     <NextSeoCom meta={data?.meta_info} />
-    <main>
+        <Navbar />
+        <main>
      {/*<Layout headerCls="transparent-header" data={layout} objKey={objKey}>*/}
-        <Banner1
+        <HeroBanner
           data={data?.banner}
-          sliderImages={data?.sliderImages}
-          objKey={objKey}
         />
-        <Features1 data={data?.boards} objKey={"main-board-1"} />
-        <About1 data={data?.aboutSection} objKey={objKey} />
-        <Services1 data={data?.servicePage} objKey={"services"} />
-        <Project1 data={data?.boards} objKey={"main-board-3"} />
-        {/*<Team1 data={data?.boards} objKey={"team"} />*/}
+        <Features1 data={data?.boardA} objKey={"main-board-1"} />
+        <LeftContent data={data?.boardB} objKey={objKey} />
+        <Services1 data={data?.service_section} objKey={"services"} />
+            <CTA data={data?.ctaA} objKey={"cta"} />
+        <Project1 data={data?.project_section} objKey={"main-board-3"} />
+        <Team1 data={data?.boardC} objKey={"team"} />
          {/*<Counter1 /> */}
-        <Testimonial1 data={data?.boards} objKey={"testimonials"} />
+        <Testimonial1 data={data?.testimonial} objKey={"testimonials"} />
+            <FAQ data={data?.faq} objKey={"faq"} />
          {/*<Blog1 /> */}
          {/*<Newsletter1 /> */}
       {/*</Layout>*/}
@@ -42,26 +48,118 @@ export default function Home({ data,error }) {
   );
 }
 
-export async function getStaticProps() {
-    const slug = 'home';
-  try {
-      const content = await getFilteredStrapiContent(strapiApiPath.WEB_PAGES,[
-        {
-            slug: slug,
-            type: '$eq'
-        }])
-
-    return {
-      props: {
-          data: content ? JSON.parse(JSON.stringify(content[0])) : {},
-      },
-      revalidate: 20,
+export async function getServerSideProps() {
+    const queryObject = {
+        filters: { slug: { $eq: "home" } },
+        populate: {
+            meta_info: { populate: { image: true, keywords: true } },
+            banner: { populate: "*" },
+            service_section: {
+                populate: {
+                    services: {
+                        populate: {
+                            image: true,          // Populate image inside each service
+                            button: {
+                                populate:'*'      // Populate icon inside button inside each service
+                            }
+                        }
+                    },
+                    button: {
+                        populate: {
+                            icon: true           // Populate icon inside main button of the service_section
+                        }
+                    }
+                }
+            },
+            project_section: {
+                populate: {
+                    projects: {
+                        populate: {
+                            image: true,
+                            info: true
+                        }
+                    },
+                    button: {
+                        populate: "*"
+                    }
+                }
+                },
+            ctaA: { populate: "*" },
+            ctaB: { populate: "*" },
+            ctaC: { populate: "*" },
+            testimonial: { populate: "*" },
+            faq: { populate: "*" },
+            boardA: { populate: {
+                    items: { populate: { image: true, bg_image: true, button: { populate: { icon: true } } } },
+                    image: true,
+                    button: { populate: { icon: true } },
+                }},
+            boardB: { populate: {
+                    items: { populate: { image: true, bg_image: true, button: { populate: { icon: true } } } },
+                    image: true,
+                    button: { populate: { icon: true } },
+                }},
+            boardC: { populate: {
+                    items: { populate: { image: true, bg_image: true, button: { populate: { icon: true } } } },
+                    image: true,
+                    button: { populate: { icon: true } },
+                }},
+            boardD: { populate: {
+                    items: { populate: { image: true, bg_image: true, button: { populate: { icon: true } } } },
+                    image: true,
+                    button: { populate: { icon: true } },
+                }},
+            boardE: { populate: {
+                    items: { populate: { image: true, bg_image: true, button: { populate: { icon: true } } } },
+                    image: true,
+                    button: { populate: { icon: true } },
+                }},
+            boardF: { populate: {
+                    items: { populate: { image: true, bg_image: true, button: { populate: { icon: true } } } },
+                    image: true,
+                    button: { populate: { icon: true } },
+                }},
+            boardG: { populate: {
+                    items: { populate: { image: true, bg_image: true, button: { populate: { icon: true } } } },
+                    image: true,
+                    button: { populate: { icon: true } },
+                }},
+        },
     };
-  } catch (error) {
-    return {
-      props: {
-        error: JSON.parse(JSON.stringify(error)),
-      },
-    };
-  }
+    
+    try {
+        const { data: resp } = await axios.get(
+            `${strapiBasePath}/webpages`,
+            {
+                // keep your auth headers etc. inside this same config object
+                ...strapiConfig,
+                params: queryObject,
+                paramsSerializer: {
+                    serialize: (params) => qs.stringify(params, { encodeValuesOnly: true }),
+                },
+            }
+        );
+        
+        // Strapi v4 shape: { data: [ { id, attributes: {...} } ], meta: {...} }
+        const pageEntry = resp?.data?.[0] ?? null;
+        
+        console.log("Strapi meta:", resp?.meta);
+        console.log("Found page id:", pageEntry?.id);
+        
+        return {
+            props: {
+                // if you want just attributes:
+                data: pageEntry ? pageEntry : null,
+            },
+        };
+    } catch (err) {
+        // log useful error info
+        console.error("Strapi error:", err?.response?.status, err?.response?.data || err?.message);
+        return {
+            props: {
+                error: err?.response?.data ?? { message: err?.message || "Unknown error" },
+            },
+        };
+    }
 }
+
