@@ -2,146 +2,127 @@ import Layout from "@/components/layout/Layout";
 import Brand3 from "@/components/sections/Brand3";
 import { useRouter } from "next/router";
 import { projects } from "../project";
-import { getFilteredStrapiContent } from "@/services/ApiService";
+import {getFilteredStrapiContent, strapiBasePath, strapiConfig} from "@/services/ApiService";
 import { strapiApiPath } from "@/constants/ApiPath";
 import { Project1 } from "@/components/content/projects";
 import Image from "next/image";
 import { dateFormatter, strapiImageLoader } from "@/helpers/util";
 import { NextSeoCom } from "@/components/meta/NextSeoCom";
+import axios from "axios";
+import qs from "qs";
+import {FAQ} from "@/components/FAQ";
 
 export default function ProjectDetails({ data }) {
-  const router = useRouter();
-  const { slug } = router.query;
-  const project = (data.projects ?? projects).find((s) => s.slug === slug);
 
+console.log('ProjectDetails',data)
   return (
     <>
-      {project && project.meta ? <NextSeoCom data={{ ...project.meta }} /> : <></>}
+      <NextSeoCom meta={data?.meta_info} />
 
-      <Layout breadcrumbTitle="Project Details" data={data?.layout}>
         <div>
           <section className="project-details-area pt-120">
             <div className="container">
-              <div className="row">
-                <div className="col-lg-8">
+              <div className="px-48">
+                <div className="col-lg-12">
                   <div className="project-details-wrap">
                     <div className="project-details-thumb">
                       <Image
-                        src={project?.media?.url}
+                        src={data?.image[0]?.url}
                         alt=""
                         width={956}
                         height={390}
                         loader={strapiImageLoader}
                       />
                     </div>
-                    <div className="project-details-content">
-                      <h2 className="title">{project?.about_project_text}</h2>
-                      <p className="info-one">{project?.content}</p>
+                    <div className="">
+                      <h1 className="text-5xl max-w-5xl">{data?.title}</h1>
+                      <p className="info-one"
+                      dangerouslySetInnerHTML={{__html: data?.content}}
+                      />
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-4">
-                  <aside className="project-sidebar">
-                    <div className="project-widget">
-                      <h4 className="widget-title">
-                        {project?.project_details_text}
-                      </h4>
-                      <div className="project-info-list">
-                        <table class="table-auto text-sm">
-                          <tr>
-                            <th>Date</th>
-                            <td className="px-4 py-2">{dateFormatter(new Date(project?.date), "LL")} </td>
-                          </tr>
-                          <tr>
-                            <th>Client</th>
-                            <td className="px-4 py-2">{project?.clients}</td>
-                          </tr>
-                          <tr>
-                            <th>Category</th>
-                            <td className="px-4 py-2">{project?.category}</td>
-                          </tr>
-                          <tr>
-                            <th>Location</th>
-                            <td className="px-4 py-2">{project?.location}</td>
-                          </tr>
-                        </table>
-                      </div>
-                    </div>
-                  </aside>
-                </div>
+                {/*<div className="col-lg-4">*/}
+                {/*  <aside className="project-sidebar">*/}
+                {/*    <div className="project-widget">*/}
+                {/*      <h4 className="widget-title">*/}
+                {/*        {'Project Details'}*/}
+                {/*      </h4>*/}
+                {/*      <div className="project-info-list">*/}
+                {/*        <table class="table-auto text-sm">*/}
+                {/*          <tr>*/}
+                {/*            <th>Date</th>*/}
+                {/*            <td className="px-4 py-2">{dateFormatter(new Date(data?.info?.date), "LL")} </td>*/}
+                {/*          </tr>*/}
+                {/*          <tr>*/}
+                {/*            <th>Client</th>*/}
+                {/*            <td className="px-4 py-2">{data?.info?.customer}</td>*/}
+                {/*          </tr>*/}
+                {/*          <tr>*/}
+                {/*            <th>Category</th>*/}
+                {/*            <td className="px-4 py-2">{data?.info?.category}</td>*/}
+                {/*          </tr>*/}
+                {/*          <tr>*/}
+                {/*            <th>Location</th>*/}
+                {/*            <td className="px-4 py-2">{data?.info?.location}</td>*/}
+                {/*          </tr>*/}
+                {/*        </table>*/}
+                {/*      </div>*/}
+                {/*    </div>*/}
+                {/*  </aside>*/}
+                {/*</div>*/}
               </div>
             </div>
           </section>
-          {/* project-details-area-end */}
-          {/* brand-area */}
-          <Brand3 data={data?.sliderImages} />
+          <FAQ data={data?.faq} />
         </div>
-      </Layout>
     </>
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const slug = context.params.slug;
+  const queryObject = {
+    filters: { slug: { $eq: slug } },
+    populate: {
+      meta_info: { populate: { image: true, keywords: true } },
+      image: true,
+      info: true,
+      faq: { populate: "*" },
+    },
+  };
   try {
-    let data = {};
-    const layout = await getFilteredStrapiContent(strapiApiPath.LAYOUT);
-    const profile = await getFilteredStrapiContent(
-      strapiApiPath.COMPANY_PROFILE
-    );
-    const banners = await getFilteredStrapiContent(strapiApiPath.BANNERS, [
-      {
-        slug: "main",
-      },
-    ]);
-    const projects = await getFilteredStrapiContent(strapiApiPath.PROJECTS, [
-      {
-        slug,
-      },
-    ]);
-    const sliderImages = await getFilteredStrapiContent(
-      strapiApiPath.SLIDER_IMAGES,
-      [
+    const { data: resp } = await axios.get(
+        `${strapiBasePath}/projects`,
         {
-          slug: "projects",
-        },
-      ]
+          // keep your auth headers etc. inside this same config object
+          ...strapiConfig,
+          params: queryObject,
+          paramsSerializer: {
+            serialize: (params) => qs.stringify(params, { encodeValuesOnly: true }),
+          },
+        }
     );
-
-    if (layout && profile) {
-      layout["profile"] = profile;
-    }
-    data["layout"] = layout;
-    data["projects"] = projects;
-    data["sliderImages"] = sliderImages;
-
+    
+    // Strapi v4 shape: { data: [ { id, attributes: {...} } ], meta: {...} }
+    const pageEntry = resp?.data?.[0] ?? null;
+    
+    console.log("Strapi meta:", resp?.meta);
+    console.log("Found page id:", pageEntry?.id);
+    
     return {
       props: {
-        data: data,
+        // if you want just attributes:
+        data: pageEntry ? pageEntry : null,
       },
-      revalidate: 20,
     };
-  } catch (error) {
+  } catch (err) {
+    // log useful error info
+    console.error("Strapi error:", err?.response?.status, err?.response?.data || err?.message);
     return {
       props: {
-        error: JSON.parse(JSON.stringify(error)),
+        error: err?.response?.data ?? { message: err?.message || "Unknown error" },
       },
     };
   }
 }
-
-export const getStaticPaths = async () => {
-  const projects = await getFilteredStrapiContent(strapiApiPath.PROJECTS, [], {
-    limit: 50,
-  });
-  let paths = [];
-  for (let i = 0; i < projects.length; i++) {
-    paths.push({
-      params: { slug: `${projects[i].slug}` },
-    });
-  }
-  return {
-    paths: paths,
-    fallback: false,
-  };
-};
