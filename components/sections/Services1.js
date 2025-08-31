@@ -28,13 +28,13 @@ export default function Services1({ data, objKey }) {
   };
   return (
     <>
-      <section className="services-area">
-        <div className="container  px-6 lg:px-8">
-          <div className="mx-auto  max-w-full">
+      <section className="container">
+        <div className="mx-auto max-w-full lg:gap-x-8 lg:px-24">
+          <div className=" ">
             <h2 className="text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl dark:text-white">
               {data?.title}
             </h2>
-            <p className="mt-2 text-lg/8 text-gray-600 dark:text-gray-400" dangerouslySetInnerHTML={{ __html: data?.description }} />
+            <p className="mt-2 py-4 text-lg/8 text-gray-600 dark:text-gray-400" dangerouslySetInnerHTML={{ __html: data?.description }} />
           </div>
           <div className="mx-auto mt-16 ">
           <CarouselComp data={data.services} />

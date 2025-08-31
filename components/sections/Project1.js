@@ -9,13 +9,13 @@ import {strapiImagePath} from "@/services/ApiService";
 export default function Project1({data}) {
     data.projects.length = 3;
   return (
-      <div className=" bg-white py-24 sm:py-32 dark:bg-gray-900">
-        <div className="container px-6 lg:px-8">
+      <div className="container bg-white py-24 sm:py-20 dark:bg-gray-900">
+        <div className=" px-6 lg:px-24">
           <div className=" max-w-full">
             <h2 className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl dark:text-white">
             {data?.title}
             </h2>
-            <p className="mt-2 text-lg/8 text-gray-600 dark:text-gray-400" dangerouslySetInnerHTML={{ __html: data?.description }} />
+            <p className="mt-2 text-lg/8 text-gray-600 dark:text-gray-400 py-4" dangerouslySetInnerHTML={{ __html: data?.description }} />
             <div className="mt-16 space-y-20 lg:mt-20">
               {data?.projects.map((post) => (
                   <article key={post.id} className="relative isolate flex flex-col gap-8 lg:flex-row">

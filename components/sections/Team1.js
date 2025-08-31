@@ -7,7 +7,7 @@ export default function Team1({ data, objKey }) {
   
   return (
     <>
-      <section className="team-area pt-115 pb-90">
+      <section className="py-20">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">

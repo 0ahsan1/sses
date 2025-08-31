@@ -58,18 +58,18 @@ export function Navbar() {
 								<span className="sr-only">Open Menu</span>
 							</Button>
 						</SheetTrigger>
-						<SheetContent side="right" className="w-64 p-6">
+						<SheetContent side="right" className="w-64 p-6 bg-white">
 							<nav className="flex flex-col gap-4">
 								{navItems.map((item) => (
 									<Link
 										key={item.name}
 										href={item.href}
-										className="text-base font-medium text-gray-700 hover:text-primary-color dark:text-gray-300 dark:hover:text-indigo-400"
+										className="text-base font-medium text-gray-900 hover:text-primary-color dark:text-gray-300 dark:hover:text-indigo-400"
 									>
 										{item.name}
 									</Link>
 								))}
-								<Button asChild className="mt-4">
+								<Button asChild className="mt-4 bg-primary-color text-white">
 									<Link href="/contact">Get a Quote</Link>
 								</Button>
 							</nav>

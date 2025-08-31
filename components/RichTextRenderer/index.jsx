@@ -71,7 +71,7 @@ function renderBlock(block, idx, mediaBaseUrl) {
 	switch (block.type) {
 		case "paragraph":
 			return (
-				<p key={idx} className="mb-4 leading-relaxed text-gray-800">
+				<p key={idx} className="mb-4 leading-relaxed ">
 					{renderInline(block.children, mediaBaseUrl)}
 				</p>
 			);

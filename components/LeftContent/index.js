@@ -33,15 +33,17 @@ export default function LeftContent({data}) {
 								{data?.title}
 							</p>
 							<p className="mt-6 text-lg/8 text-gray-800 dark:text-gray-300" dangerouslySetInnerHTML={{ __html: data?.description }} />
-							<dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-800 lg:max-w-none dark:text-gray-400">
+							<dl className="mt-4 max-w-xl space-y-2 text-base/7 text-gray-800 lg:max-w-none dark:text-gray-400">
 								{data?.items?.map((feature) => (
-									<div key={feature.title} className="relative">
-										<dt className="inline font-semibold text-gray-900 dark:text-white">
-											<ChevronDoubleRightIcon className={'d-inline h-7 w-7 text-primary-color'} />
-											{feature.title}
-										</dt>{' '}
-										<dd className="inline">{feature?.description}</dd>
-									</div>
+										<>
+											<dt className=" font-semibold text-gray-900 dark:text-white d-block">
+												<ChevronDoubleRightIcon className={'d-inline h-7 w-7 text-primary-color'} />
+												{feature.title}
+											</dt>{' '}
+											<dd className={'pl-7'}>
+												{feature?.description}
+											</dd>
+										</>
 								))}
 							</dl>
 						</div>
