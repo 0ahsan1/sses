@@ -42,7 +42,7 @@ export function CarouselComp({ data }) {
 								<div className="mt-4 w-full">
 									<div className="text-xs mb-2">
 										<a
-											href={post.slug}
+											href={'services-details/'+post.slug}
 											className="inline-block rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100 dark:bg-gray-800/60 dark:text-gray-300 dark:hover:bg-gray-800"
 										>
 											{post.slug}
@@ -50,7 +50,7 @@ export function CarouselComp({ data }) {
 									</div>
 									
 									<h3 className="text-lg font-semibold text-gray-900 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
-										<a href={post.slug} className="block">
+										<a href={'services-details/'+post.slug} className="block">
 											{post.title}
 										</a>
 									</h3>
