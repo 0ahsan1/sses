@@ -25,8 +25,8 @@ export function CarouselComp({ data }) {
 			<CarouselContent>
 				{data?.map((post) => (
 					<CarouselItem key={post.id} className="md:basis-1/2 lg:basis-1/3">
-						<Card className="p-1">
-							<CardContent className="p-4 flex flex-col items-start justify-between rounded-2xl bg-white dark:bg-gray-900">
+						<Card className="p-1 rounded-3xl">
+							<CardContent className="p-2 flex flex-col items-start justify-between rounded-2xl bg-white dark:bg-gray-900">
 								<div className="relative w-full">
 									<Image
 										alt=""

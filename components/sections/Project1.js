@@ -36,7 +36,7 @@ export default function Project1({data}) {
                           {post.info.date}
                         </time>
                         <a
-                            href={post.slug}
+                            href={'/project-details/'+post.slug}
                             className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100 dark:bg-gray-800/60 dark:text-gray-300 dark:hover:bg-gray-800"
                         >
                           {post.slug}
@@ -44,7 +44,7 @@ export default function Project1({data}) {
                       </div>
                       <div className="group relative max-w-xl">
                         <h3 className="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
-                          <a href={post.slug}>
+                          <a href={'/project-details/'+post.slug}>
                             <span className="absolute inset-0" />
                             {post.title}
                           </a>
