@@ -99,7 +99,7 @@ const Gallery = ({data}) => {
     </div>
   );
 };
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     const data = await getFilteredStrapiContent(strapiApiPath.MEDIA);
     const layout = (await getFilteredStrapiContent(strapiApiPath.LAYOUT)) ?? {};

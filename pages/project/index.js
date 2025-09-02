@@ -200,7 +200,7 @@ export default function Project({ data, layout }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     let data = {};
     const layout = (await getFilteredStrapiContent(strapiApiPath.LAYOUT)) ?? {};
