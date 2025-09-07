@@ -20,7 +20,7 @@ export default function Blog1() {
                                     <Link href="/blog-details"><img src="/assets/img/blog/blog_img01.jpg" alt="" /></Link>
                                 </div>
                                 <div className="blog-post-content">
-                                    <Link href="/blog" className="tag">Quality Materials</Link>
+                                    <Link href="/pages/blogs" className="tag">Quality Materials</Link>
                                     <div className="blog-meta">
                                         <ul className="list-wrap">
                                             <li><i className="far fa-user" /> By <Link href="/blog-details">Admin</Link></li>
@@ -38,7 +38,7 @@ export default function Blog1() {
                                     <Link href="/blog-details"><img src="/assets/img/blog/blog_img02.jpg" alt="" /></Link>
                                 </div>
                                 <div className="blog-post-content">
-                                    <Link href="/blog" className="tag">House Roof Work</Link>
+                                    <Link href="/pages/blogs" className="tag">House Roof Work</Link>
                                     <div className="blog-meta">
                                         <ul className="list-wrap">
                                             <li><i className="far fa-user" /> By <Link href="/blog-details">Admin</Link></li>
@@ -56,7 +56,7 @@ export default function Blog1() {
                                     <Link href="/blog-details"><img src="/assets/img/blog/blog_img03.jpg" alt="" /></Link>
                                 </div>
                                 <div className="blog-post-content">
-                                    <Link href="/blog" className="tag">Construction Engineer</Link>
+                                    <Link href="/pages/blogs" className="tag">Construction Engineer</Link>
                                     <div className="blog-meta">
                                         <ul className="list-wrap">
                                             <li><i className="far fa-user" /> By <Link href="/blog-details">Admin</Link></li>

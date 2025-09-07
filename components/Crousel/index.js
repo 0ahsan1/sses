@@ -17,12 +17,10 @@ import {strapiImagePath} from "@/services/ApiService";
 export function CarouselComp({ data }) {
 	return (
 		<Carousel
-			opts={{
-				align: "start",
-			}}
-			className="w-full"
+			className="w-[300px] sm:w-full mx-auto"
+			orientation='horizontal'
 		>
-			<CarouselContent>
+			<CarouselContent className={'w-[300px] sm:w-full h-[450px] sm:h-full'}>
 				{data?.map((post) => (
 					<CarouselItem key={post.id} className="md:basis-1/2 lg:basis-1/3">
 						<Card className="p-1 rounded-3xl">

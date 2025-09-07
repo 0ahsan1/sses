@@ -18,14 +18,14 @@ export default function TestimonialCarousel({data}) {
 	
 	return (
 		<section className="bg-white px-6 py-16 sm:py-18 lg:px-8 dark:bg-gray-900">
-			<Carousel className="max-w-7xl mx-auto"
+			<Carousel className="max-w-xs sm:max-w-7xl mx-auto"
 			          plugins={[plugin.current]}
 			          onMouseEnter={plugin.current.stop}
 			          onMouseLeave={plugin.current.reset}
 			>
 				<CarouselContent>
 					{data.map((t) => (
-						<CarouselItem key={t.id}  className="basis-1/2 flex justify-center px-4">
+						<CarouselItem key={t.id}  className="md:basis-1/2 lg:basis-1/3 flex justify-center px-4">
 							<Card className="w-full rounded-2xl">
 								<CardHeader>
 									<p className="sr-only">5 out of 5 stars</p>

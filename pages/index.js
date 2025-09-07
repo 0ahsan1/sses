@@ -18,6 +18,7 @@ import LeftContent from "@/components/LeftContent";
 import {Navbar} from "@/components/Navbar";
 import CTA from "@/components/CTA";
 import {FAQ} from "@/components/FAQ";
+import Footer from "@/components/Footer";
 
 export default function Home({ data,error }) {
   const objKey = "main";
@@ -28,22 +29,22 @@ export default function Home({ data,error }) {
         <Navbar />
         <main>
      {/*<Layout headerCls="transparent-header" data={layout} objKey={objKey}>*/}
-        <HeroBanner
-          data={data?.banner}
-        />
-        <Features1 data={data?.boardA} objKey={"main-board-1"} />
-        <LeftContent data={data?.boardB} objKey={objKey} />
-        <Services1 data={data?.service_section} objKey={"services"} />
-            <CTA data={data?.ctaA} objKey={"cta"} />
-        <Project1 data={data?.project_section} objKey={"main-board-3"} />
-        <Team1 data={data?.boardC} objKey={"team"} />
-         {/*<Counter1 /> */}
-        <Testimonial1 data={data?.testimonial} objKey={"testimonials"} />
-            <FAQ data={data?.faq} objKey={"faq"} />
+            {data?.banner && <HeroBanner data={data.banner} />}
+            {/*{data?.boardA && <Features1 data={data.boardA} objKey="main-board-1" />}*/}
+            {data?.boardB && <LeftContent data={data.boardB} objKey={objKey} />}
+            {data?.service_section && <Services1 data={data.service_section} objKey="services" />}
+            {data?.ctaA && <CTA data={data.ctaA} objKey="cta" />}
+            {data?.project_section && <Project1 data={data.project_section} objKey="main-board-3" />}
+            {data?.boardC && <Team1 data={data.boardC} objKey="team" />}
+            {data?.ctaB && <CTA data={data.ctaB} objKey="cta" />}
+            {data?.testimonial && <Testimonial1 data={data.testimonial} objKey="testimonials" />}
+            {data?.faq && <FAQ data={data.faq} objKey="faq" />}
+            {data?.ctaC && <CTA data={data.ctaC} objKey="cta" />}
          {/*<Blog1 /> */}
          {/*<Newsletter1 /> */}
       {/*</Layout>*/}
      </main>
+        <Footer />
     </>
   );
 }
