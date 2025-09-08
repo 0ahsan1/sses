@@ -19,6 +19,8 @@ import {Navbar} from "@/components/Navbar";
 import CTA from "@/components/CTA";
 import {FAQ} from "@/components/FAQ";
 import Footer from "@/components/Footer";
+import MainLayout from "@/components/layout/main";
+import Feature from "@/components/Feature";
 
 export default function Home({ data,error }) {
   const objKey = "main";
@@ -26,12 +28,13 @@ export default function Home({ data,error }) {
   return (
     <>
     <NextSeoCom meta={data?.meta_info} />
-        <Navbar />
-        <main>
+        <MainLayout>
      {/*<Layout headerCls="transparent-header" data={layout} objKey={objKey}>*/}
             {data?.banner && <HeroBanner data={data.banner} />}
             {/*{data?.boardA && <Features1 data={data.boardA} objKey="main-board-1" />}*/}
+            <Feature data={data.boardE} />
             {data?.boardB && <LeftContent data={data.boardB} objKey={objKey} />}
+            {data?.boardB && <LeftContent data={data.boardG} objKey={objKey} />}
             {data?.service_section && <Services1 data={data.service_section} objKey="services" />}
             {data?.ctaA && <CTA data={data.ctaA} objKey="cta" />}
             {data?.project_section && <Project1 data={data.project_section} objKey="main-board-3" />}
@@ -43,8 +46,7 @@ export default function Home({ data,error }) {
          {/*<Blog1 /> */}
          {/*<Newsletter1 /> */}
       {/*</Layout>*/}
-     </main>
-        <Footer />
+     </MainLayout>
     </>
   );
 }
